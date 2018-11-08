@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <sideBar></sideBar>
     <router-view/>
   </div>
 </template>
 
 <script>
+import sideBar from './components/fixed/sidebar.vue'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    sideBar
+  }
 }
 </script>
 
