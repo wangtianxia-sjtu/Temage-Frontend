@@ -1,6 +1,6 @@
 <template>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-  <el-menu-item index="1" class="el-menu-item1" v-bind:style="styleObject">选项</el-menu-item>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" v-bind:style="topbarstyle">
+  <el-menu-item index="1" class="el-menu-item1">选项</el-menu-item>
   <el-submenu index="2">
     <template slot="title" class="el-menu-item1">我的工作台</template>
     <el-menu-item index="2-1" class="el-menu-item1">选项1</el-menu-item>
@@ -18,23 +18,16 @@
 </el-menu>
 </template>
 
-<style>
-  .el-menu-demo {
-    font-size: 1000px;
-    margin-top: 0px;
-    height: 60px;
-  }
-  el-menu {
-    font-size: xx-small;
-  }
-</style>
-
 <script>
 export default {
   name: 'topbar',
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      topbarstyle: {
+        position: 'fixed',
+        width: '100%'
+      }
     }
   },
   methods: {
