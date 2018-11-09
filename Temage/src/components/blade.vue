@@ -14,22 +14,23 @@
         float: left;
         position:inherit;
         top: 10px;
+        align-self: center;
     }
     .layout-nav{
-        width: 420px;
         margin-top:-5px;
         float: right;
     }
 </style>
 <template>
         <div class="layout" style="height: 100%">
-            <Layout :style="{background: '#fff',minHeight: '100%'}">
+            <Layout :style="{background: '#fff',height: '100%'}">
                 <Header style="background: #5e9eda; height: 50px;">
                     <Menu mode="horizontal" theme="dark" active-name="1" style="background: #5e9eda; height: 50px;">
-                        <div class="layout-logo">
-                            <h2 style="margin-top:-16px; color:#FFF">Temage</h2>
-                        </div>
-                        <div class="layout-nav">
+                        <Row>
+                        <Col :lg="{ span: 2, offset: 11 }" class="layout-logo">
+                            <h2 style="margin-top:-16px; color:rgba(255, 255, 255, 0.767)">Temage</h2>
+                        </Col>
+                        <Col  class="layout-nav">
                             <MenuItem name="1">
                                 <Icon type="ios-navigate"></Icon>
                                 Item 1
@@ -46,12 +47,13 @@
                                 <Icon type="ios-paper"></Icon>
                                 Item 4
                             </MenuItem>
-                        </div>
+                        </Col>
+                        </Row>
                     </Menu>
                 </Header>
-                <Layout  :style="{background: '#fff',minHeight: '100%'}">
-                    <Sider hide-trigger :style="{background: '#fff',minHeight: '100%'}">
-                        <Menu active-name="1" theme="light" width="auto" height="auto" :open-names="['1','2','3']">
+                <Layout  :style="{background: '#fff',height: '100%'}">
+                    <Sider hide-trigger :style="{background: '#fff',height: '100%'}">
+                        <Menu :style="{background: '#fff',height: '100%'}" active-name="1" theme="light" width="auto" height="auto" :open-names="['1','2','3']">
                             <Submenu name="1">
                                 <template slot="title">
                                     <Icon type="ios-navigate"></Icon>
