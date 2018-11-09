@@ -3,6 +3,7 @@
     <sidebar></sidebar>
     <topbar></topbar>
     <img src="./assets/logo.png">
+    <card></card>
     <router-view/>
   </div>
 </template>
@@ -10,11 +11,13 @@
 <script>
 import topbar from './components/fixed/topbar.vue'
 import sidebar from './components/fixed/sidebar.vue'
+import card from './components/widgets/display/card.vue'
 export default {
   name: 'App',
   components: {
     topbar,
-    sidebar
+    sidebar,
+    card
   }
 }
 </script>
