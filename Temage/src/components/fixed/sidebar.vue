@@ -7,6 +7,7 @@
           class="el-menu-vertical-demo"
           @click="logStable"
           @close="handleClose">
+          <br><br><br>
           <el-menu-item index="1" >
             <i class="el-icon-menu"></i>
             <span slot="title">我的主页</span>

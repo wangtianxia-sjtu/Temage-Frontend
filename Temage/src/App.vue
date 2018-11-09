@@ -1,23 +1,15 @@
 <template>
-  <div id="app">
-    <sidebar></sidebar>
-    <topbar></topbar>
-    <img src="./assets/logo.png">
-    <card></card>
-    <router-view/>
+  <div id="app" style="min-height: 100%">
+    <blade></blade>
   </div>
 </template>
 
 <script>
-import topbar from './components/fixed/topbar.vue'
-import sidebar from './components/fixed/sidebar.vue'
-import card from './components/widgets/display/card.vue'
+import blade from './components/blade.vue'
 export default {
   name: 'App',
   components: {
-    topbar,
-    sidebar,
-    card
+    blade
   }
 }
 </script>
@@ -29,5 +21,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+  height: 100%;
 }
 </style>
