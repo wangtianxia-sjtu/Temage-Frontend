@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     logStable () {
-        console.log(123123)
+      console.log(123123)
     },
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
