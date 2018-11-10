@@ -1,7 +1,14 @@
 <template>
 <div width=100%, height=100%>
   <br><br>
-    <Icon type="ios-time-outline" size="40" color="blue" style="justify-content:left"/>
+    <el-row :gutter="25">
+    <el-col :span="2"><div class="grid-content bg-purple">
+      <Icon type="ios-time-outline" size="40" color="blue"/>
+      </div></el-col>
+    <el-col :span="2"><div class="grid-content bg-purple">
+        <h1>Recent</h1>
+    </div></el-col>
+    </el-row>
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6"><div class="grid-content bg-purple">
@@ -17,7 +24,15 @@
         </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
-    <Icon type="ios-heart" size="40" color="red"/>
+    <el-row :gutter="25">
+    <el-col :span="2"><div class="grid-content bg-purple">
+      <Icon type="ios-heart" size="40" color="red"/>
+      </div></el-col>
+    <el-col :span="2"><div class="grid-content bg-purple">
+        <h1>Collections</h1>
+    </div></el-col>
+    </el-row>
+
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6"><div class="grid-content bg-purple">
@@ -33,7 +48,15 @@
         </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
-    <Icon type="ios-photos" size="40"/>
+    <el-row :gutter="25">
+    <el-col :span="2"><div class="grid-content bg-purple">
+      <Icon type="ios-photos" size="40"/>
+      </div></el-col>
+    <el-col :span="2"><div class="grid-content bg-purple">
+        <!-- <h1 router-link="{path: '/gallery'}">Gallery</h1> -->
+        <router-link to="/gallery"><h1>Gallery</h1></router-link>
+    </div></el-col>
+    </el-row>
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6"><div class="grid-content bg-purple">

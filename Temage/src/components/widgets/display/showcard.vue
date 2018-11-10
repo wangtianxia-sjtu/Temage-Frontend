@@ -1,6 +1,6 @@
 <template>
 <div>
-<el-card :body-style="{ padding: '0px' }">
+<el-card shadow="hover" :body-style="{ padding: '0px' }">
       <img v-bind:src="imagesrc" class="image">
       <div style="padding: 14px;">
         <h3>{{title}}</h3>
