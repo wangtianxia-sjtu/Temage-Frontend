@@ -8,27 +8,44 @@
     }
     .layout-logo{
         width: 100px;
-        height: 30px;
+        height: 35px;
         background: rgba(32, 51, 87, 0.185);
         border-radius: 3px;
         float: left;
         position:inherit;
-        top: 10px;
+        top: 7px;
         align-self: center;
     }
     .layout-nav{
         margin-top:-5px;
+        margin-right:-65px;
         float: right;
+    }
+    .topbar{
+        background: #5e9eda;
+        height: 50px;
+    }
+    .logo-min{
+        margin-top:2px;
+        max-width: 120%;
+        max-height: 100%;
+        opacity: 0.7;
+    }
+    .logo-min:hover{
+        opacity: 1.0;
     }
 </style>
 <template>
         <div class="layout" style="height: 100%">
             <Layout :style="{background: '#fff',height: '100%'}">
-                <Header style="background: #5e9eda; height: 50px;">
-                    <Menu mode="horizontal" theme="dark" active-name="1" style="background: #5e9eda; height: 50px;">
+                <Header class='topbar'>
+                    <Row>
+                        <Col span='4' style='top: 7px; margin-left: -20px;'><Input search enter-button placeholder="Search" /></Col>
+                        <Col span='20'>
+                        <Menu mode="horizontal" theme="dark" active-name="1" class='topbar'>
                         <Row>
-                        <Col :lg="{ span: 2, offset: 11 }" class="layout-logo">
-                            <h2 style="margin-top:-16px; color:rgba(255, 255, 255, 0.767)">Temage</h2>
+                        <Col  span='2'  offset='9' class="layout-logo" >
+                            <img class = 'logo-min' src='../assets/logo-min.png'>
                         </Col>
                         <Col  class="layout-nav">
                             <MenuItem name="1">
@@ -45,11 +62,17 @@
                             </MenuItem>
                             <MenuItem name="4">
                                 <Icon type="ios-paper"></Icon>
-                                Item 4
+                                <Poptip trigger="hover" title='最近通知'><notice></notice>
+                                    <div class="api" slot="content" style="color:#000">
+                                        test
+                                    </div>
+                                </Poptip>
                             </MenuItem>
-                        </Col>
+                            </Col>
                         </Row>
-                    </Menu>
+                        </Menu>
+                    </Col>
+                    </Row>
                 </Header>
                 <Layout  :style="{background: '#fff',height: '100%'}">
                     <Sider hide-trigger :style="{background: '#fff',height: '100%'}">
@@ -89,7 +112,11 @@
         </div>
 </template>
 <script>
+import notice from './widgets/display/notification.vue'
 export default {
-  name: 'blade'
+  name: 'blade',
+  components: {
+    notice
+  }
 }
 </script>
