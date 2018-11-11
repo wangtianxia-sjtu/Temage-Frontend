@@ -25,14 +25,10 @@ export default {
       seen: false,
       btnvariant: 'danger',
       btnsize: 'sm',
-      buttonSize: 'large',
-      imagesrc: require('@/assets/jzm.jpg'),
-      title: 'Card title that wraps to a new line',
-      head: 'Quote',
-      maintext: 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit',
-      foottext: 'Footer Text'
+      buttonSize: 'large'
     }
   },
+  props: ['imagesrc', 'title', 'head', 'maintext', 'foottext'],
   methods: {
     closable () {
       this.$Message.info({

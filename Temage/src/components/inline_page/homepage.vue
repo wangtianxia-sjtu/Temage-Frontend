@@ -53,7 +53,6 @@
       <Icon type="ios-photos" size="40"/>
       </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple">
-        <!-- <h1 router-link="{path: '/gallery'}">Gallery</h1> -->
         <router-link to="/gallery"><h1>Gallery</h1></router-link>
     </div></el-col>
     </el-row>
