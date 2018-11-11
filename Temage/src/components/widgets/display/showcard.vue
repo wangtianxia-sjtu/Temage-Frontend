@@ -13,13 +13,14 @@
 <br><br><br><br>
 </div>
 </template>
+
 <script>
 export default {
   name: 'showcard',
   data () {
     return {
       currentDate: new Date(),
-      imagesrc: require('@/assets/jzm.jpg'),
+      imagesrc: require('@/assets/cat6.png'),
       title: 'I\'m angry!',
       buttonname: 'Start!'
     }

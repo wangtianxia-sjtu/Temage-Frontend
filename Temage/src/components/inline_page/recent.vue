@@ -1,6 +1,6 @@
 <template>
-<div width=100%, height=100%, margin-left=-50px>
-  <br><br>
+<div>
+    <br><br>
     <el-row :gutter="25">
     <el-col :span="2"><div class="grid-content bg-purple">
       <Icon type="ios-time-outline" size="40" color="blue"/>
@@ -25,16 +25,6 @@
         </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
-    <el-row :gutter="25">
-    <el-col :span="2"><div class="grid-content bg-purple">
-      <Icon type="ios-heart" size="40" color="red"/>
-      </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple">
-        <h1>Collections</h1>
-        <br>
-    </div></el-col>
-    </el-row>
-
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
@@ -49,15 +39,6 @@
         <showcard></showcard>
         </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
-    <el-row :gutter="25">
-    <el-col :span="2"><div class="grid-content bg-purple">
-      <Icon type="ios-photos" size="40"/>
-      </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple">
-        <router-link to="/gallery"><h1>Gallery</h1></router-link>
-        <br>
-    </div></el-col>
     </el-row>
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
@@ -80,7 +61,7 @@
 <script>
 import showcard from '@/components/widgets/display/showcard.vue'
 export default {
-  name: 'homepage',
+  name: 'recent',
   components: {
     showcard
   },
@@ -93,10 +74,6 @@ export default {
 </script>
 
 <style>
-.el-col-6 {
-    padding-right: 0px!important;
-    padding-left: 20px!important;
-}
   .time {
     font-size: 13px;
     color: #999;
