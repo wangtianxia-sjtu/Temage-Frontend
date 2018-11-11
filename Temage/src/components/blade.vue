@@ -5,6 +5,7 @@
         position: relative;
         border-radius: 0px;
         overflow: hidden;
+        text-align: left;
     }
     .layout-logo{
         width: 100px;
@@ -15,6 +16,7 @@
         position:inherit;
         top: 7px;
         align-self: center;
+        text-align: center;
     }
     .layout-nav{
         margin-top:-5px;
@@ -34,6 +36,22 @@
     .logo-min:hover{
         opacity: 1.0;
     }
+    .ivu-btn-primary{
+        color:#fff;background-color:#2460a07c;border-color:#2460a0;
+    }
+    .ivu-btn-primary:hover{
+        color:#fff;background-color:#9dc2eb;border-color:#9dc2eb
+    }
+    .ivu-input-search{
+        background:#2460a07c!important;
+        border-color:#2460a04f!important;
+    }
+    .ivu-input-search:hover{
+        background:#b3cde9!important;border-color:#b2d0f0!important
+    }
+    .ivu-btn{
+        font-size: 15px;
+    }
 </style>
 <template>
         <div class="layout" style="height: 100%">
@@ -44,25 +62,17 @@
                         <Col span='20'>
                         <Menu mode="horizontal" theme="dark" active-name="1" class='topbar'>
                         <Row>
-                        <Col  span='2'  offset='9' class="layout-logo" >
-                            <img class = 'logo-min' src='../assets/logo-min.png'>
+                        <Col  span='3'  offset='9' class="layout-logo" >
+                            <router-link to="/">
+                            <img class = 'logo-min' src='../assets/logo-min.png' width="100%">
+                            </router-link>
                         </Col>
                         <Col  class="layout-nav">
-                            <MenuItem name="1">
-                                <Icon type="ios-navigate"></Icon>
-                                Item 1
-                            </MenuItem >
-                            <MenuItem name="2">
-                                <Icon type="ios-keypad"></Icon>
-                                Item 2
-                            </MenuItem>
-                            <MenuItem name="3">
-                                <Icon type="ios-analytics"></Icon>
-                                Item 3
-                            </MenuItem>
                             <MenuItem name="4">
-                                <Icon type="ios-paper"></Icon>
-                                <Poptip trigger="hover" title='最近通知'><notice></notice>
+                                <Button :size="buttonSize" icon="md-add" type="primary">New</Button>
+                                <instruct></instruct>
+                                <Icon type="md-notifications"></Icon>
+                                <Poptip trigger="hover" title='最近通知'><noticeTop></noticeTop>
                                     <div class="api" slot="content" style="color:#000">
                                         test
                                     </div>
@@ -76,31 +86,32 @@
                 </Header>
                 <Layout  :style="{background: '#fff',height: '100%'}">
                     <Sider hide-trigger :style="{background: '#fff',height: '100%'}">
-                        <Menu :style="{background: '#fff',height: '100%'}" active-name="1" theme="light" width="auto" height="auto" :open-names="['1','2','3']">
+                        <Menu :style="{background: '#fff',height: '100%'}"  theme="light" width="auto" height="auto" :open-names="['1','2','3']">
                             <Submenu name="1">
                                 <template slot="title">
-                                    <Icon type="ios-navigate"></Icon>
-                                    Item 1
+                                    <Icon type="md-home"></Icon>
+                                     Homepage
                                 </template>
-                                <MenuItem name="1-1">Option 1</MenuItem>
-                                <MenuItem name="1-2">Option 2</MenuItem>
-                                <MenuItem name="1-3">Option 3</MenuItem>
+                                <router-link to="/"><MenuItem name="1-0"><Icon type="md-card"></Icon>Display</MenuItem></router-link>
+                                <MenuItem name="1-1"><Icon type="md-time"></Icon>Recent Cards</MenuItem>
+                                <MenuItem name="1-2"><Icon type="md-heart"></Icon>Collection</MenuItem>
+                                <MenuItem name="1-3"></Icon><noticeSide></noticeSide></MenuItem>
                             </Submenu>
                             <Submenu name="2">
                                 <template slot="title">
                                     <Icon type="ios-keypad"></Icon>
-                                    Item 2
+                                    Gallery
                                 </template>
-                                <MenuItem name="2-1">Option 1</MenuItem>
-                                <MenuItem name="2-2">Option 2</MenuItem>
+                                <router-link to="/gallery"><MenuItem name="2-2"><Icon type="md-color-palette"></Icon>Community</MenuItem></router-link>
+                                <MenuItem name="2-1"><Icon type="md-share"></Icon>Sharing</MenuItem>
                             </Submenu>
                             <Submenu name="3">
                                 <template slot="title">
-                                    <Icon type="ios-analytics"></Icon>
-                                    Item 3
+                                    <Icon type="md-easel"></Icon>
+                                    Workspace
                                 </template>
-                                <MenuItem name="3-1">Option 1 </MenuItem>
-                                <MenuItem name="3-2">Option 2 </MenuItem>
+                                <MenuItem name="3-1"><Icon type="md-create"></Icon>Create </MenuItem>
+                                <MenuItem name="3-2"><Icon type="logo-buffer"></Icon>Saved </MenuItem>
                             </Submenu>
                         </Menu>
                     </Sider>
@@ -112,11 +123,15 @@
         </div>
 </template>
 <script>
-import notice from './widgets/display/notification.vue'
+import noticeTop from './widgets/display/notification-top.vue'
+import noticeSide from './widgets/display/notification-side.vue'
+import instruct from './widgets/display/instruction.vue'
 export default {
   name: 'blade',
   components: {
-    notice
+    noticeTop,
+    noticeSide,
+    instruct
   }
 }
 </script>

@@ -12,7 +12,7 @@
 </template>
 <script>
 export default {
-  name: 'notice',
+  name: 'notice-top',
   data () {
     return {
       value1: false
