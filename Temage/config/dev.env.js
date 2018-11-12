@@ -20,33 +20,4 @@ module.exports = merge(prodEnv, {
       saved:'3-2'
     }
   },
-  SAVED_CARDS:{
-    CARD1:{
-      title:'',
-      txt:'',
-      image:[''],
-      show_img:'',
-      style:'',
-      layout:{
-      }
-    },
-    CARD2:{
-      title:'',
-      txt:'',
-      image:[''],
-      show_img:'',
-      style:'',
-      layout:{
-      }
-    }
-  },
-  INSTRUCT:{
-    step1:'',
-    step2:'',
-    step3:''
-  },
-  USER_INFO:{
-    avert:'',
-    name:'',
-  }
 })
