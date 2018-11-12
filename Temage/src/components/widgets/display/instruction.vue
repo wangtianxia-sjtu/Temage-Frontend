@@ -1,6 +1,6 @@
 <template>
         <Poptip v-model="visible">
-            <Button :size="buttonSize" class = 'instr' icon="md-information-circle" type="primary">instruction</Button>
+            <Button class = 'instr' icon="md-information-circle" type="primary">instruction</Button>
             <div slot="title" class='ins-title'><i>欢迎使用！</i></div>
             <div slot="content" class='ins-con'>
                 <Row>
@@ -11,7 +11,7 @@
                 </Row>
                 <br>
                 <Button @click="close">close</Button>
-                <Button :size="small" type="primary" class='next-ins' @click='next'>下一条</Button>
+                <Button type="primary" class='next-ins' @click='next'>下一条</Button>
             </div>
         </Poptip>
 </template>
@@ -27,12 +27,20 @@
     color: black;
     font-size: 25px;
 }
-.instr{
-    font-size: 15px!important;
-    color:#fff;
-    background-color:#2460a07c;
-    border-color:#2460a0;
-}
+.ivu-btn-primary {
+    font-size: 15px;
+    color: #fff;
+    background-color: #2460a0;
+    border-color: #2460a0;
+  }
+.ivu-btn-primary:hover {
+    color: rgb(17, 25, 43);
+    background-color: #9dc2eb;
+    border-color: #9dc2eb
+  }
+.ivu-btn {
+    font-size: 15px;
+  }
 </style>
 <script>
 export default {
