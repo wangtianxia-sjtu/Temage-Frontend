@@ -1,5 +1,5 @@
 <template>
-        <Poptip v-model="visible" id='pro'>
+        <Poptip v-model="visible">
             <Button :size="buttonSize" class = 'instr' icon="md-information-circle" type="primary">instruction</Button>
             <div slot="title" class='ins-title'><i>欢迎使用！</i></div>
             <div slot="content" class='ins-con'>
