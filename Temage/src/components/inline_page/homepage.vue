@@ -5,7 +5,7 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><router-link to='/recent'><Col :span="1"><Icon type="md-time" size="40" color="black"/></Col></router-link><h1>Recent</h1></Row>
+        <Row><router-link to='/recent'><Col :span="1"><Icon type="md-time" size="35" color="black"/></Col></router-link><h1>Recent</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -30,7 +30,7 @@
     <el-col :span="24"><div class="grid-content bg-purple">
         <Row>
         <Col :span="1">
-        <router-link to="/collection"><Icon type="md-heart" size="40" color="black"/></router-link>
+        <router-link to="/collection"><Icon type="md-heart" size="35" color="black"/></router-link>
         </Col>
         <h1>Collections</h1>
         </Row>
@@ -59,7 +59,7 @@
     <el-col :span="24"><div class="grid-content bg-purple">
         <Row>
         <Col :span=1>
-        <router-link to="/gallery"><Icon type="md-color-palette" size="40" color="black"/></router-link>
+        <router-link to="/gallery"><Icon type="md-color-palette" size="35" color="black"/></router-link>
         </Col>
         <h1>Gallery</h1>
         </Row>
