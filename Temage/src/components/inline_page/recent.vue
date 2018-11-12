@@ -1,12 +1,11 @@
 <template>
-<div>
-    <br><br>
+<div width=100%, height=100%, margin-left=-50px>
+     <br><br>
     <el-row :gutter="25">
     <el-col :span="2"><div class="grid-content bg-purple">
-      <Icon type="ios-time-outline" size="40" color="blue"/>
       </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple">
-        <h1>Recent</h1>
+    <el-col :span="24"><div class="grid-content bg-purple">
+        <Row><Col :span="1"><Icon type="md-time" size="40"/></Col><h1>Recent</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -40,6 +39,22 @@
         </div></el-col>
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
+    <el-row :gutter="100">
+    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
+        <showcard></showcard>
+    </div></el-col>
+    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
+        <showcard></showcard>
+        </div></el-col>
+    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
+    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
+        <showcard></showcard>
+        </div></el-col>
+    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
+    </el-row>
+
     <el-row :gutter="100">
     <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
     <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
