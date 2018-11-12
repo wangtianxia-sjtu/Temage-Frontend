@@ -52,6 +52,9 @@
     .ivu-btn{
         font-size: 15px;
     }
+    .ivu-menu-item{
+        color: rgb(35, 50, 85);
+    }
 </style>
 <template>
         <div class="layout" style="height: 100%">
@@ -93,7 +96,7 @@
                                      Homepage
                                 </template>
                                 <router-link to="/"><MenuItem name="1-0"><Icon type="md-card"></Icon>Display</MenuItem></router-link>
-                                <MenuItem name="1-1"><Icon type="md-time"></Icon>Recent Cards</MenuItem>
+                                <router-link to="/recent"><MenuItem name="1-1"><Icon type="md-time"></Icon>Recent Cards</MenuItem></router-link>
                                 <MenuItem name="1-2"><Icon type="md-heart"></Icon>Collection</MenuItem>
                                 <MenuItem name="1-3"></Icon><noticeSide></noticeSide></MenuItem>
                             </Submenu>

@@ -1,5 +1,5 @@
 <template>
-        <Poptip v-model="visible">
+        <Poptip v-model="visible" id='pro'>
             <Button :size="buttonSize" class = 'instr' icon="md-information-circle" type="primary">instruction</Button>
             <div slot="title" class='ins-title'><i>欢迎使用！</i></div>
             <div slot="content" class='ins-con'>
@@ -29,6 +29,9 @@
 }
 .instr{
     font-size: 15px!important;
+    color:#fff;
+    background-color:#2460a07c;
+    border-color:#2460a0;
 }
 </style>
 <script>
@@ -42,7 +45,8 @@ export default {
     close () {
       this.visible = false
     },
-    next(){
+    next () {
+      this.html('<h1>switch</h1>')
     }
   }
 }
