@@ -17,7 +17,9 @@ module.exports = merge(prodEnv, {
     },
     workspace:{
       create:'3-1',
-      saved:'3-2'
+      adjust:'3-2',
+      review:'3-3',
+      saved:'3-4'
     }
   },
 })

@@ -79,7 +79,9 @@
               </Col>
               <Col class="layout-nav">
               <MenuItem name='i'>
+                <router-link to="/work">
               <Button icon="md-add" type="primary">New</Button>
+                </router-link>
               <instruct></instruct>
               <Icon type="md-notifications"></Icon>
               <Poptip trigger="hover" title='最近通知'>
@@ -146,10 +148,12 @@
                 <Icon type="md-easel"></Icon>
                 Workspace
               </template>
+                <router-link to="/work">
               <MenuItem name="3-1">
               <Icon type="md-create"></Icon>
               Create
               </MenuItem>
+                </router-link>
               <MenuItem name="3-2">
               <Icon type="logo-buffer"></Icon>
               Saved

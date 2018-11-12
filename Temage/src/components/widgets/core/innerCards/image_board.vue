@@ -1,6 +1,11 @@
 <template>
   <div>
-    <el-upload action="https://jsonplaceholder.typicode.com/posts/" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-remove="handleRemove">
+    <el-upload
+    action="https://jsonplaceholder.typicode.com/posts/"
+    list-type="picture-card" :on-preview="handlePictureCardPreview"
+    :on-remove="handleRemove"
+    :auto-upload='false'
+    >
       <i class="el-icon-plus"></i>
     </el-upload>
     <el-dialog :visible.sync="dialogVisible">
@@ -19,7 +24,8 @@ export default {
   },
   methods: {
     handleRemove (file, fileList) {},
-    handlePictureCardPreview () {
+    handlePictureCardPreview (file) {
+      this.dialogImageUrl = file.url
       this.dialogVisible = true
     }
   }

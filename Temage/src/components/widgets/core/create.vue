@@ -5,10 +5,10 @@
             <Col :span='10' :offset='1' style='margin-bottom:10px; margin-top: 30px'><p>请在此处插入图片</p></Col>
             </Row>
             <Row>
-                <Col :span='12'>
+                <Col :span='11'>
                     <txtBoard></txtBoard>
                 </Col>
-                <Col :span='10' :offset='1'>
+                <Col :span='12' :offset='1'>
                     <imgBoard></imgBoard>
                 </Col>
             </Row>
