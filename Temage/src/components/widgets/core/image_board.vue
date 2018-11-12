@@ -10,7 +10,7 @@
 </el-dialog>
 <script>
   export default {
-    name:'image_board',
+    name:'imageBoard',
     data() {
       return {
         dialogImageUrl: '',

@@ -3,7 +3,7 @@
 </template>
 <script>
   export default {
-    name: 'text_board',
+    name: 'textBoard',
     data () {
       return {
         text_content: this.value
