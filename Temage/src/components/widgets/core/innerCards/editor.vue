@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div ref="editor" style="text-align:left"></div>
+      <div ref="editor" style="text-align:center;"></div>
       <br>
       <b-button v-on:click="getContent" style="margin: 0px auto;display: table;">需要HTML代码?</b-button>
     </div>
