@@ -1,8 +1,8 @@
 <template>
 <el-row>
-  <el-col :span="6" v-for="(card, index) in cards" :key="card" :offset="(index%3) > 0 ? 2 : 0" style="margin-bottom:40px">
-    <el-card :body-style="{ padding: '0px' }">
-      <img :src="card.imgsrc" class="image" max-height="100px">
+  <el-col :span="6" v-for="(card, index) in cards" :key="card" :offset="(index%3) > 0 ? 2 : 0" style="margin-bottom:60px">
+    <el-card :body-style="{ padding: '0px' }" shadow="hover">
+      <img :src="card.imgsrc" class="image">
       <div style="padding: 14px;">
         <span>{{card.title}}</span>
         <div class="bottom clearfix">
