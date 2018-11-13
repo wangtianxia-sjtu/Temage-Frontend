@@ -12,12 +12,6 @@
                     <imgBoard></imgBoard>
                 </Col>
             </Row>
-            <Row style='margin-top:15px; text-align: center'>
-            <ButtonGroup>
-                    <Button>Cancel</Button>
-                    <Button type="primary">Confirm</Button>
-            </ButtonGroup>
-            </Row>
         </div>
 </template>
 <style>
@@ -43,9 +37,12 @@ export default {
   name: 'create',
   data () {
     return {
+      spinShow: true,
       text: this.value,
       image: this.url
     }
+  },
+  methods: {
   },
   components: {
     imgBoard,

@@ -54,7 +54,7 @@ export default {
       this.visible = false
     },
     next () {
-      this.html('<h1>switch</h1>')
+      console.log('next')
     }
   }
 }
