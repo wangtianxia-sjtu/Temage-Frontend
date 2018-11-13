@@ -29,8 +29,11 @@
                     <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
                 </div>
                 <div v-else-if="status === 3">
-                    <Button @click="last" style="width: 20%">Last</Button>
-                    <Button type="primary" @click='next' disabled style='float: right;width: 20%'>Next</Button>
+                    <Row>
+                    <Col span='8'><Button @click="last" style="width: 60%">Last</Button></Col>
+                    <Col span='8' style='text-align: center'><Button @click="last" type="success" style="width: 60%;">Download</Button></Col>
+                    <Col span='8'><Button type="primary" @click='next' style='float: right;width: 60%'>Save</Button></Col>
+                    </Row>
                 </div>
                 <div v-else>
                     <Button @click="last" style="width: 20%">Last</Button>
