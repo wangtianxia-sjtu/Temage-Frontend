@@ -20,11 +20,22 @@
         <div v-else-if="status === 2">
             <reviewBoard></reviewBoard>
         </div>
-        <Row style='margin-top:15px; text-align: center'>
-        <ButtonGroup>
-                <Button @click="last">last</Button>
-                <Button type="primary" @click='next'>next</Button>
-        </ButtonGroup>
+        <div v-else-if="status === 3">
+            <ratingBoard></ratingBoard>
+        </div>
+        <Row style='margin-top:40px;'>
+                <div v-if="status === 0">
+                    <Button @click="last" disabled style="width: 20%">Last</Button>
+                    <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
+                </div>
+                <div v-else-if="status === 3">
+                    <Button @click="last" style="width: 20%">Last</Button>
+                    <Button type="primary" @click='next' disabled style='float: right;width: 20%'>Next</Button>
+                </div>
+                <div v-else>
+                    <Button @click="last" style="width: 20%">Last</Button>
+                    <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
+                </div>
         </Row>
     </Card>
 </div>
@@ -48,6 +59,7 @@
 import createBoard from '@/components/widgets/core/create.vue'
 import adjustBoard from '@/components/widgets/core/adjust.vue'
 import reviewBoard from '@/components/widgets/core/review.vue'
+import ratingBoard from '@/components/widgets/core/rating.vue'
 export default {
   name: 'workspace',
   data () {
@@ -55,7 +67,7 @@ export default {
       text: this.value,
       image: this.url,
       status: 0,
-      spinShow: false,
+      spinShow: false
     }
   },
   methods: {
@@ -69,13 +81,14 @@ export default {
       setTimeout(() => {
         this.spinShow = false
         this.status++
-      }, 3000)
+      }, 1000)
     }
   },
   components: {
     createBoard,
     adjustBoard,
-    reviewBoard
+    reviewBoard,
+    ratingBoard
   }
 }
 </script>

@@ -2,7 +2,7 @@
         <div>
             <Row>
             <Col :span='12' style='margin-bottom:10px; margin-top: 30px'><p>请在此处输入纯文本</p></Col>
-            <Col :span='10' :offset='1' style='margin-bottom:10px; margin-top: 30px'><p>请在此处插入图片</p></Col>
+            <Col :span='10' :offset='0' style='margin-bottom:10px; margin-top: 30px'><p>请在此处插入图片</p></Col>
             </Row>
             <Row>
                 <Col :span='11'>
