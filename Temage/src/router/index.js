@@ -22,7 +22,7 @@ export default new Router({
     },
     {
       path: '/collection',
-      name: 'gallery',
+      name: 'collection',
       component: collection
     },
     {

@@ -5,95 +5,63 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><router-link to='/recent'><Col :span="1"><Icon type="md-time" size="35" color="black"/></Col></router-link><h1>Recent</h1></Row>
+        <Row><router-link to='/recent'><Col :span="1"><Icon type="md-time" color="black" size="35" margin-top="-3px"/></Col></router-link><h1>Recent</h1></Row>
         <br>
     </div></el-col>
     </el-row>
-    <el-row :gutter="100">
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-    </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
+    <exhibitioncard :cards="cards_recent"></exhibitioncard>
     <el-row :gutter="25">
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row>
-        <Col :span="1">
-        <router-link to="/collection"><Icon type="md-heart" size="35" color="black"/></router-link>
-        </Col>
-        <h1>Collections</h1>
-        </Row>
+        <Row><router-link to="/collection"><Col :span="1"><Icon type="md-heart" size="35" color="black" margin-top="-3px"/></Col></router-link><h1>Collections</h1></Row>
         <br>
     </div></el-col>
     </el-row>
-
-    <el-row :gutter="100">
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-    </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
-    <el-row :gutter="25">
-    <el-col :span="2"><div class="grid-content bg-purple">
-      </div></el-col>
-    <el-col :span="24"><div class="grid-content bg-purple">
-        <Row>
-        <Col :span=1>
-        <router-link to="/gallery"><Icon type="md-color-palette" size="35" color="black"/></router-link>
-        </Col>
-        <h1>Gallery</h1>
-        </Row>
-        <br>
-    </div></el-col>
-    </el-row>
-    <el-row :gutter="100">
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-    </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="1"><div class="grid-content bg-purple"></div></el-col>
-    <el-col :span="6" :offset="1"><div class="grid-content bg-purple">
-        <showcard></showcard>
-        </div></el-col>
-    <el-col :span="2"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
+    <exhibitioncard :cards="cards_collections"></exhibitioncard>
 </div>
 </template>
 
 <script>
 import showcard from '@/components/widgets/display/showcard.vue'
+import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
 export default {
   name: 'homepage',
   components: {
-    showcard
+    showcard,
+    exhibitioncard
   },
   data () {
     return {
-      currentDate: new Date()
+      currentDate: new Date(),
+      cards_recent: [
+        {
+          imgsrc: require('@/assets/cat1.png'),
+          title: 'A lovely cat!'
+        },
+        {
+          imgsrc: require('@/assets/cat2.png'),
+          title: 'A lovely cat!'
+        },
+        {
+          imgsrc: require('@/assets/cat7.png'),
+          title: 'A lovely cat!'
+        }
+      ],
+      cards_collections: [
+        {
+          imgsrc: require('@/assets/cat4.png'),
+          title: 'A lovely cat!'
+        },
+        {
+          imgsrc: require('@/assets/cat5.png'),
+          title: 'A lovely cat!'
+        },
+        {
+          imgsrc: require('@/assets/cat6.png'),
+          title: 'A lovely cat!'
+        }
+      ]
     }
   }
 }

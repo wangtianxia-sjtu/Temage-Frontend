@@ -1,8 +1,9 @@
 <template>
     <div>
-      <div ref="editor" style="text-align:center;"></div>
+      <div ref="editor" style="text-align:left;"></div>
       <br>
-      <b-button v-on:click="getContent" style="margin: 0px auto;display: table;">需要HTML代码?</b-button>
+      <el-button  v-on:click="getContent" type="primary" round style="margin-left: 40%">需要HTML代码？</el-button>
+      <!-- <el-input type="textarea" autosize v-model="editorHTML"></el-input> -->
     </div>
 </template>
 
@@ -50,5 +51,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+.w-e-text-container{
+  height: auto!important
+}
 </style>

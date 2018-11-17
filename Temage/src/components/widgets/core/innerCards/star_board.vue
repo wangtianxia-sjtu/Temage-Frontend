@@ -3,7 +3,7 @@
   <p class='cons'> 成果预览</p>
   <div class='show-res'>
   <Card style="height:600px; overflow: hidden;">
-      <iframe src="https://www.weibo.com" style='width: 108%; height:608px;margin-left:-4%;margin-top:-18px'></iframe>
+      <iframe id="achievement" src="http://106.15.225.249:8170/" style='width: 108%; height:608px;margin-left:-4%;margin-top:-18px'></iframe>
   </Card>
   <Card>
     <span class="demonstration"><p style='font-size: 25px'>结果如何?</p></span>
