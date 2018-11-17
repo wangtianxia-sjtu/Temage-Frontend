@@ -31,7 +31,7 @@
                 <div v-else-if="status === 3">
                     <Row>
                     <Col span='8'><Button @click="last" style="width: 60%">Last</Button></Col>
-                    <Col span='8' style='text-align: center'><Button @click="download" type="success" style="width: 60%;">Download</Button></Col>
+                    <Col span='8' style='text-align: center'><a href="https://libilibi.cqdulux.cn/full/messi.jpg"  download="messi.png">Download</a></Col>
                     <Col span='8'><Button type="primary" @click='save' style='float: right;width: 60%'>Save</Button></Col>
                     </Row>
                 </div>
@@ -77,9 +77,6 @@ export default {
     save () {
     },
     download () {
-      var page = document.getElementById('achievement')
-      console.log(page)
-      page.contentWindow.print()
     },
     last () {
       console.log('last')
