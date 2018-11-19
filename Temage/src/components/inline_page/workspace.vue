@@ -3,7 +3,7 @@
     <Card style="overflow:hidden">
             <Spin fix size='large' v-if="spinShow"></Spin>
         <Row>
-            <h1 class='wk-title'> Workspace </h1>
+            <h1 class='wk-title' style="font-size: 2em; font-weight: bold;"> Workspace </h1>
         </Row>
         <el-steps :active=this.status finish-status="success" simple style="margin-top: 0px; width: 105%; margin-left: -2.5%">
                 <el-step title="Step1 输入" ></el-step>
@@ -23,7 +23,7 @@
         <div v-else-if="status === 3">
             <ratingBoard></ratingBoard>
         </div>
-        <Row style='margin-top:40px;'>
+        <Row style='margin-top:40px;  margin-bottom: 3%;'>
                 <div v-if="status === 0">
                     <Button @click="last" disabled style="width: 20%">Last</Button>
                     <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
@@ -31,7 +31,7 @@
                 <div v-else-if="status === 3">
                     <Row>
                     <Col span='8'><Button @click="last" style="width: 60%">Last</Button></Col>
-                    <Col span='8' style='text-align: center'><a href="https://libilibi.cqdulux.cn/full/messi.jpg"  download="messi.png">Download</a></Col>
+                    <Col span='8' style='text-align: center'><a href="https://libilibi.cqdulux.cn/full/messi.jpg"  download="messi.png"><Icon size="40" type="md-download" color="black"/></a></Col>
                     <Col span='8'><Button type="primary" @click='save' style='float: right;width: 60%'>Save</Button></Col>
                     </Row>
                 </div>
