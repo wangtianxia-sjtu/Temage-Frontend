@@ -29,6 +29,14 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+## Mock Server
+
+First you should check whether the project has **express**, then you can start the mock server.
+
+```bash
+node mockserver.js
+```
+
 # Deploy
 
 First you need build the project
