@@ -15,7 +15,40 @@ app.all('*', function(req, res, next) {
     next();
   }
 });
+// data
+let user_info = {
+  'name':'wxm',
+  'id':'516015910018',
+  'avator':'/user1_pic.jpg',
+}
 
-app.get('/', (req, res) => res.send('Hello World!'))
+let homepage_datas = {
+  'recent_pics':[
+    {
+      'name':'cat1_lily',
+      'img_url':'/cat1_lily.jpg',
+      'prompt':'A lovely cat Lily!',
+      'url':'/detail_page' // click at 
+    }, 
+    {
+      'name':'cat1_lily',
+      'img_url':'/cat1_lily.jpg',
+      'prompt':'A lovely cat Lily!',
+      'url':'/detail_page'
+    }
+  ],
+  'gallery_pics':[
+    {} // same above
+  ],
+  'user_info':user_info
+};
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+
+// send data in route
+app.get('/', (req, res) => res.send(homepage_datas))
+app.get('/work', (req, res) => res.send('Hello World!'))
+app.get('/gallery', (req, res) => res.send('Hello World!'))
+app.get('/collection', (req, res) => res.send('Hello World!'))
+app.get('/recent', (req, res) => res.send('Hello World!'))
+
+app.listen(3000, () => console.log('Example app listening on http://localhost:3000!'))

@@ -31,10 +31,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## Mock Server
 
-First you should check whether the project has **express**, then you can start the mock server.
-
 ```bash
-node mockserver.js
+$ node mockserver.js
 ```
 
 # Deploy
