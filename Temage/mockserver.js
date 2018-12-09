@@ -22,7 +22,7 @@ let user_info = {
   'avator':'/user1_pic.jpg',
 }
 
-let homepage_datas = {
+let homepage_data = {
   'recent_pics':[
     {
       'name':'cat1_lily',
@@ -45,7 +45,7 @@ let homepage_datas = {
 
 
 // send data in route
-app.get('/', (req, res) => res.send(homepage_datas))
+app.get('/', (req, res) => res.send(homepage_data))
 app.get('/work', (req, res) => res.send('Hello World!'))
 app.get('/gallery', (req, res) => res.send('Hello World!'))
 app.get('/collection', (req, res) => res.send('Hello World!'))
