@@ -1,5 +1,6 @@
 var express = require('express');
 const app = express()
+app.use(express.static('src'));
 
 // for cors
 app.all('*', function(req, res, next) {
@@ -22,14 +23,29 @@ let user_info = {
   'avator':'/user1_pic.jpg',
 }
 
+let usr_card = {
+  'name':'cat1_lily',
+  'img_url':'/cat1_lily.jpg',
+  'prompt':'A lovely cat Lily!',
+  'url':'/detail_page' // click at
+}
+
+let show_card = {
+  'name':'cat1_lily',
+  'img_url':'/cat1_lily.jpg',
+  'prompt':'A lovely cat Lily!',
+  'url':'/detail_page', // click at
+  'creator':user_info,
+}
+
 let homepage_data = {
   'recent_pics':[
     {
       'name':'cat1_lily',
       'img_url':'/cat1_lily.jpg',
       'prompt':'A lovely cat Lily!',
-      'url':'/detail_page' // click at 
-    }, 
+      'url':'/detail_page' // click at
+    },
     {
       'name':'cat1_lily',
       'img_url':'/cat1_lily.jpg',
@@ -43,12 +59,120 @@ let homepage_data = {
   'user_info':user_info
 };
 
+let work_data = {
+  'guess_style':[
+    {
+      'name' : 'sport',
+      'possibility': '80%',
+    },
+    {
+      'name' : 'art',
+      'possibility' : '45%',
+    },
+    {
+      'name' : 'history',
+      'possibility': '25%',
+    }
+  ],
+  'all_style':[
+    'style_1','style_2','style_4','style_5',
+    'style_6','style_7','style_8','style_9',
+    'style_a','style_b','style_c','style_d',
+    'style_e','style_f','style_g','style_h',
+    'style_i','style_j','style_k','style_l',
+  ],
+  'temage' : "<html><head> </head> <body> <h1>Hello, Temage!</h1> </body> </html>",
+};
+
+let gallery_data = [
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+];
+
+let recent_data = [
+  {'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page'},
+  {'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page'},
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page'
+  },
+  {'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page'
+  },
+];
+
+let collection_data = [
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+  {
+    'name':'cat1_lily',
+    'img_url':'/cat1_lily.jpg',
+    'prompt':'A lovely cat Lily!',
+    'url':'/detail_page',
+    'creator':user_info,
+  },
+];
 
 // send data in route
-app.get('/', (req, res) => res.send(homepage_data))
-app.get('/work', (req, res) => res.send('Hello World!'))
-app.get('/gallery', (req, res) => res.send('Hello World!'))
-app.get('/collection', (req, res) => res.send('Hello World!'))
-app.get('/recent', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.json(homepage_data))
+app.get('/work', (req, res) => res.json(work_data))
+app.get('/gallery', (req, res) => res.send(gallery_data))
+app.get('/collection', (req, res) => res.send(collection_data))
+app.get('/recent', (req, res) => res.send(recent_data))
 
-app.listen(3000, () => console.log('Example app listening on http://localhost:3000!'))
+app.listen(8080, () => console.log('Example app listening on http://localhost:8080'))
