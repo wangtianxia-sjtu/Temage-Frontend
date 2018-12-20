@@ -49,7 +49,7 @@ export default {
       raw_data: null,
       currentDate: new Date(),
       cards_recent: null,
-      cards_collections: null,
+      cards_collections: null
     }
   }
 }

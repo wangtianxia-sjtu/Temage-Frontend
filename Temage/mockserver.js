@@ -190,4 +190,4 @@ app.get('/api/gallery', (req, res) => res.send(gallery_data))
 app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
 
-app.listen(8000, () => console.log('Example app listening on http://localhost:8000'))
+app.listen(3030, () => console.log('Example app listening on http://localhost:3030'))
