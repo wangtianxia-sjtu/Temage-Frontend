@@ -10,12 +10,14 @@ import 'element-ui/lib/index.js'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(iView)
 Vue.use(BootstrapVue)
+Vue.prototype.$ajax = axios
 
 /* eslint-disable no-new */
 new Vue({

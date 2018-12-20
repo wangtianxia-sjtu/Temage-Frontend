@@ -1,6 +1,6 @@
 <template>
 <div width=100%, height=100%, margin-left=-50px>
-  <br><br>
+  <br>{{raw_data}}<br>
     <el-row :gutter="25">
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
@@ -25,43 +25,31 @@
 <script>
 import showcard from '@/components/widgets/display/showcard.vue'
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
+import axios from 'axios'
+
 export default {
   name: 'homepage',
   components: {
     showcard,
-    exhibitioncard
+    exhibitioncard,
+    axios
+  },
+  mounted () {
+    axios
+      .get('http://localhost:8000/api')
+      .then(response => {
+        this.raw_data = response.data
+        this.cards_recent = response.data.recent_pics
+        this.cards_collections = response.data.collect_pics
+        console.log(response)
+      })
   },
   data () {
     return {
+      raw_data: null,
       currentDate: new Date(),
-      cards_recent: [
-        {
-          imgsrc: require('@/assets/cat1.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat2.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat7.png'),
-          title: 'A lovely cat!'
-        }
-      ],
-      cards_collections: [
-        {
-          imgsrc: require('@/assets/cat4.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat5.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat6.png'),
-          title: 'A lovely cat!'
-        }
-      ]
+      cards_recent: null,
+      cards_collections: null,
     }
   }
 }

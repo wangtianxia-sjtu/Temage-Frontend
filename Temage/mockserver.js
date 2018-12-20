@@ -16,6 +16,7 @@ app.all('*', function(req, res, next) {
     next();
   }
 });
+let picurl = "/static/img/cat1.4f64437.png"
 // data
 let user_info = {
   'name':'wxm',
@@ -25,14 +26,14 @@ let user_info = {
 
 let usr_card = {
   'name':'cat1_lily',
-  'img_url':'/cat1_lily.jpg',
+  'img_url':picurl,
   'prompt':'A lovely cat Lily!',
   'url':'/detail_page' // click at
 }
 
 let show_card = {
   'name':'cat1_lily',
-  'img_url':'/cat1_lily.jpg',
+  'img_url':picurl,
   'prompt':'A lovely cat Lily!',
   'url':'/detail_page', // click at
   'creator':user_info,
@@ -41,14 +42,28 @@ let show_card = {
 let homepage_data = {
   'recent_pics':[
     {
-      'name':'cat1_lily',
-      'img_url':'/cat1_lily.jpg',
+      'title':'cat1_lily',
+      'imgsrc':picurl,
       'prompt':'A lovely cat Lily!',
       'url':'/detail_page' // click at
     },
     {
-      'name':'cat1_lily',
-      'img_url':'/cat1_lily.jpg',
+      'title':'cat1_lily',
+      'imgsrc':picurl,
+      'prompt':'A lovely cat Lily!',
+      'url':'/detail_page'
+    }
+  ],
+  'collect_pics':[
+    {
+      'title':'cat1_lily',
+      'imgsrc':picurl,
+      'prompt':'A lovely cat Lily!',
+      'url':'/detail_page' // click at
+    },
+    {
+      'title':'cat1_lily',
+      'imgsrc':picurl,
       'prompt':'A lovely cat Lily!',
       'url':'/detail_page'
     }
@@ -87,28 +102,28 @@ let work_data = {
 let gallery_data = [
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
@@ -117,21 +132,21 @@ let gallery_data = [
 
 let recent_data = [
   {'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page'},
   {'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page'},
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page'
   },
   {'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page'
   },
@@ -140,28 +155,28 @@ let recent_data = [
 let collection_data = [
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
   },
   {
     'name':'cat1_lily',
-    'img_url':'/cat1_lily.jpg',
+    'img_url':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
@@ -169,10 +184,10 @@ let collection_data = [
 ];
 
 // send data in route
-app.get('/', (req, res) => res.json(homepage_data))
-app.get('/work', (req, res) => res.json(work_data))
-app.get('/gallery', (req, res) => res.send(gallery_data))
-app.get('/collection', (req, res) => res.send(collection_data))
-app.get('/recent', (req, res) => res.send(recent_data))
+app.get('/api', (req, res) => res.send(homepage_data))
+app.get('/api/work', (req, res) => res.json(work_data))
+app.get('/api/gallery', (req, res) => res.send(gallery_data))
+app.get('/api/collection', (req, res) => res.send(collection_data))
+app.get('/api/recent', (req, res) => res.send(recent_data))
 
-app.listen(8080, () => console.log('Example app listening on http://localhost:8080'))
+app.listen(8000, () => console.log('Example app listening on http://localhost:8000'))
