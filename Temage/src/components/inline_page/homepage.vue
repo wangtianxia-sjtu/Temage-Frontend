@@ -36,7 +36,7 @@ export default {
   },
   mounted () {
     axios
-      .get('http://localhost:8000/api')
+      .get('http://localhost:3030/api')
       .then(response => {
         this.raw_data = response.data
         this.cards_recent = response.data.recent_pics
