@@ -1,13 +1,12 @@
+import Vue from 'vue'
 import { shallowMount } from '@vue/test-utils'
 import List from '@/components/List.vue'
-
-require('jsdom-global')()
 
 describe('List.vue', () => {
   it('renders li for each item in props.items', () => {
     const items = ['1', '2']
     const wrapper = shallowMount(List, {
-      propsData: { items }
+      propsData: { items:items }
     })
     expect(wrapper.findAll('li')).toHaveLength(items.length)
   })

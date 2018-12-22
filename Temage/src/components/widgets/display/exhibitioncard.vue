@@ -9,7 +9,8 @@
         <span>{{card.title}}</span>
         <div class="bottom clearfix">
           <time class="time">{{ currentDate }}</time>
-          <el-button type="text" class="button">{{buttonname}}</el-button>
+          <el-button type="text" class="button">{{ buttonname }}</el-button>
+
         </div>
       </div>
     </el-card>
@@ -56,6 +57,13 @@ export default {
       buttonname: 'start'
     }
   },
-  props: ['cards']
+  props: {
+    cards: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  }
 }
 </script>
