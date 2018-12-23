@@ -119,10 +119,12 @@
                 </MenuItem>
               </router-link>
 
+              <router-link to="/collection">
               <MenuItem name="1-2">
               <Icon type="md-heart"></Icon>
               Collection
               </MenuItem>
+              </router-link>
               <MenuItem name="1-3">
               <noticeSide></noticeSide>
               </MenuItem>

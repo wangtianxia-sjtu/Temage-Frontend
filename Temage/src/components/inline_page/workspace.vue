@@ -25,19 +25,19 @@
         </div>
         <Row style='margin-top:40px;  margin-bottom: 3%;'>
                 <div v-if="status === 0">
-                    <Button @click="last" disabled style="width: 20%">Last</Button>
-                    <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
+                    <Button @click="last"  class='lastt' disabled style="width: 20%">Last</Button>
+                    <Button type="primary" @click='next' class='next' style='float: right;width: 20%'>Next</Button>
                 </div>
                 <div v-else-if="status === 3">
                     <Row>
-                    <Col span='8'><Button @click="last" style="width: 60%">Last</Button></Col>
+                    <Col span='8'><Button @click="last"  class='lastt' style="width: 60%">Last</Button></Col>
                     <Col span='8' style='text-align: center'><a href="https://libilibi.cqdulux.cn/full/messi.jpg"  download="messi.png"><Icon size="40" type="md-download" color="black"/></a></Col>
                     <Col span='8'><Button type="primary" @click='save' style='float: right;width: 60%'>Save</Button></Col>
                     </Row>
                 </div>
                 <div v-else>
-                    <Button @click="last" style="width: 20%">Last</Button>
-                    <Button type="primary" @click='next' style='float: right;width: 20%'>Next</Button>
+                    <Button @click="last"  class='lastt' style="width: 20%">Last</Button>
+                    <Button type="primary" @click='next' class='nextt' style='float: right;width: 20%'>Next</Button>
                 </div>
         </Row>
     </Card>
@@ -46,6 +46,8 @@
 <style>
     .ivu-card-bordered{
         margin: 20px;
+    }
+    .next{
     }
     .wk-title{
         text-align: center;

@@ -21,8 +21,8 @@ describe('exhibitioncard.vue', () => {
         title: 'A lovely cat!'
       }
     ]
-    const wrapper = mount(exhibitionCard,{propsData:{cards: cards}})
+    const wrapper = mount(exhibitionCard, {propsData: {cards: cards}})
     expect(wrapper.isVueInstance()).toBeTruthy()
-    //expect(wrapper.findAll('time')).toHaveLength(cards.length)
+    // expect(wrapper.findAll('time')).toHaveLength(cards.length)
   })
 })
