@@ -112,7 +112,7 @@
                 </MenuItem>
               </router-link>
 
-              <router-link to="/recent">
+              <router-link to="/ml">
                 <MenuItem name="1-1">
                 <Icon type="md-time"></Icon>
                 Recent Cards

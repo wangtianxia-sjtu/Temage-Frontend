@@ -5,6 +5,7 @@ import gallery from '../components/inline_page/gallery.vue'
 import collection from '../components/inline_page/collection.vue'
 import recent from '../components/inline_page/recent.vue'
 import work from '../components/inline_page/workspace.vue'
+import ml from '../components/inline_page/ml.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/work',
       name: 'work',
       component: work
+    },
+    {
+      path: '/ml',
+      name: 'ml',
+      component: ml
     }
   ]
 })

@@ -42,7 +42,7 @@ let show_card = {
 let homepage_data = {
   'recent_pics':[
     {
-      'title':'cat1_lily',
+      'title':'Jenkins Added.',
       'imgsrc':picurl,
       'prompt':'A lovely cat Lily!',
       'url':'/detail_page' // click at
