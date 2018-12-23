@@ -2,7 +2,7 @@
 <div>
   <div @click="value1 = true" type="primary"><Icon type="md-notifications"></Icon>&nbsp;Notification</div>
   <Drawer title="事件" :closable="false" v-model="value1">
-    <li v-for="item in events">
+    <li v-for="item in events" :key='item'>
       {{item.name}}
       <p>{{item.content}}</p>
       <p>{{item.time}}</p>

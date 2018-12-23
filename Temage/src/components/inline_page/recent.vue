@@ -14,12 +14,10 @@
 </template>
 
 <script>
-import showcard from '@/components/widgets/display/showcard.vue'
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
 export default {
   name: 'recent',
   components: {
-    showcard,
     exhibitioncard
   },
   data () {

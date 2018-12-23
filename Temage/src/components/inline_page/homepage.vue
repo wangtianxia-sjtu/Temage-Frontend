@@ -23,14 +23,12 @@
 </template>
 
 <script>
-import showcard from '@/components/widgets/display/showcard.vue'
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
 import axios from 'axios'
 
 export default {
   name: 'homepage',
   components: {
-    showcard,
     exhibitioncard,
     axios
   },

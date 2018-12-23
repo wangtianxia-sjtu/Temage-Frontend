@@ -1,14 +1,4 @@
 <template>
-<div>
-</div>
-</template>
-
-<script>
-export default {
-  name: 'collection'
-}
-</script>
-<template>
 <div width=100%, height=100%, margin-left=-50px>
     <br><br>
     <el-row :gutter="25">
@@ -24,17 +14,14 @@ export default {
 </template>
 
 <script>
-import showcard from '@/components/widgets/display/showcard.vue'
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
 export default {
-  name: 'recent',
+  name: 'collection',
   components: {
-    showcard,
     exhibitioncard
   },
   data () {
     return {
-      currentDate: new Date(),
       cards: [
         {
           imgsrc: require('@/assets/cat1.png'),
