@@ -1,6 +1,6 @@
 <template>
 <div width=100%, height=100%, margin-left=-50px>
-  <br>{{raw_data}}<br>
+  <br> <!-- {{raw_data}} --> <br>
     <el-row :gutter="25">
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
