@@ -1,4 +1,4 @@
-# temage
+# Temage
 
 > front-end part for se_100 and intel swc.
 
