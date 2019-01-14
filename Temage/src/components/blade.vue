@@ -73,13 +73,13 @@
           <Menu mode="horizontal" theme="dark" active-name="1" class='topbar'>
             <Row>
               <Col span='3' offset='10' class="layout-logo">
-              <router-link to="/">
+              <router-link to="/id">
                 <Button type="primary" style="margin-top:-25px"><img class='logo-min' src='../assets/logo-min.png'></Button>
               </router-link>
               </Col>
               <Col class="layout-nav">
               <MenuItem name='i'>
-                <router-link to="/work">
+                <router-link to="/id/work">
               <Button icon="md-add" type="primary">New</Button>
                 </router-link>
               <instruct></instruct>
@@ -105,21 +105,21 @@
                 <Icon type="md-home"></Icon>
                 Homepage
               </template>
-              <router-link to="/">
+              <router-link to="/id">
                 <MenuItem name="1-0">
                 <Icon type="md-card"></Icon>
                 Display
                 </MenuItem>
               </router-link>
 
-              <router-link to="/recent">
+              <router-link to="/id/recent">
                 <MenuItem name="1-1">
                 <Icon type="md-time"></Icon>
                 Recent Cards
                 </MenuItem>
               </router-link>
 
-              <router-link to="/collection">
+              <router-link to="/id/collection">
               <MenuItem name="1-2">
               <Icon type="md-heart"></Icon>
               Collection
@@ -134,7 +134,7 @@
                 <Icon type="ios-keypad"></Icon>
                 Gallery
               </template>
-              <router-link to="/gallery">
+              <router-link to="/id/gallery">
                 <MenuItem name="2-2">
                 <Icon type="md-color-palette"></Icon>
                 Community
@@ -150,7 +150,7 @@
                 <Icon type="md-easel"></Icon>
                 Workspace
               </template>
-                <router-link to="/work">
+                <router-link to="/id/work">
               <MenuItem name="3-1">
               <Icon type="md-create"></Icon>
               Create
@@ -164,7 +164,7 @@
           </Menu>
         </Sider>
         <Layout :style="{padding: '0 24px 24px'}">
-          <router-view />
+          <router-view></router-view>
         </Layout>
       </Layout>
     </Layout>

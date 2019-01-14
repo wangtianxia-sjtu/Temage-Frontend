@@ -1,6 +1,6 @@
 <template>
   <div id="app" style="min-height: 100%">
-    <blade></blade>
+    <router-view></router-view>
   </div>
 </template>
 
