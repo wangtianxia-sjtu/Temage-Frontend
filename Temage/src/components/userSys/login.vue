@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <login-card></login-card>
   </div>
 </template>
@@ -16,3 +16,11 @@ export default {
   name: 'login'
 }
 </script>
+<style>
+.login{
+  background: url('../../assets/tmbg-01.png');
+  background-position: center 10%;
+  background-size:cover;
+  min-height: 100%;
+}
+</style>

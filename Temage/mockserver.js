@@ -183,11 +183,35 @@ let collection_data = [
   },
 ];
 
+let user1 = {
+  'username': 'qxy',
+  'password': '123'
+}
+
+let regiter = {
+  'name': 'tmg',
+  'mail': '123123@qq.com',
+  'interest': ['Dota','Sport'], // not sure
+  'desc': 'love and peace'
+}
 // send data in route
 app.get('/api', (req, res) => res.send(homepage_data))
 app.get('/api/work', (req, res) => res.json(work_data))
 app.get('/api/gallery', (req, res) => res.send(gallery_data))
 app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
+app.post('/api/submit', function(req, res) {
+  let user = req.body;
+  if(user.password == user1.password && user.username == user1.username)
+  {
+    res.send(200)
+    req.setCookie({
+      'is_login': true,
+    })
+  }else{
+    res.send(500)
+  }
+})
+app.post('/api/register', (req, res) => res.send(200))
 
 app.listen(3030, () => console.log('Example app listening on http://localhost:3030'))

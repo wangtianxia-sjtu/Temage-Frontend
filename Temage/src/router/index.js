@@ -10,7 +10,8 @@ import work from '../components/inline_page/workspace.vue'
 import ml from '../components/inline_page/ml.vue'
 /* page for visitor */
 import login from '../components/userSys/login'
-
+import register from '../components/userSys/register'
+import info from '../components/userSys/info'
 Vue.use(Router)
 
 export default new Router({
@@ -55,6 +56,16 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
+    },
+    {
+      path: '/',
+      name: 'idx',
+      component: info
     }
   ]
 })
