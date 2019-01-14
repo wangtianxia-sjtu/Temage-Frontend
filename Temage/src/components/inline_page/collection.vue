@@ -15,31 +15,24 @@
 
 <script>
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
+import axios from 'axios'
+
 export default {
   name: 'collection',
   components: {
-    exhibitioncard
+    exhibitioncard,
+    axios
+  },
+  mounted () {
+    axios
+      .get('http://localhost:3030/api/collection')
+      .then(response => {
+        this.cards = response.data
+      })
   },
   data () {
     return {
-      cards: [
-        {
-          imgsrc: require('@/assets/cat1.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat2.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat7.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat4.png'),
-          title: 'A lovely cat!'
-        }
-      ]
+      cards: null
     }
   }
 }
