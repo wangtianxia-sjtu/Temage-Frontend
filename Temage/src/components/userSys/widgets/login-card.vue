@@ -1,7 +1,7 @@
 <template>
   <Row>
-  <Col :span="8" :offset="8" style="margin-top:10%">
-    <Card>
+  <Col :span="8" :offset="8">
+    <Card style="margin-top:20%">
       <router-link to="/">
       <img :src="imgsrc" class="image" style="width: 100%">
       </router-link>
@@ -25,7 +25,11 @@
     <FormItem>
       <Row>
         <Col :span="1"> <Button type="primary" class="tmg-btn" @click="handleSubmit('formInline')">登录</Button></Col>
-        <Col :span="6" :offset="12"><Button type="default" class="tmg-btn2" @click="handleSubmit('formInline')">注册</Button></Col>
+        <Col :span="6" :offset="12">
+          <router-link to="/register">
+          <Button type="default" class="tmg-btn2" >注册</Button>
+          </router-link>
+        </Col>
       </Row>
     </FormItem>
         </Row>

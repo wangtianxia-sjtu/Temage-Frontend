@@ -2,7 +2,14 @@
   <Row>
     <Col :span="8" :offset="8">
       <Card style="margin-top: 20%">
-        <p class="title">新用户注册</p><br>
+        <Row>
+          <Col :span="20"><p class="title">新用户注册</p></Col>
+          <Col :span="4">
+            <router-link to="/login">
+            <Button @click="handleReset('formValidate')" style="margin-right: -18px" >登录</Button>
+            </router-link>
+          </Col>
+        </Row>
   <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
     <FormItem label="Name" prop="name">
       <Input v-model="formValidate.name" placeholder="Enter your name"></Input>
@@ -12,10 +19,11 @@
     </FormItem>
     <FormItem label="Hobby" prop="interest">
       <CheckboxGroup v-model="formValidate.interest">
-        <Checkbox label="Eat"></Checkbox>
-        <Checkbox label="Sleep"></Checkbox>
-        <Checkbox label="Run"></Checkbox>
+        <Checkbox label="Sports"></Checkbox>
+        <Checkbox label="Art"></Checkbox>
+        <Checkbox label="Tech"></Checkbox>
         <Checkbox label="Movie"></Checkbox>
+        <Checkbox label="Porn"></Checkbox>
       </CheckboxGroup>
     </FormItem>
     <FormItem label="Desc" prop="desc">
@@ -23,7 +31,7 @@
     </FormItem>
     <FormItem>
       <Button type="primary" @click="handleSubmit('formValidate')" class="tmg-btn">注册</Button>
-      <Button @click="handleReset('formValidate')" style="margin-left: 8px" class="tmg-btn2">返回登录</Button>
+      <Button @click="handleReset('formValidate')" style="margin-left: 8px" class="tmg-btn2">清空</Button>
     </FormItem>
     </Form>
       </Card>
@@ -100,5 +108,8 @@ export default {
   }
   .title {
     font-size: 36px;
+    margin-bottom: 15px;
+    margin-top: -10px;
+    margin-left: 20%;
   }
 </style>

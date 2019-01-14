@@ -206,7 +206,7 @@ app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
 app.post('/api/submit', function(req, res) {
   let user = req.body;
-  if(user.password == user1.password && user.username == user1.username)
+  if(user.password === user1.password && user.username === user1.username)
   {
     res.send(200)
     req.setCookie({
