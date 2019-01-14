@@ -155,31 +155,35 @@ let recent_data = [
 let collection_data = [
   {
     'name':'cat1_lily',
-    'img_url':picurl,
+    'imgsrc':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
+    'title': 'cat1_lily'
   },
   {
     'name':'cat1_lily',
-    'img_url':picurl,
+    'imgsrc':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
+    'title': 'cat1_lily'
   },
   {
     'name':'cat1_lily',
-    'img_url':picurl,
+    'imgsrc':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
+    'title': 'cat1_lily'
   },
   {
     'name':'cat1_lily',
-    'img_url':picurl,
+    'imgsrc':picurl,
     'prompt':'A lovely cat Lily!',
     'url':'/detail_page',
     'creator':user_info,
+    'title': 'cat1_lily'
   },
 ];
 
