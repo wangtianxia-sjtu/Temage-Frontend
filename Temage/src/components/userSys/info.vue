@@ -18,12 +18,12 @@
         <Row>
           <Col :span="12">
             <router-link to="/login">
-            <Button class="tmg-btn2">登录</Button>
+            <Button class="tmg-btn2-info">登录</Button>
             </router-link>
           </Col>
           <Col :span="12">
             <router-link to="/register">
-              <Button type="primary" class="tmg-btn1" >注册</Button>
+              <Button type="primary" class="tmg-btn1-info" >注册</Button>
             </router-link>
           </Col>
         </Row>
@@ -78,7 +78,7 @@ export default {
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce6;
   }
-  .tmg-btn1 {
+  .tmg-btn1-info {
     color: #fff;
     background-color: #2460a0;
     border-color: #2460a0;
@@ -86,7 +86,7 @@ export default {
     width: 90%;
     /*margin-left: -40%;*/
   }
-  .tmg-btn2 {
+  .tmg-btn2-info {
     font-size: 36px;
     width: 90%;
     /*margin-left: -40%;*/

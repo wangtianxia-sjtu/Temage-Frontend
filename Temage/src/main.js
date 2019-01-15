@@ -23,6 +23,9 @@ Vue.use(iView)
 Vue.use(BootstrapVue)
 Vue.prototype.$ajax = axios
 
+/* axios base url: change it when dispatch or integrate testing */
+axios.defaults.baseURL = 'http://localhost:3030'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

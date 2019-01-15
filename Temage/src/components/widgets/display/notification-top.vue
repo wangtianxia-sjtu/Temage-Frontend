@@ -1,7 +1,8 @@
 <template>
 <div>
-  <div @click="value1 = true" type="primary">Notification &nbsp;
-      <Avatar shape="square" icon="ios-person" />
+  <div @click="value1 = true" type="primary">{{this.username}} &nbsp;
+      <Avatar shape="square" :icon="this.avator" v-if="no_avator"/>
+      <Avatar shape="square" :src="this.avator" v-else/>
   </div>
   <Drawer title="事件" :closable="false" v-model="value1">
     <p>Some contents...</p>
@@ -18,17 +19,25 @@ export default {
   component: axios,
   data () {
     return {
-      value1: false
+      value1: false,
+      username: null,
+      avator: null,
+      no_avator: false
     }
   },
   mounted () {
-    let isLogin = Cookies.get('is_login')
+    let isLogin = Cookies.get('login_token')
     if (isLogin !== undefined) {
       this.$axios({
         method: 'post',
-        url: 'http://192.168.1.123:80/authenticate',
-        data: isLogin,
+        url: '/authenticate',
+        data: {'token': isLogin},
         withCredentials: true
+      }).then(response => {
+        console.log(response)
+        this.username = response.data.username
+        this.no_avator = response.data.avator === undefined
+        this.avator = response.data.avator === undefined ? 'ios-person' : response.data.avator
       })
     } else {
       this.$router.push('/')

@@ -2,7 +2,9 @@ var express = require('express');
 const app = express()
 app.use(express.static('src'));
 
-// for cors
+/*
+ * setting header for cors
+ */
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:8081");
   res.header("Access-Control-Allow-Headers", "Content-Type");
@@ -17,12 +19,19 @@ app.all('*', function(req, res, next) {
     next();
   }
 });
+
+/*
+ * simulating data
+ */
+
+/* display img url */
 let picurl = "/static/img/cat1.4f64437.png"
-// data
+
+/* simulating user */
 let user_info = {
-  'name':'wxm',
+  'username':'wxm',
   'id':'516015910018',
-  'avator':'/user1_pic.jpg',
+  'avator':'@/assets/logo-dark.png',
 }
 
 let usr_card = {
@@ -188,50 +197,54 @@ let collection_data = [
   },
 ];
 
+/* login data check */
 let user1 = {
   'username': 'qxy',
   'password': '123'
 }
 
+/* register data check*/
 let regiter = {
-  'name': 'tmg',
-  'mail': '123123@qq.com',
+  'username': 'tmg',
+  'email': '123123@qq.com',
   'interest': ['Porn','Sport'], // not sure
   'desc': 'love and peace'
 }
-// send data in route
+
+/* send data in route */
 app.get('/api', (req, res) => res.send(homepage_data))
 app.get('/api/work', (req, res) => res.json(work_data))
 app.get('/api/gallery', (req, res) => res.send(gallery_data))
 app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
 
+/* parse posted data */
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
-var cookieParser = require('cookie-parser');
-
-app.post('/api/submit', function(req, res) {
+/* login data check */
+app.post('/login/submit', function(req, res) {
   let user = req.body
   console.log(user)
   if(user.password === user1.password && user.username === user1.username)
   {
-    res.send(200)
-    req.setCookie({
-      'is_login': true,
-    })
+    res.send(200, {"token": '123'})
   }else{
     res.send(500)
   }
 })
-app.post('/api/register', function(req, res){
+
+/* register data check */
+app.post('/register', function(req, res){
   console.log(req.body)
-  if (req.body.username === 'tmg'){
     res.send(200)
-  } else {
-    res.send(500)
-  }
 })
 
+/* login data feed back */
+app.post('/authenticate', function(req, res) {
+  res.send(user_info)
+})
+
+/* suspend Express*/
 app.listen(3030, () => console.log('Example app listening on http://localhost:3030'))

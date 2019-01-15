@@ -85,7 +85,7 @@ export default {
         if (valid) {
           this.$axios({
             method: 'post',
-            url: 'http://localhost:3030/api/register',
+            url: '/register',
             data: this.formValidate,
             withCredentials: true
           })
@@ -93,6 +93,26 @@ export default {
               console.log(response)
               if (response.status === 200) {
                 this.$Message.success('Success!')
+                this.$Spin.show({
+                  render: (h) => {
+                    return h('div', [
+                      h('Icon', {
+                        'class': 'demo-spin-col',
+                        props: {
+                          type: 'ios-loading',
+                          size: 78
+                        }
+                      }),
+                      h('div', '注册成功, 正在跳转!')
+                    ])
+                  }
+                })
+                setTimeout(() => {
+                  this.$Spin.hide()
+                }, 2000)
+                this.$router.push('/login')
+              } else {
+                this.$Message.error('Fail!')
               }
             })
         } else {
@@ -125,5 +145,10 @@ export default {
     margin-bottom: 15px;
     margin-top: -10px;
     margin-left: 20%;
-  }
+  }.
+     .demo-spin-col{
+       height: 100px;
+       position: relative;
+       border: 1px solid #eee;
+     }
 </style>

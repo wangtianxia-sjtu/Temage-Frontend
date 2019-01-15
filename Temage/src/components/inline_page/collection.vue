@@ -25,7 +25,7 @@ export default {
   },
   mounted () {
     axios
-      .get('http://localhost:3030/api/collection')
+      .get('/api/collection')
       .then(response => {
         this.cards = response.data
       })

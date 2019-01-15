@@ -61,7 +61,8 @@ export default {
           { type: 'string', min: 2, message: '密码长度需要大于2位', trigger: 'blur' }
         ]
       },
-      imgsrc: require('@/assets/logo-min2.png')
+      imgsrc: require('@/assets/logo-min2.png'),
+      validUser: false
     }
   },
   methods: {
@@ -71,19 +72,23 @@ export default {
           console.log(this.formInline)
           this.$axios({
             method: 'post',
-            url: 'http://192.168.1.123:80/login/submit',
+            url: '/login/submit',
             data: this.formInline,
             withCredentials: true
           }).then(response => {
             console.log(response)
             if (response.status === 200) {
-              Cookies.set('is_login', response.body.token, {expires: 1})
+              Cookies.set('login_token', response.data, {expires: 1})
               this.$Message.success('Success!')
+              this.validUser = true
               this.$router.push('/id')
-            } else {
+            } else if (response.status === 500) {
               this.$Message.error('用户名或者密码错误!')
             }
           })
+          if (!(this.validUser)) {
+            this.$Message.error('用户名或者密码错误!')
+          }
         } else {
           this.$Message.error('用户名或者密码错误!')
         }

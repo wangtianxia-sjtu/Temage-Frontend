@@ -84,10 +84,10 @@
                 </router-link>
               <instruct></instruct>
               <Icon type="md-notifications"></Icon>
-              <Poptip trigger="hover" title='最近通知'>
+              <Poptip trigger="hover" title='退出登录?' style="text-align: center">
                 <noticeTop></noticeTop>
                 <div class="api" slot="content" style="color:#000">
-                  test
+                  <Button type="primary" @click="log_out" style="width: 100%"> 确认 </Button>
                 </div>
               </Poptip>
               </MenuItem>
@@ -174,12 +174,19 @@
 import noticeTop from './widgets/display/notification-top.vue'
 import noticeSide from './widgets/display/notification-side.vue'
 import instruct from './widgets/display/instruction.vue'
+import Cookies from 'js-cookie'
 export default {
   name: 'blade',
   components: {
     noticeTop,
     noticeSide,
     instruct
+  },
+  methods: {
+    log_out () {
+      Cookies.remove('login_token')
+      this.$router.push('/')
+    }
   }
 }
 </script>
