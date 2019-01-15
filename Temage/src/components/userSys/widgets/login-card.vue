@@ -8,8 +8,8 @@
       <Row>
       <Form ref="formInline" :model="formInline" :rules="ruleInline" inline="false">
       <Row>
-        <FormItem prop="user">
-        <Input type="text" v-model="formInline.user" placeholder="Username" style="width: 180%; margin-left: -40%;">
+        <FormItem prop="username">
+        <Input type="text" v-model="formInline.username" placeholder="Username" style="width: 180%; margin-left: -40%;">
         <Icon type="ios-person-outline" slot="prepend"></Icon>
         </Input>
         </FormItem>
@@ -24,10 +24,10 @@
         <Row>
     <FormItem>
       <Row>
-        <Col :span="1"> <Button type="primary" class="tmg-btn" @click="handleSubmit('formInline')">登录</Button></Col>
+        <Col :span="1"> <Button type="primary" class="tmg-btn-lo" @click="handleSubmit('formInline')">登录</Button></Col>
         <Col :span="6" :offset="12">
           <router-link to="/register">
-          <Button type="default" class="tmg-btn2" >注册</Button>
+          <Button type="default" class="tmg-btn2-lo" >注册</Button>
           </router-link>
         </Col>
       </Row>
@@ -41,6 +41,7 @@
 </template>
 <script>
 import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   components: {
     axios
@@ -52,7 +53,7 @@ export default {
         password: ''
       },
       ruleInline: {
-        user: [
+        username: [
           { required: true, message: '请填写用户名', trigger: 'blur' }
         ],
         password: [
@@ -67,12 +68,22 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          axios
-            .post('http://192.168.1.227:8000/login/submit', this.formInline)
-            .then(response => {
-              console.log(response)
-            })
-          this.$Message.success('Success!')
+          console.log(this.formInline)
+          this.$axios({
+            method: 'post',
+            url: 'http://192.168.1.123:80/login/submit',
+            data: this.formInline,
+            withCredentials: true
+          }).then(response => {
+            console.log(response)
+            if (response.status === 200) {
+              Cookies.set('is_login', response.body.token, {expires: 1})
+              this.$Message.success('Success!')
+              this.$router.push('/id')
+            } else {
+              this.$Message.error('用户名或者密码错误!')
+            }
+          })
         } else {
           this.$Message.error('用户名或者密码错误!')
         }
@@ -82,7 +93,7 @@ export default {
 }
 </script>
 <style>
-  .tmg-btn {
+  .tmg-btn-lo {
     color: #fff;
     background-color: #2460a0;
     border-color: #2460a0;
@@ -90,7 +101,7 @@ export default {
     width: 100px;
     /*margin-left: -40%;*/
   }
-  .tmg-btn2 {
+  .tmg-btn2-lo {
     font-size: 16px;
     width: 100px;
     /*margin-left: -40%;*/

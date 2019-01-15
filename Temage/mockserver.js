@@ -4,9 +4,10 @@ app.use(express.static('src'));
 
 // for cors
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:8081");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", true);
   res.header("X-Powered-By",' 3.2.1')
   res.header("Content-Type", "application/json;charset=utf-8");
   if (req.method === 'OPTIONS') {
@@ -195,7 +196,7 @@ let user1 = {
 let regiter = {
   'name': 'tmg',
   'mail': '123123@qq.com',
-  'interest': ['Dota','Sport'], // not sure
+  'interest': ['Porn','Sport'], // not sure
   'desc': 'love and peace'
 }
 // send data in route
@@ -204,8 +205,16 @@ app.get('/api/work', (req, res) => res.json(work_data))
 app.get('/api/gallery', (req, res) => res.send(gallery_data))
 app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+
+var cookieParser = require('cookie-parser');
+
 app.post('/api/submit', function(req, res) {
-  let user = req.body;
+  let user = req.body
+  console.log(user)
   if(user.password === user1.password && user.username === user1.username)
   {
     res.send(200)
@@ -216,6 +225,13 @@ app.post('/api/submit', function(req, res) {
     res.send(500)
   }
 })
-app.post('/api/register', (req, res) => res.send(200))
+app.post('/api/register', function(req, res){
+  console.log(req.body)
+  if (req.body.username === 'tmg'){
+    res.send(200)
+  } else {
+    res.send(500)
+  }
+})
 
 app.listen(3030, () => console.log('Example app listening on http://localhost:3030'))

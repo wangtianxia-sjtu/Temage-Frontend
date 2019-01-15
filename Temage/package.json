@@ -15,12 +15,16 @@
     "testutils": "jest"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^0.14.1",
+    "@tensorflow/tfjs": "^0.14.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "cookie-parser": "^1.4.3",
+    "cropper": "^4.0.0",
     "element-ui": "^2.4.9",
     "iview": "^3.1.5",
+    "jquery": "^3.3.1",
+    "js-cookie": "^2.2.0",
     "keras-js": "^1.0.3",
     "vue": "^2.5.21",
     "vue-router": "^3.0.1",

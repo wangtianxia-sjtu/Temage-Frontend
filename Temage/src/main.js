@@ -10,7 +10,11 @@ import 'element-ui/lib/index.js'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 import axios from 'axios'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+axios.defaults.withCredentials = true // ajax with coockie
+Vue.prototype.$axios = axios
 
 Vue.config.productionTip = false
 
