@@ -76,19 +76,21 @@ export default {
             data: this.formInline,
             withCredentials: true
           }).then(response => {
+            console.log('API: /login/submit------------')
             console.log(response)
             if (response.status === 200) {
               Cookies.set('login_token', response.data, {expires: 1})
-              this.$Message.success('Success!')
+              this.$Message.success('登陆成功!')
               this.validUser = true
               this.$router.push('/id')
+              return 0
             } else if (response.status === 500) {
               this.$Message.error('用户名或者密码错误!')
+            } else {
+              var errorCode = response.status
+              this.$Message.error('服务器状态错误! 错误码:' + errorCode)
             }
           })
-          if (!(this.validUser)) {
-            this.$Message.error('用户名或者密码错误!')
-          }
         } else {
           this.$Message.error('用户名或者密码错误!')
         }

@@ -17,9 +17,7 @@
       <img :src="imgsrc[3]" style="max-width: 100%;">
         <Row>
           <Col :span="12">
-            <router-link to="/login">
-            <Button class="tmg-btn2-info">登录</Button>
-            </router-link>
+            <Button class="tmg-btn2-info"  @click="loginFromInfo()">登录</Button>
           </Col>
           <Col :span="12">
             <router-link to="/register">
@@ -38,6 +36,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 export default {
   data () {
     return {
@@ -48,6 +47,15 @@ export default {
         require('@/assets/logo.png'),
         require('@/assets/logo-min.png')
       ]
+    }
+  },
+  methods: {
+    loginFromInfo () {
+      if (Cookies.get('login_token') !== undefined){
+        this.$router.push('/id')
+      } else {
+        this.$router.push('/login')
+      }
     }
   }
 }

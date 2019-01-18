@@ -163,7 +163,7 @@
             </Submenu>
           </Menu>
         </Sider>
-        <Layout :style="{padding: '0 24px 24px'}">
+        <Layout :style="{padding: '0 24px 0px'}">
           <router-view></router-view>
         </Layout>
       </Layout>
