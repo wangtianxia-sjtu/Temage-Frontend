@@ -1,8 +1,11 @@
 <template>
   <div>
     <el-upload
-    action="https://jsonplaceholder.typicode.com/posts/"
-    list-type="picture-card" :on-preview="handlePictureCardPreview"
+      ref="upload"
+    action="http://localhost:3030/api/pic_post"
+    list-type="picture-card"
+      :on-preview="handlePictureCardPreview"
+      :file-list="fileList"
     :on-remove="handleRemove"
     :auto-upload='false'
     >
@@ -27,6 +30,9 @@ export default {
     handlePictureCardPreview (file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
+    },
+    submitUpload () {
+      this.$refs.upload.submit()
     }
   }
 }

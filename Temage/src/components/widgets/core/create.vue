@@ -9,7 +9,7 @@
                     <txtBoard></txtBoard>
                 </Col>
                 <Col :span='12' :offset='1'>
-                    <imgBoard></imgBoard>
+                    <imgBoard ref="imgUpload"></imgBoard>
                 </Col>
             </Row>
         </div>

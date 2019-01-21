@@ -39,12 +39,13 @@ export default {
     },
     view () {
       let textID = this.id
-      this.$router.push({
+      const { href } = this.$router.resolve({
         name: 'text',
         params: {
           id: textID
         }
       })
+      window.open(href)
     },
     visible: function () {
       this.seen = true

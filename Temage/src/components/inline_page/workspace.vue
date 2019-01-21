@@ -12,7 +12,7 @@
                 <el-step title="Step4 保存" ></el-step>
         </el-steps>
         <div v-if="status === 0">
-            <createBoard></createBoard>
+            <createBoard ref="createText"></createBoard>
         </div>
         <div v-else-if="status === 1">
             <adjustBoard></adjustBoard>
@@ -85,6 +85,11 @@ export default {
       this.status--
     },
     next () {
+      if (this.status === 0) {
+        console.log(this.$refs.createText)
+        console.log(this.$refs.createText.$refs.imgUpload)
+        this.$refs.createText.$refs.imgUpload.submitUpload()
+      }
       console.log('next')
       this.spinShow = true
       setTimeout(() => {

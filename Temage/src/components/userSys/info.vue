@@ -99,4 +99,7 @@ export default {
     width: 90%;
     /*margin-left: -40%;*/
   }
+  body{
+    overflow: auto;
+  }
 </style>
