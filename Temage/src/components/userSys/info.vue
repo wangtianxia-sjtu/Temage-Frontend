@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     loginFromInfo () {
-      if (Cookies.get('login_token') !== undefined){
+      if (Cookies.get('login_token') !== undefined) {
         this.$router.push('/id')
       } else {
         this.$router.push('/login')

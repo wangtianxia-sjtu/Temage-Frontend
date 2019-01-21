@@ -8,6 +8,7 @@ import collection from '../components/inline_page/collection.vue'
 import recent from '../components/inline_page/recent.vue'
 import work from '../components/inline_page/workspace.vue'
 import ml from '../components/inline_page/ml.vue'
+import text from '../components/inline_page/text.vue'
 /* page for visitor */
 import login from '../components/userSys/login'
 import register from '../components/userSys/register'
@@ -49,6 +50,11 @@ export default new Router({
           path: 'ml',
           name: 'ml',
           component: ml
+        },
+        {
+          path: 'text/:id',
+          name: 'text',
+          component: text
         }
       ]
     },

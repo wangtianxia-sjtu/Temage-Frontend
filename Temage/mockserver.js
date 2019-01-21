@@ -25,9 +25,9 @@ app.all('*', function(req, res, next) {
  * =========================================
  * /
 
-/* display img url */
-let picurl1 = "/static/img/cat1.4f64437.png"
-let picurl2 = "/static/img/cat4.1f8043a.png"
+/* display img id */
+let picurl1 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548045612427&di=00c1ea33a8c9009c89f896809ea1f211&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F019fd9554b9028000001bf72d491bb.jpg%402o.jpg"
+let picurl2 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548045612428&di=bb236d9b2536dacd8e80552b691b430f&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201808%2F01%2F174647y7sts7snkkqnz7nl.jpg"
 let picurl3 = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1833235402,1991457466&fm=26&gp=0.jpg"
 
 /* simulating user */
@@ -41,14 +41,14 @@ let usr_card = {
   'name':'cat1_lily',
   'img_url':picurl1,
   'prompt':'A lovely cat Lily!',
-  'url':'/detail_page' // click at
+  'id':'1703701' // click at
 }
 
 let show_card = {
   'name':'cat1_lily',
   'img_url':picurl2,
   'prompt':'A lovely cat Lily!',
-  'url':'/detail_page', // click at
+  'id':'1703701', // click at
   'creator':user_info,
 }
 
@@ -58,13 +58,13 @@ let homepage_data = {
       'title':'Jenkins Added.',
       'imgsrc':picurl1,
       'prompt':'A lovely cat Lily!',
-      'url':'/detail_page' // click at
+      'id':'1703701' // click at
     },
     {
       'title':'cat1_lily',
       'imgsrc':picurl2,
       'prompt':'A lovely cat Lily!',
-      'url':'/detail_page'
+      'id':'1703701'
     }
   ],
   'collect_pics':[
@@ -72,13 +72,13 @@ let homepage_data = {
       'title':'cat1_lily',
       'imgsrc':picurl3,
       'prompt':'A lovely cat Lily!',
-      'url':'/detail_page' // click at
+      'id':'1703701' // click at
     },
     {
       'title':'cat1_lily',
       'imgsrc':picurl2,
       'prompt':'A lovely cat Lily!',
-      'url':'/detail_page'
+      'id':'1703701'
     }
   ],
   'gallery_pics':[
@@ -119,7 +119,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -128,7 +128,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -137,7 +137,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -146,7 +146,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -155,7 +155,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -164,7 +164,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   },
   {
@@ -173,7 +173,7 @@ let gallery_data = [
     'head': 'head content',
     'maintext': 'What a lovely cat! Its name is Lily!',
     'foottest': 'foot content',
-    'url':'/display/cardID',
+    'id':'1703701',
     'creator':user_info,
   }
 ];
@@ -182,21 +182,21 @@ let recent_data = [
   {'name':'cat1_lily',
     'img_url':picurl2,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page'},
+    'id':'1703701'},
   {'name':'cat1_lily',
     'img_url':picurl1,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page'},
+    'id':'1703701'},
   {
     'name':'cat1_lily',
     'img_url':picurl3,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page'
+    'id':'1703701'
   },
   {'name':'cat1_lily',
     'img_url':picurl1,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page'
+    'id':'1703701'
   },
 ];
 
@@ -205,7 +205,7 @@ let collection_data = [
     'name':'cat1_lily',
     'imgsrc':picurl3,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page',
+    'id':'1703701',
     'creator':user_info,
     'title': 'cat1_lily'
   },
@@ -213,7 +213,7 @@ let collection_data = [
     'name':'cat1_lily',
     'imgsrc':picurl2,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page',
+    'id':'1703701',
     'creator':user_info,
     'title': 'cat1_lily'
   },
@@ -221,7 +221,7 @@ let collection_data = [
     'name':'cat1_lily',
     'imgsrc':picurl1,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page',
+    'id':'1703701',
     'creator':user_info,
     'title': 'cat1_lily'
   },
@@ -229,7 +229,7 @@ let collection_data = [
     'name':'cat1_lily',
     'imgsrc':picurl2,
     'prompt':'A lovely cat Lily!',
-    'url':'/detail_page',
+    'id':'1703701',
     'creator':user_info,
     'title': 'cat1_lily'
   },
@@ -257,7 +257,7 @@ let regiter = {
  * /
 
 /* send static data to route */
-app.get('/api', (req, res) => res.send(homepage_data))
+
 app.get('/api/work', (req, res) => res.json(work_data))
 app.get('/api/collection', (req, res) => res.send(collection_data))
 app.get('/api/recent', (req, res) => res.send(recent_data))
@@ -288,14 +288,25 @@ app.post('/register', function(req, res){
 
 /* data feed back after login*/
 app.post('/authenticate', function(req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token)
+  /* return cards according to USER_TOKEN */
   res.send(user_info)
+})
+
+/* Data need in homepage */
+app.post('/api', function(req, res){
+  let user_token = req.get('Authorization')
+  console.log(user_token)
+  /* return cards according to USER_TOKEN */
+  res.send(homepage_data)
 })
 
 /* gallery initial data*/
 app.post('/api/gallery', function(req, res){
   let user_token = req.get('Authorization')
   console.log(user_token)
-  /* return cards according to USER*/
+  /* return cards according to USER_TOKEN */
   res.send(gallery_data)
 })
 
@@ -307,6 +318,18 @@ app.post('/api/gallery/more_cards', function(req, res) {
   console.log(browser_info)
   /* return cards according to USER and browser_info */
   res.send(gallery_data)
+})
+
+/* click into a specific text page*/
+app.post('/api/text',function (req, res) {
+  let card_id = req.body.id
+  /* use ${card_id} to return content */
+  let content = {
+    id: card_id, // this id is textID, may differ from card_id
+    text: `<p>This is the text with ID:${card_id}</p>`,
+    creator: user_info
+  }
+  res.send(content)
 })
 
 /* suspend on Express*/

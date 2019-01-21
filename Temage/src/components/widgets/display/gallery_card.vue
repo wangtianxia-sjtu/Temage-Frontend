@@ -1,5 +1,5 @@
 <template>
-    <b-card v-bind:title="title"
+    <b-card v-bind:title="title" @click="view()"
                 v-bind:img-src="imagesrc"
                 img-fluid
                 img-alt="image"
@@ -28,13 +28,22 @@ export default {
       buttonSize: 'large'
     }
   },
-  props: ['imagesrc', 'title', 'head', 'maintext', 'foottext'],
+  props: ['imagesrc', 'title', 'head', 'maintext', 'foottext', 'id'],
   methods: {
     closable () {
       this.$Message.info({
         content: 'Successfully add to my collection',
         duration: 3,
         closable: true
+      })
+    },
+    view () {
+      let textID = this.id
+      this.$router.push({
+        name: 'text',
+        params: {
+          id: textID
+        }
       })
     },
     visible: function () {
