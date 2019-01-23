@@ -275,9 +275,9 @@ app.post('/login/submit', function(req, res) {
   if(user.password === user1.password && user.username === user1.username)
   {
     user_info.username = user.username
-    res.send(200, {"token": 'anyway'})
+    res.status(200).send({"token": 'anyway'})
   }else{
-    res.send(505)
+    res.send(400)
   }
 })
 
@@ -344,6 +344,8 @@ app.post('/api/text',function (req, res) {
 app.post('/api/pic_post', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
+  let image_urls = req.body
+  console.log(image_urls)
   // store pics into DB
   res.send(200)
 })
@@ -352,23 +354,40 @@ app.post('/api/pic_post', function (req, res) {
 app.post('/api/text_post', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
+  let text_content = req.body
+  console.log(text_content)
   // store text into DB
   res.send(200)
 })
 
+// 'pic_post' 'text_post'两个接口几乎同时调用(一个btn触发)
+//  用模型计算结果时可以保证图文同时可用
+//  后端的计算过程在这两个接口调用后, get_html返回结果之前
+
 // return calculated html
 app.post('/api/get_html', function (req, res) {
   let user_token = req.get('Authorization')
-  let pessage_info = req.body
-  console.log(user_token) // user_token
-  console.log(pessage_info) // user_token
-  // calculate in modal
+  let style = req.body //
+  console.log(user_token)
+  console.log(style)
+  // 实际上这个html的结果并非这个请求发送后才开始跑模型的
+  // 而是在'pic_post'和'text_post'之后, 后端就开始算了
+  // 需要考虑的是这个html结果的产出时刻和本接口调用时刻前后关系不确定
+  // 因为用户在step2选择风格阶段耗时不确定
+  // style信息可能会做一点hard code优化给html
   res.send({html: result_html})
 })
 
 // store a passage in DB
 app.post('/api/store_passage', function (req, res) {
-  
+  let user_token = req.get('Authorization')
+  let result = req.body
+  console.log(user_token)
+  console.log(result)
+  /*
+   * store result into user's DB
+   */
+  res.send(200)
 })
 
 /* suspend on Express*/
