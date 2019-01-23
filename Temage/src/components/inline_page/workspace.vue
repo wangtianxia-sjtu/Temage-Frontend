@@ -12,10 +12,10 @@
                 <el-step title="Step4 保存" ></el-step>
         </el-steps>
         <div v-if="status === 0">
-            <createBoard ref="createText"></createBoard>
+            <createBoard ref="createText" v-on:setText="updateText"></createBoard>
         </div>
         <div v-else-if="status === 1">
-            <adjustBoard></adjustBoard>
+            <adjustBoard v-bind:guess="style"></adjustBoard>
         </div>
         <div v-else-if="status === 2">
             <reviewBoard></reviewBoard>
@@ -69,10 +69,12 @@ export default {
   name: 'workspace',
   data () {
     return {
-      text: this.value,
+      text: null,
       image: this.url,
       status: 0,
-      spinShow: false
+      spinShow: false,
+      style: {},
+      style_tab: []
     }
   },
   methods: {
@@ -85,17 +87,33 @@ export default {
       this.status--
     },
     next () {
+      /*
+       * Step One: Upload + inferance
+       */
       if (this.status === 0) {
-        console.log(this.$refs.createText)
-        console.log(this.$refs.createText.$refs.imgUpload)
+        this.spinShow = true
+        // loading...
         this.$refs.createText.$refs.imgUpload.submitUpload()
-      }
-      console.log('next')
-      this.spinShow = true
-      setTimeout(() => {
-        this.spinShow = false
+        this.$refs.createText.$refs.textUpload.textUpload()
+        console.log('text:' + this.text)
+        // infer style form modal according to this.text
+        let resultFormModal = {
+          name: ['sports', 'movie', 'art', 'tec'],
+          rate: [0.841, 0.32, 0.21, 0.102]
+        }
+        this.style = resultFormModal
+        // if everything is fine
         this.status++
-      }, 1000)
+        // end loading
+        this.spinShow = false
+      } else if (this.status === 1) {
+        // do
+      } else if (this.status === 2) {
+        // do
+      }
+    },
+    updateText: function (msg) {
+      this.text = msg
     }
   },
   components: {

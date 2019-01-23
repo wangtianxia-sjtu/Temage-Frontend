@@ -61,6 +61,7 @@
   }
   .ivu-menu-item {
     color: rgb(35, 50, 85);
+    border-color: #8dddd3;
   }
 </style>
 <template>
@@ -134,12 +135,14 @@
                 <Icon type="ios-keypad"></Icon>
                 Gallery
               </template>
-              <router-link to="/id/gallery">
+              <!--<router-link to="/id/gallery">-->
                 <MenuItem name="2-2">
+                  <div @click="open_gallery()">
                 <Icon type="md-color-palette"></Icon>
-                Community
+                &nbsp;Inspirations
+                  </div>
                 </MenuItem>
-              </router-link>
+              <!--</router-link>-->
               <MenuItem name="2-1">
               <Icon type="md-share"></Icon>
               Sharing
@@ -186,6 +189,12 @@ export default {
     log_out () {
       Cookies.remove('login_token')
       this.$router.push('/')
+    },
+    open_gallery () {
+      const { href } = this.$router.resolve({
+        name: 'gallery'
+      })
+      window.open(href)
     }
   }
 }

@@ -6,7 +6,7 @@
             </Row>
             <Row>
                 <Col :span='11'>
-                    <txtBoard></txtBoard>
+                    <txtBoard ref="textUpload" v-on:handText="setThisText"></txtBoard>
                 </Col>
                 <Col :span='12' :offset='1'>
                     <imgBoard ref="imgUpload"></imgBoard>
@@ -38,11 +38,15 @@ export default {
   data () {
     return {
       spinShow: true,
-      text: this.value,
+      text: null,
       image: this.url
     }
   },
   methods: {
+    setThisText: function (msg) {
+      this.text = msg
+      this.$emit('setText', this.text)
+    }
   },
   components: {
     imgBoard,

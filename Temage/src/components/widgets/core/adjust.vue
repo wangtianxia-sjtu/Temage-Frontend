@@ -1,6 +1,6 @@
 <template>
 <div>
-<prob></prob>
+<prob :guess_lay="guess"></prob>
 <tags></tags>
 </div>
 </template>
@@ -21,6 +21,12 @@ export default {
   components: {
     prob,
     tags
+  },
+  props: {
+    guess: {
+      type: Object,
+      default: () => {}
+    }
   }
 }
 </script>

@@ -347,17 +347,17 @@ app.post('/api/pic_post', function (req, res) {
   let image_urls = req.body
   console.log(image_urls)
   // store pics into DB
-  res.send(200)
+  res.sendStatus(200)
 })
 
 // upload and store text
 app.post('/api/text_post', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
-  let text_content = req.body
+  let text_content = req.body.text
   console.log(text_content)
   // store text into DB
-  res.send(200)
+  res.sendStatus(200)
 })
 
 // 'pic_post' 'text_post'两个接口几乎同时调用(一个btn触发)

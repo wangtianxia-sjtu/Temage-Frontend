@@ -16,13 +16,16 @@ export default {
   },
   methods: {
     textUpload () {
+      this.$emit('handText', this.text_content)
       this.$axios({
         method: 'post',
-        url: '/login/submit',
-        data: this.formInline,
+        url: '/api/text_post',
+        data: {text: this.text_content},
         withCredentials: true
       }).then(response => {
-
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        }
       })
     }
   },

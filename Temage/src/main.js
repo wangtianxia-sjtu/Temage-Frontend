@@ -10,6 +10,7 @@ import 'element-ui/lib/index.js'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VCharts from 'v-charts'
 
 import axios from 'axios'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -21,6 +22,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(iView)
 Vue.use(BootstrapVue)
+Vue.use(VCharts)
 Vue.prototype.$ajax = axios
 
 /* axios base url: change it when dispatch or integrate testing */
