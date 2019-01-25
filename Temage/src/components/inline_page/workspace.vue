@@ -15,13 +15,19 @@
             <createBoard ref="createText" v-on:setText="updateText"></createBoard>
         </div>
         <div v-else-if="status === 1">
-            <adjustBoard v-bind:guess="style"></adjustBoard>
+            <adjustBoard ref="picStyles" v-bind:guess="style"
+                         v-on:setStyle="updateStyle"
+                         v-on:handoverHtml="updateHtml"></adjustBoard>
         </div>
         <div v-else-if="status === 2">
-            <reviewBoard></reviewBoard>
+            <reviewBoard :rec_html="this.res_html"
+                         v-on:res_html="updateHtml"
+                         v-on:new_id="updateID"
+                         ref="reviewBoard"></reviewBoard>
         </div>
         <div v-else-if="status === 3">
-            <ratingBoard></ratingBoard>
+            <ratingBoard ref="rateBo"
+                         :work_id="this.workID"></ratingBoard>
         </div>
         <Row style='margin-top:40px;  margin-bottom: 3%;'>
                 <div v-if="status === 0">
@@ -31,9 +37,12 @@
                 <div v-else-if="status === 3">
                     <Row>
                     <Col span='8'><Button @click="last"  class='lastt' style="width: 60%">Last</Button></Col>
-                    <Col span='8' style='text-align: center'><a href="https://libilibi.cqdulux.cn/full/messi.jpg"  download="messi.png"><Icon size="40" type="md-download" color="black"/></a></Col>
+                    <Col span='8' style='text-align: center'>
+                      <Icon size="40" type="md-download" color="black" @click="download"/>
+                    </Col>
                     <Col span='8'><Button type="primary" @click='save' style='float: right;width: 60%'>Save</Button></Col>
                     </Row>
+                    <img id='downImg' src='' style='display: none;' />
                 </div>
                 <div v-else>
                     <Button @click="last"  class='lastt' style="width: 20%">Last</Button>
@@ -65,6 +74,8 @@ import createBoard from '@/components/widgets/core/create.vue'
 import adjustBoard from '@/components/widgets/core/adjust.vue'
 import reviewBoard from '@/components/widgets/core/review.vue'
 import ratingBoard from '@/components/widgets/core/rating.vue'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   name: 'workspace',
   data () {
@@ -74,13 +85,65 @@ export default {
       status: 0,
       spinShow: false,
       style: {},
-      style_tab: []
+      style_tab: [],
+      res_html: '',
+      workID: 0,
+      work_url: '',
+      download_url: ''
     }
   },
   methods: {
     save () {
+      this.$axios({
+        method: 'post',
+        url: '/api/confirm_store',
+        data: {workID: this.workID},
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.$Message.success('保存成功')
+          this.$router.push('/id/recent')
+        }
+      })
     },
     download () {
+      this.$axios({
+        method: 'post',
+        url: '/api/download',
+        data: {workID: this.workID},
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.$Message.success('下载中')
+          let imgsrc = response.data.url
+          let imgname = 'Temage-NO' + this.workID + '.png'
+          this.downloadIamge(imgsrc, imgname)
+        }
+      })
+    },
+    downloadIamge (imgsrc, name) {
+      var image = new Image()
+      image.setAttribute('crossOrigin', 'anonymous')
+      image.onload = function () {
+        var canvas = document.createElement('canvas')
+        canvas.width = image.width
+        canvas.height = image.height
+        var context = canvas.getContext('2d')
+        context.drawImage(image, 0, 0, image.width, image.height)
+        var url = canvas.toDataURL('image/png')
+        var a = document.createElement('a')
+        var event = new MouseEvent('click')
+        a.download = name || 'photo'
+        a.href = url
+        a.dispatchEvent(event)
+      }
+      image.src = imgsrc
     },
     last () {
       console.log('last')
@@ -88,10 +151,13 @@ export default {
     },
     next () {
       /*
-       * Step One: Upload + inferance
+       * When click next btn
        */
       if (this.status === 0) {
-        this.spinShow = true
+        /*
+         * Step One: Upload + inference
+         */
+        this.$Spin.show()
         // loading...
         this.$refs.createText.$refs.imgUpload.submitUpload()
         this.$refs.createText.$refs.textUpload.textUpload()
@@ -103,24 +169,55 @@ export default {
         }
         this.style = resultFormModal
         // if everything is fine
-        this.status++
-        // end loading
-        this.spinShow = false
+        // end loading; status ++
+        setTimeout(() => {
+          this.$Spin.hide()
+          this.status++
+        }, 1000)
       } else if (this.status === 1) {
-        // do
+        /*
+         * Step Two: Choose right styles + Upload
+         */
+        this.$Spin.show()
+        // loading...
+        this.$refs.picStyles.$refs.styleRes.stylesUpload()
+        setTimeout(() => {
+          this.$Spin.hide()
+          this.status++
+        }, 1000)
       } else if (this.status === 2) {
-        // do
+        /*
+         * Step Three: Save reviewed html
+         */
+        this.$Spin.show()
+        // loading...
+        this.$refs.reviewBoard.$refs.editorBoard.storeHtml()
+        setTimeout(() => {
+          this.$Spin.hide()
+          this.status++
+        }, 1000)
+      } else if (this.status === 3) {
       }
     },
     updateText: function (msg) {
       this.text = msg
+    },
+    updateStyle: function (msg) {
+      this.style_tab = msg
+    },
+    updateHtml: function (msg) {
+      this.res_html = msg
+    },
+    updateID: function (msg) {
+      this.workID = msg
     }
   },
   components: {
     createBoard,
     adjustBoard,
     reviewBoard,
-    ratingBoard
+    ratingBoard,
+    axios
   }
 }
 </script>

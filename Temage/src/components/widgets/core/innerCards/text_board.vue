@@ -7,6 +7,7 @@
 </template>
 <script>
 import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   name: 'textBoard',
   data () {
@@ -21,7 +22,8 @@ export default {
         method: 'post',
         url: '/api/text_post',
         data: {text: this.text_content},
-        withCredentials: true
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
         if (response.status !== 200) {
           this.$Message.error('服务器状态错误! 错误码:' + response.status)

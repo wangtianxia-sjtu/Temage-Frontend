@@ -2,12 +2,13 @@
   <div>
     <el-upload
       ref="upload"
-    action="http://localhost:3030/api/pic_post"
-    list-type="picture-card"
+      action="http://localhost:3030/api/pic_post"
+      list-type="picture-card"
       :on-preview="handlePictureCardPreview"
-      :file-list="fileList"
-    :on-remove="handleRemove"
-    :auto-upload='false'
+      :on-remove="handleRemove"
+      :auto-upload='false'
+      :with-credentials="true"
+      :headers="{Authorization: this.user_token}"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
@@ -17,12 +18,14 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'imgBoard',
   data () {
     return {
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      user_token: Cookies.get('login_token')
     }
   },
   methods: {
@@ -32,6 +35,7 @@ export default {
       this.dialogVisible = true
     },
     submitUpload () {
+      console.log(this.fileList)
       this.$refs.upload.submit()
     }
   }

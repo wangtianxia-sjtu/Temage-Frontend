@@ -1,7 +1,9 @@
 var express = require('express');
+var formidable = require('formidable')
+var fs = require('fs')
 const app = express()
 app.use(express.static('src'));
-
+app.set('view engine', 'html');
 /*
  * setting header for express
  */
@@ -342,11 +344,17 @@ app.post('/api/text',function (req, res) {
 
 // upload and store pictures
 app.post('/api/pic_post', function (req, res) {
+  var form = new formidable.IncomingForm()
+  form.keepExtensions = true
+  form.uploadDir = 'expressDB' + '/'
+  form.parse(req, function(err, fields, files) {
+      var extName = 'jpg';  //后缀名
+      var avatarName = Math.random() + '.' + extName;
+      var newPath = form.uploadDir + avatarName;
+      console.log(newPath);  // store pics into DB
+    });
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
-  let image_urls = req.body
-  console.log(image_urls)
-  // store pics into DB
   res.sendStatus(200)
 })
 
@@ -361,34 +369,73 @@ app.post('/api/text_post', function (req, res) {
 })
 
 // 'pic_post' 'text_post'两个接口几乎同时调用(一个btn触发)
-//  用模型计算结果时可以保证图文同时可用
+//  用模型计算位置结果时可以保证图文同时可用
 //  后端的计算过程在这两个接口调用后, get_html返回结果之前
 
+
 // return calculated html
-app.post('/api/get_html', function (req, res) {
+app.post('/api/ret_html', function (req, res) {
   let user_token = req.get('Authorization')
-  let style = req.body //
+  let style = req.body.styles //
   console.log(user_token)
   console.log(style)
   // 实际上这个html的结果并非这个请求发送后才开始跑模型的
   // 而是在'pic_post'和'text_post'之后, 后端就开始算了
   // 需要考虑的是这个html结果的产出时刻和本接口调用时刻前后关系不确定
   // 因为用户在step2选择风格阶段耗时不确定
-  // style信息可能会做一点hard code优化给html
+  // 返回时带上从style_post里选好的CSS表
   res.send({html: result_html})
 })
 
-// store a passage in DB
+// store a passage in DB (初步储存为未保存状态)
 app.post('/api/store_passage', function (req, res) {
   let user_token = req.get('Authorization')
-  let result = req.body
+  let result = req.body.res_html
   console.log(user_token)
   console.log(result)
   /*
    * store result into user's DB
    */
-  res.send(200)
+  let workID = 1703701 // Generate from DB
+  res.send({ID: workID})
 })
+
+// Give out ID对应的html 在server上渲染好的的url
+app.post('/api/finished_work', function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token)
+  let workID = req.body.workID
+  console.log(workID)
+  /*
+   *  return a url according to workID
+   */
+  res.send({url: 'https://www.weibo.com'})
+})
+
+// 给出长图下载连接
+app.post('/api/download', function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token)
+  let workID = req.body.workID
+  console.log(workID)
+  /*
+   *  生成长图, 给出下载地址
+   */
+  res.send({url: 'http://localhost:8081/static/img/cat1.4f64437.png'})
+})
+
+// 确认储存
+app.post('/api/confirm_store', function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token)
+  let workID = req.body.workID
+  console.log(workID)
+  /*
+   *  把ID对应文章状态由未保存改为以保存, 标记recent, 时间按服务器时间
+   */
+  res.sendStatus(200)
+})
+
 
 /* suspend on Express*/
 app.listen(3030, () => console.log('Example app listening on http://localhost:3030'))
