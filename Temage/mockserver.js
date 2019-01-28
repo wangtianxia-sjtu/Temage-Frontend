@@ -424,12 +424,15 @@ app.post('/api/download', function (req, res) {
   res.send({url: 'http://localhost:8081/static/img/cat1.4f64437.png'})
 })
 
+
 // 确认储存
 app.post('/api/confirm_store', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
   let workID = req.body.workID
   console.log(workID)
+  let stars = req.body.stars
+  console.log(stars)
   /*
    *  把ID对应文章状态由未保存改为以保存, 标记recent, 时间按服务器时间
    */
