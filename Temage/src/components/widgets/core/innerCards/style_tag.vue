@@ -62,6 +62,7 @@ export default {
   methods: {
     stylesUpload () {
       this.$emit('handStyles', this.tags)
+      // shall be customer's choice
       this.$axios({
         method: 'POST',
         url: '/api/ret_html',
