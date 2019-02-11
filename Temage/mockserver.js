@@ -337,6 +337,15 @@ app.post('/api/text',function (req, res) {
   res.send(content)
 })
 
+app.post('/api/collect', function (req, res) {
+  let user_token = req.get('Authorization')
+  let text_id = req.body.id
+  console.log(user_token)
+  console.log(text_id)
+  /* add the text to users collection */
+  res.send(200)
+})
+
 /*
  * Interface of workflow * * * * * * * * * * * * *
  * =========================================
