@@ -56,7 +56,7 @@ export default {
     if (usrCookie !== undefined) {
       this.$axios({
         method: 'post',
-        url: '/api/gallery',
+        url: '/api/gallery/',
         withCredentials: true,
         headers: {Authorization: usrCookie},
         data: {'token': usrCookie}
@@ -110,7 +110,7 @@ export default {
           let usrCookie = Cookies.get('login_token')
           this.$axios({
             method: 'post',
-            url: '/api/gallery/more_cards',
+            url: '/api/gallery/more_cards/',
             withCredentials: true,
             headers: {Authorization: usrCookie},
             data: {

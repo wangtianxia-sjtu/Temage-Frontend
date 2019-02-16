@@ -96,7 +96,7 @@ export default {
     save () {
       this.$axios({
         method: 'post',
-        url: '/api/confirm_store',
+        url: '/api/confirm_store/',
         data: {workID: this.workID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -112,7 +112,7 @@ export default {
     download () {
       this.$axios({
         method: 'post',
-        url: '/api/download',
+        url: '/api/download/',
         data: {workID: this.workID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}

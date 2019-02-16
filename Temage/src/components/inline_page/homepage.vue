@@ -35,7 +35,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: '/api',
+      url: '/api/',
       headers: {Authorization: Cookies.get('login_token')},
       withCredentials: true
     }).then(response => {

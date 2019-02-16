@@ -400,8 +400,10 @@ app.post('/api/ret_html', function (req, res) {
 app.post('/api/store_passage', function (req, res) {
   let user_token = req.get('Authorization')
   let result = req.body.res_html
+  let width = req.body.t_width
   console.log(user_token)
   console.log(result)
+  console.log(width)
   /*
    * store result into user's DB
    */
@@ -418,7 +420,7 @@ app.post('/api/finished_work', function (req, res) {
   /*
    *  return a url according to workID
    */
-  res.send({url: 'https://www.weibo.com'})
+  res.send({url: 'https://www.weibo.com', width: 300})
 })
 
 // 给出长图下载连接

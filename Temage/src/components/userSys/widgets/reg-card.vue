@@ -85,7 +85,7 @@ export default {
         if (valid) {
           this.$axios({
             method: 'post',
-            url: '/register',
+            url: '/register/',
             data: this.formValidate,
             withCredentials: true
           })

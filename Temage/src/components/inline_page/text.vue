@@ -35,7 +35,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: 'api/text',
+      url: 'api/text/',
       data: {id: this.id},
       withCredentials: true
     }).then(response => {
