@@ -403,10 +403,12 @@ app.post('/api/store_passage', function (req, res) {
   let result = req.body.res_html
   let width = req.body.t_width
   let ptitle = req.body.title
+  let style = req.body.styles
   console.log(user_token)
   console.log(result)
   console.log(width)
   console.log(ptitle)
+  console.log(style)
   /*
    * store result into user's DB
    */
