@@ -246,6 +246,7 @@ let user1 = {
 /* register data check*/
 let regiter = {
   'username': 'tmg',
+  'password': '123',
   'email': '123123@qq.com',
   'interest': ['Porn','Sport'], // not sure
   'desc': 'love and peace'
@@ -401,9 +402,11 @@ app.post('/api/store_passage', function (req, res) {
   let user_token = req.get('Authorization')
   let result = req.body.res_html
   let width = req.body.t_width
+  let ptitle = req.body.title
   console.log(user_token)
   console.log(result)
   console.log(width)
+  console.log(ptitle)
   /*
    * store result into user's DB
    */
