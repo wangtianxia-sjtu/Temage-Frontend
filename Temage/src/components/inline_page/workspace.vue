@@ -165,7 +165,7 @@ export default {
         console.log('text:' + this.text)
         // infer style form modal according to this.text
         let resultFormModal = {
-          name: ['sports', 'movie', 'art', 'tec'],
+          name: ['Sports', 'Movie', 'Art', 'Tec'],
           rate: [0.841, 0.32, 0.21, 0.102]
         }
         this.style = resultFormModal
