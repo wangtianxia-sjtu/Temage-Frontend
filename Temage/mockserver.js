@@ -30,7 +30,7 @@ app.all('*', function(req, res, next) {
 /* display img id */
 let picurl1 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548045612427&di=00c1ea33a8c9009c89f896809ea1f211&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F019fd9554b9028000001bf72d491bb.jpg%402o.jpg"
 let picurl2 = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1548045612428&di=bb236d9b2536dacd8e80552b691b430f&imgtype=0&src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201808%2F01%2F174647y7sts7snkkqnz7nl.jpg"
-let picurl3 = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1833235402,1991457466&fm=26&gp=0.jpg"
+let picurl3 = "http://pic.xiami.net/images/avatar_new/7160/5b10ff5c9f81d_358019564_1527840604.jpg"
 
 /* simulating user */
 let user_info = {
@@ -416,11 +416,13 @@ app.post('/api/store_passage', function (req, res) {
   let width = req.body.t_width
   let ptitle = req.body.title
   let style = req.body.styles
+  console.log('----------')
   console.log(user_token)
   console.log(result)
   console.log(width)
   console.log(ptitle)
   console.log(style)
+  console.log('----------')
   /*
    * store result into user's DB
    */

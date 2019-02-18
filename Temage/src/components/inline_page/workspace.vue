@@ -89,7 +89,8 @@ export default {
       res_html: '',
       workID: 0,
       work_url: '',
-      download_url: ''
+      download_url: '',
+      title: null
     }
   },
   methods: {

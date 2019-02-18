@@ -7,7 +7,7 @@
             <p class="card-text">
                 {{maintext}}
             </p>
-            <Button @click="closable" :size="buttonSize" icon="ios-download-outline" type="error" v-show="seen">Add to my collection</Button>
+            <Button @click="closable" :size="buttonSize" icon="ios-download-outline" type="success" v-show="seen">View more</Button>
             <div slot="footer">
                 <small class="text-muted">{{foottext}}</small>
             </div>
@@ -18,8 +18,12 @@
 </style>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'gallerycard',
+  components: {
+    axios
+  },
   data () {
     return {
       seen: false,
@@ -31,11 +35,6 @@ export default {
   props: ['imagesrc', 'title', 'head', 'maintext', 'foottext', 'id'],
   methods: {
     closable () {
-      this.$Message.info({
-        content: 'Successfully add to my collection',
-        duration: 3,
-        closable: true
-      })
     },
     view () {
       let textID = this.id

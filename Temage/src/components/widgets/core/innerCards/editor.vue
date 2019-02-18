@@ -18,6 +18,17 @@ export default {
       editorHTML: ''
     }
   },
+  props: {
+    tmg_style: {
+      type: Array,
+      default: function () {
+        return ['art']
+      }
+    },
+    t_title: '',
+    editorContent: '',
+    width: 0
+  },
   components: {axios},
   methods: {
     getContent: function () {
@@ -28,7 +39,7 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/store_passage',
-        data: {res_html: this.editorHTML},
+        data: {res_html: this.editorHTML, styles: ['Art', 'Sport'], t_width: this.width, title: this.t_title},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
@@ -41,6 +52,7 @@ export default {
     }
   },
   mounted () {
+    console.log('stst::', this.tmg_style)
     var editor = new E(this.$refs.editor)
     editor.customConfig.onchange = (html) => {
       this.editorHTML = html
@@ -49,8 +61,8 @@ export default {
     editor.create()
     editor.txt.html(this.editorHTML)
     editor.change()
-  },
-  props: [ 'editorContent' ]
+  }
+  // props: [ 'editorContent' ]
   /* name: 'editor',
   methods: {
     getContent: function () {

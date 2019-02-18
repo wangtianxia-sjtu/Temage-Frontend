@@ -17,7 +17,7 @@
       <Divider dashed />
       <p style="text-align: right; margin-top: -20px; margin-bottom: 20px">作者: {{this.creator.username}}</p>
       <Row>
-        <Col :span="6" :offset="0"><Button type="primary" style="width: 100%">Collect</Button></Col>
+        <Col :span="6" :offset="0"><Button type="primary" @click="collect" style="width: 100%">Collect</Button></Col>
         <Col :span="6" :offset="3"><Button type="success" style="width: 100%">Fork</Button></Col>
         <Col :span="6" :offset="3"><Button type="default" @click="back" style="width: 100%">Back</Button></Col>
       </Row>
@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   name: 'text',
   components: {
@@ -59,6 +60,25 @@ export default {
   methods: {
     back () {
       this.$router.push(this.$router.push('/id/gallery'))
+    },
+    collect () {
+      this.$axios({
+        method: 'post',
+        url: '/api/collect',
+        data: {id: this.id},
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.$Message.success({
+            content: '已加入到我的收藏!',
+            duration: 3,
+            closable: true
+          })
+        }
+      })
     }
   }
 }
