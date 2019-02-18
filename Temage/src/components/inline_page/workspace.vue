@@ -98,7 +98,7 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/confirm_store/',
-        data: {workID: this.workID},
+        data: {workID: this.workID, stars: 4},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
