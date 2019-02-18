@@ -64,7 +64,7 @@ export default {
     collect () {
       this.$axios({
         method: 'post',
-        url: '/api/collect',
+        url: '/api/collect/',
         data: {id: this.id},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}

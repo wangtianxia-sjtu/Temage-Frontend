@@ -65,7 +65,7 @@ export default {
       // shall be customer's choice
       this.$axios({
         method: 'POST',
-        url: '/api/ret_html',
+        url: '/api/ret_html/',
         data: {styles: this.tags},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
