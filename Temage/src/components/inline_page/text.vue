@@ -38,7 +38,8 @@ export default {
       method: 'post',
       url: 'api/text/',
       data: {id: this.id},
-      withCredentials: true
+      withCredentials: true,
+      headers: {Authorization: Cookies.get('login_token')}
     }).then(response => {
       console.log(response.data)
       this.creator = response.data.creator
