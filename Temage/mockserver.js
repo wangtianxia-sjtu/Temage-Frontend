@@ -8,7 +8,7 @@ app.set('view engine', 'html');
  * setting header for express
  */
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Origin", "http://0.0.0.0:8081");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Credentials", true);
@@ -262,9 +262,21 @@ let result_html = '<!DOCTYPE html><html><head>    <meta http-equiv="Content-Type
 
 /* send static data to route */
 
-app.get('/api/work', (req, res) => res.json(work_data))
-app.get('/api/collection', (req, res) => res.send(collection_data))
-app.get('/api/recent', (req, res) => res.send(recent_data))
+app.post('/api/work', function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token) // user_token
+  res.send(work_data)
+})
+app.post('/api/collection',function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token) // user_token
+  res.send(collection_data)
+})
+app.post('/api/recent', function (req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token) // user_token
+  res.send(recent_data)
+})
 
 /* parse posted data */
 var bodyParser = require('body-parser');
