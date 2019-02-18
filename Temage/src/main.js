@@ -11,8 +11,16 @@ import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import VCharts from 'v-charts'
-
 import axios from 'axios'
+import * as Sentry from '@sentry/browser'
+/* sentry basic settings */
+Sentry.init({
+  dsn: 'https://8382a4a4712643afb0dbc571eca35923@sentry.io/1395789',
+  integrations: [new Sentry.Integrations.Vue({
+    Vue,
+    attachProps: true
+  })]
+})
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 axios.defaults.withCredentials = true // ajax with coockie
 Vue.prototype.$axios = axios
