@@ -39,7 +39,7 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/store_passage',
-        data: {res_html: this.editorHTML, styles: ['Art', 'Sport'], t_width: this.width, title: this.t_title},
+        data: {res_html: this.editorHTML, styles: ['Art', 'Sports'], t_width: this.width, title: this.t_title},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {

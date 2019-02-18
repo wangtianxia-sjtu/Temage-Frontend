@@ -20,7 +20,7 @@ export default {
       this.$emit('handText', this.text_content)
       this.$axios({
         method: 'post',
-        url: '/api/text_post',
+        url: '/api/text_post/',
         data: {text: this.text_content},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}

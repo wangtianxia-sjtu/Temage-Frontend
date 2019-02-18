@@ -2,7 +2,7 @@
   <div>
     <el-upload
       ref="upload"
-      action="http://localhost:3030/api/pic_post"
+      action="http://101.132.73.215:3030/api/pic_post/"
       list-type="picture-card"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"
