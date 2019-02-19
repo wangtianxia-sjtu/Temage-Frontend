@@ -5,7 +5,7 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><Col :span="1"><Icon type="md-time" size="35" margin-top="-3px"/></Col><h1>Recent</h1></Row>
+        <Row><Col :span="1"><Icon type="md-time" size="25" style="margin-top:6px"/></Col><h1>Recent</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -15,32 +15,29 @@
 
 <script>
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 export default {
   name: 'recent',
   components: {
-    exhibitioncard
+    exhibitioncard,
+    axios
+  },
+  mounted () {
+    this.$axios({
+      method: 'post',
+      url: '/api/recent/',
+      headers: {Authorization: Cookies.get('login_token')},
+      withCredentials: true
+    }).then(response => {
+      this.cards = response.data
+      console.log(response)
+    })
   },
   data () {
     return {
       currentDate: new Date(),
-      cards: [
-        {
-          imgsrc: require('@/assets/cat1.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat2.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat5.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat4.png'),
-          title: 'A lovely cat!'
-        }
-      ]
+      cards: []
     }
   }
 }

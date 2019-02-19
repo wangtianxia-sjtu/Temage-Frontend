@@ -12,7 +12,10 @@
                 <el-step title="Step4 保存" ></el-step>
         </el-steps>
         <div v-if="status === 0">
-            <createBoard ref="createText" v-on:setText="updateText"></createBoard>
+            <createBoard ref="createText"
+                         v-on:setText="updateText"
+                         v-on:setTitle="updateTitle">
+            </createBoard>
         </div>
         <div v-else-if="status === 1">
             <adjustBoard ref="picStyles" v-bind:guess="style"
@@ -21,13 +24,16 @@
         </div>
         <div v-else-if="status === 2">
             <reviewBoard :rec_html="this.res_html"
+                         :t_title="this.title"
+                         :tmg_style="this.style_tab"
                          v-on:res_html="updateHtml"
                          v-on:new_id="updateID"
                          ref="reviewBoard"></reviewBoard>
         </div>
         <div v-else-if="status === 3">
             <ratingBoard ref="rateBo"
-                         :work_id="this.workID"></ratingBoard>
+                         :work_id="this.workID"
+                         v-on:hearStars="updateStars"></ratingBoard>
         </div>
         <Row style='margin-top:40px;  margin-bottom: 3%;'>
                 <div v-if="status === 0">
@@ -90,15 +96,17 @@ export default {
       workID: 0,
       work_url: '',
       download_url: '',
-      title: null
+      title: null,
+      stars: 0
     }
   },
   methods: {
     save () {
+      this.$refs.rateBo.handStars()
       this.$axios({
         method: 'post',
         url: '/api/confirm_store/',
-        data: {workID: this.workID, stars: 4},
+        data: {workID: this.workID, stars: this.stars},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
@@ -203,6 +211,9 @@ export default {
     updateText: function (msg) {
       this.text = msg
     },
+    updateTitle: function (msg) {
+      this.title = msg
+    },
     updateStyle: function (msg) {
       this.style_tab = msg
     },
@@ -211,6 +222,9 @@ export default {
     },
     updateID: function (msg) {
       this.workID = msg
+    },
+    updateStars: function (msg) {
+      this.stars = msg
     }
   },
   components: {

@@ -2,8 +2,8 @@
 <div style="width:72%; margin-left: 14%; overflow: hidden;">
     <br>
     <editor :editorContent="this.rec_html"
-            :t_title="this.tmg_title"
-            :tmg_style="this.t_style"
+            :t_title="this.t_title"
+            :tmg_style="this.tmg_style"
             :width="this.width"
             v-on:finalHtml="handover"
             v-on:newID="emitID"
@@ -18,14 +18,15 @@ export default {
   data () {
     return {
       html: '',
-      tmg_title: 'tmgtmg',
-      t_style: ['art', 'sports', 'tec'],
+      tmg_title: '',
+      t_style: [],
       width: 300
     }
   },
   mounted () {
     this.html = this.rec_html
-    // this.tmg_title = this.t_title
+    this.tmg_title = this.t_title
+    this.t_style = this.tmg_style
   },
   components: {
     editor
@@ -40,7 +41,7 @@ export default {
   },
   props: {
     rec_html: '',
-    t_title: '123123',
+    t_title: '',
     tmg_style: {
       type: Array,
       default: function () {

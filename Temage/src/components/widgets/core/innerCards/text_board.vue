@@ -1,9 +1,17 @@
 <template>
-  <Input
-  v-model="text_content"
-  type="textarea"
-  :autosize="{minRows: 7,maxRows: 21}"
-  placeholder="Enter text here..." />
+  <div>
+    <Input
+      v-model="text_title"
+      type="textarea"
+      :autosize="{minRows: 1,maxRows: 1}"
+      placeholder="Enter title here..." />
+    <p style="margin-top: 15px; margin-bottom: 10px">请在此输入正文 (段落间换行)</p>
+    <Input
+    v-model="text_content"
+    type="textarea"
+    :autosize="{minRows: 7,maxRows: 21}"
+    placeholder="Enter text here..." />
+  </div>
 </template>
 <script>
 import axios from 'axios'
@@ -12,12 +20,14 @@ export default {
   name: 'textBoard',
   data () {
     return {
-      text_content: this.value
+      text_content: this.value,
+      text_title: ''
     }
   },
   methods: {
     textUpload () {
       this.$emit('handText', this.text_content)
+      this.$emit('handTitle', this.text_title)
       this.$axios({
         method: 'post',
         url: '/api/text_post/',

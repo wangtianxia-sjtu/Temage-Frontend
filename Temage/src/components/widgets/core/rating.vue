@@ -49,6 +49,9 @@ export default {
   },
   methods: {
     save () {
+    },
+    handStars () {
+      this.$emit('hearStars', this.value2)
     }
   },
   components: {axios},

@@ -17,9 +17,15 @@
       <Divider dashed />
       <p style="text-align: right; margin-top: -20px; margin-bottom: 20px">作者: {{this.creator.username}}</p>
       <Row>
-        <Col :span="6" :offset="0"><Button type="primary" @click="collect" style="width: 100%">Collect</Button></Col>
-        <Col :span="6" :offset="3"><Button type="success" style="width: 100%">Fork</Button></Col>
-        <Col :span="6" :offset="3"><Button type="default" @click="back" style="width: 100%">Back</Button></Col>
+        <Col :span="6" :offset="0">
+          <Button v-if="!this.collected" type="primary" @click="collect" style="width: 100%">收藏</Button>
+          <Button v-else type="warning" style="width: 100%" @click="cancelCollect">取消收藏</Button>
+        </Col>
+        <Col :span="6" :offset="3">
+          <Button v-if="this.deletable" type="error" style="width: 100%" @click="deleteWork">删除</Button>
+          <div v-else style="width: 100%; height: 10px"></div>
+        </Col>
+        <Col :span="6" :offset="3"><Button type="default" @click="back" style="width: 100%">返回</Button></Col>
       </Row>
     </Card>
   </div>
@@ -47,6 +53,8 @@ export default {
       this.title = response.data.title
       this.style = response.data.style
       this.id = response.data.id
+      this.deletable = response.data.canBeDelete
+      this.collected = response.data.hasBeenCollected
     })
   },
   data () {
@@ -55,12 +63,14 @@ export default {
       html: null,
       title: null,
       style: null,
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      deletable: null,
+      collected: null
     }
   },
   methods: {
     back () {
-      this.$router.push(this.$router.push('/id/gallery'))
+      window.close()
     },
     collect () {
       this.$axios({
@@ -78,6 +88,50 @@ export default {
             duration: 3,
             closable: true
           })
+        }
+      })
+    },
+    deleteWork () {
+      this.$axios({
+        method: 'post',
+        url: '/api/delete/',
+        data: {id: this.id},
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.$Message.success({
+            content: '已成功删除!',
+            duration: 3,
+            closable: true
+          })
+          setTimeout(function () {
+            window.close()
+          }, 1500)
+        }
+      })
+    },
+    cancelCollect () {
+      this.$axios({
+        method: 'post',
+        url: '/api/cancel_collect/',
+        data: {id: this.id},
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.$Message.success({
+            content: '已取消收藏!',
+            duration: 3,
+            closable: true
+          })
+          setTimeout(function () {
+            window.close()
+          }, 1500)
         }
       })
     }

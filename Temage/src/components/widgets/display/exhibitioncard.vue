@@ -9,8 +9,7 @@
         <span>{{card.title}}</span>
         <div class="bottom clearfix">
           <time class="time">{{ currentDate }}</time>
-          <el-button type="text" class="button">{{ buttonname }}</el-button>
-
+          <el-button type="text" class="button" @click="view(card.id)">{{ buttonname }}</el-button>
         </div>
       </div>
     </el-card>
@@ -54,7 +53,18 @@ export default {
   data () {
     return {
       currentDate: new Date(),
-      buttonname: 'start'
+      buttonname: 'View More'
+    }
+  },
+  methods: {
+    view (textID) {
+      const { href } = this.$router.resolve({
+        name: 'text',
+        params: {
+          id: textID
+        }
+      })
+      window.open(href)
     }
   },
   props: {
