@@ -353,6 +353,8 @@ app.post('/api/gallery/more_cards', function(req, res) {
 /* click into a specific text page */
 app.post('/api/text',function (req, res) {
   let card_id = req.body.id
+  let user_token = req.get('Authorization')
+  console.log(user_token)
   /* use ${card_id} to return content */
   let content = {
     id: card_id, // this id is textID, may differ from card_id
