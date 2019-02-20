@@ -25,6 +25,12 @@ export default {
         return []
       }
     },
+    tmg_tensor: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
     t_title: '',
     editorContent: '',
     width: 0
@@ -39,7 +45,13 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/store_passage/',
-        data: {res_html: this.editorHTML, styles: this.tmg_style, t_width: this.width, title: this.t_title},
+        data: {
+          res_html: this.editorHTML,
+          styles: this.tmg_style,
+          t_width: this.width,
+          title: this.t_title,
+          tensor: this.tmg_tensor
+        },
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {

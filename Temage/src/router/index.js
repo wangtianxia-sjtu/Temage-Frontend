@@ -55,6 +55,11 @@ export default new Router({
           path: 'text/:id',
           name: 'text',
           component: text
+        },
+        {
+          path: 'search/:keyword',
+          name: 'search',
+          component: gallery
         }
       ]
     },

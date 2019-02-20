@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <button @click="predict"> click</button>
-    <div class="clear" @click="clear">clear</div>
     <p class="result">识别结果：{{result}} </p>
   </div>
 </template>
@@ -38,44 +37,11 @@ export default {
     })
   },
   created () {
-    tf.loadModel('http://0.0.0.0:8081/static/model_wtx.json').then(model => {
+    tf.loadModel('/static/model_wtx.json').then(model => {
       this.model = model
     })
   },
   methods: {
-    handleLoadingProgress (progress) {
-      this.modelLoadingProgress = Math.round(progress)
-    },
-    drawEnd () {
-      if (!this.listenMouseMove) return
-      this.listenMouseMove = false
-      delete this.previousX
-      delete this.previousY
-      this.predict()
-    },
-    drawLine (x, y) {
-      const {
-        canvas
-      } = this.$refs
-      const ctx = canvas.getContext('2d')
-      ctx.lineWidth = 20
-      ctx.lineJoin = ctx.lineCap = 'round'
-      ctx.strokeStyle = '#393E46'
-      ctx.beginPath()
-      const {
-        previousX,
-        previousY
-      } = this
-      if (previousX !== undefined) {
-        ctx.moveTo(previousX, previousY)
-      } else {
-        ctx.moveTo(x, y)
-      }
-      ctx.lineTo(x, y)
-      ctx.stroke()
-      this.previousX = x
-      this.previousY = y
-    },
     predict () {
       console.log('hello')
       const buffer = tf.buffer([1, 20, 1024, 1])
@@ -89,14 +55,8 @@ export default {
       const prediction = this.model.predict(inputData)
       prediction.print()
       console.log(prediction.data())
-    },
-    clear () {
-      const {
-        canvas
-      } = this.$refs
-      const ctx = canvas.getContext('2d')
-      ctx.clearRect(0, 0, 280, 280)
-      this.result = 'hello'
+      let promiseRes = Promise.resolve(prediction.data())
+      promiseRes.then(function (result) { console.log(result) })
     }
   }
 }

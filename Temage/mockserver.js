@@ -251,9 +251,7 @@ let register = {
   'interest': ['Porn','Sport'], // not sure
   'desc': 'love and peace'
 }
-let search_data = {
-  "total": 2,
-  "cards": [
+let search_data = [
     {
       'title':'SumpleCat',
       'imagesrc':picurl3,
@@ -273,7 +271,6 @@ let search_data = {
       'creator':user_info,
     }
   ]
-}
 
 
 
@@ -546,6 +543,7 @@ app.post('/api/confirm_store', function (req, res) {
 // 关键字搜索
 app.post('/api/post_search', function(req, res) {
   keywords = req.body.keywords
+  console.log(keywords)
   /*
    *  将关键词在ES server进行搜索，返回cards
    */

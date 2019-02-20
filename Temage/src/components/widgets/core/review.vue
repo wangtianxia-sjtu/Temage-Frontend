@@ -4,6 +4,7 @@
     <editor :editorContent="this.rec_html"
             :t_title="this.t_title"
             :tmg_style="this.tmg_style"
+            :tmg_tensor="this.tmg_tensor"
             :width="this.width"
             v-on:finalHtml="handover"
             v-on:newID="emitID"
@@ -43,6 +44,12 @@ export default {
     rec_html: '',
     t_title: '',
     tmg_style: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    tmg_tensor: {
       type: Array,
       default: function () {
         return []

@@ -26,6 +26,7 @@
             <reviewBoard :rec_html="this.res_html"
                          :t_title="this.title"
                          :tmg_style="this.style_tab"
+                         :tmg_tensor="this.tensor"
                          v-on:res_html="updateHtml"
                          v-on:new_id="updateID"
                          ref="reviewBoard"></reviewBoard>
@@ -90,6 +91,7 @@ export default {
       image: this.url,
       status: 0,
       spinShow: false,
+      tensor: [],
       style: {},
       style_tab: [],
       res_html: '',
@@ -177,6 +179,7 @@ export default {
           rate: [0.841, 0.32, 0.21, 0.102]
         }
         this.style = resultFormModal
+        this.tensor = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
         // if everything is fine
         // end loading; status ++
         setTimeout(() => {

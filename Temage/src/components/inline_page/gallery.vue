@@ -2,6 +2,9 @@
   <div style="margin-right: -20px; height:100%">
     <Scroll :on-reach-bottom="handleReachBottom" :distance-to-edge="[0, 0]">
       <div style="margin-right: 1vw; margin-left: 1vw">
+        <Card v-if="keyword !== undefined" style="padding: 0!important; margin-bottom: 20px">
+          <p style="width: 100%; text-align: center; font-size: 30px; margin-bottom: 0px">关键字: {{this.keyword}}</p>
+        </Card>
       <!--<b-card-group columns style="margin-top: 30px">-->
         <Col :span="4">
             <gallerycard v-for="card in cardsCol1" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
@@ -47,21 +50,29 @@ export default {
       cardsCol4: null,
       cardsCol5: null,
       lenOfCols: [0, 0, 0, 0, 0],
-      num: 0
+      num: 0,
+      keyword: null,
+      api: null
     }
   },
   mounted () {
+    this.keyword = this.$route.params.keyword
+    if (this.keyword === undefined) {
+      this.api = '/api/gallery/'
+    } else {
+      this.api = '/api/post_search/'
+    }
     this.lenOfCols = [0, 0, 0, 0, 0]
     let usrCookie = Cookies.get('login_token')
     if (usrCookie !== undefined) {
       this.$axios({
         method: 'post',
-        url: '/api/gallery/',
+        url: this.api,
         withCredentials: true,
         headers: {Authorization: usrCookie},
-        data: {'token': usrCookie}
+        data: {'keywords': this.keyword}
       }).then(response => {
-        console.log('API: /api/gallery------------')
+        console.log('API: ', this.api)
         console.log(response)
         this.cards = response.data
         this.cardsCol1 = []
@@ -188,6 +199,9 @@ export default {
   }
   .ivu-scroll-container{
     margin-right: -4px;
+  }
+  .ivu-card-body{
+    padding: 0px;
   }
   body{
     overflow: hidden;

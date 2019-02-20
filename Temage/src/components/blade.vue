@@ -69,16 +69,20 @@
     <Layout :style="{background: '#fff',height: '100%'}">
       <Header class='topbar'>
         <Row>
-          <Col span='4' style='top: 7px; margin-left: -40px;'><Input search enter-button placeholder="Search" /></Col>
+          <Col span='4' style='top: 7px; margin-left: -35px;'>
+            <Input search enter-button placeholder="Search"
+                   v-model="keyword"
+                   @on-search="search"/>
+          </Col>
           <Col span='20'>
           <Menu mode="horizontal" theme="dark" active-name="1" class='topbar'>
             <Row>
-              <Col span='3' offset='10' class="layout-logo">
+              <Col span='4' offset='9' class="layout-logo">
               <router-link to="/id">
                 <Button type="primary" style="margin-top:-25px"><img class='logo-min' src='../assets/logo-min.png'></Button>
               </router-link>
               </Col>
-              <Col class="layout-nav">
+              <Col class="layout-nav" style="margin-right: -95px">
               <MenuItem name='i'>
                 <router-link to="/id/work">
               <Button icon="md-add" type="primary">New</Button>
@@ -180,6 +184,9 @@ import instruct from './widgets/display/instruction.vue'
 import Cookies from 'js-cookie'
 export default {
   name: 'blade',
+  data () {
+    return {keyword: ''}
+  },
   components: {
     noticeTop,
     noticeSide,
@@ -195,6 +202,19 @@ export default {
         name: 'gallery'
       })
       window.open(href)
+    },
+    search () {
+      if (this.keyword !== '') {
+        const { href } = this.$router.resolve({
+          name: 'search',
+          params: {
+            keyword: this.keyword
+          }
+        })
+        window.open(href)
+      } else {
+        this.$Message.error('请输入关机字!')
+      }
     }
   }
 }
