@@ -83,6 +83,7 @@ import reviewBoard from '@/components/widgets/core/review.vue'
 import ratingBoard from '@/components/widgets/core/rating.vue'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import * as tf from '@tensorflow/tfjs'
 export default {
   name: 'workspace',
   data () {
@@ -91,6 +92,8 @@ export default {
       image: this.url,
       status: 0,
       spinShow: false,
+      model: null,
+      response_mtx: null,
       tensor: [],
       style: {},
       style_tab: [],
@@ -101,6 +104,11 @@ export default {
       title: null,
       stars: 0
     }
+  },
+  created () {
+    tf.loadModel('/static/model_wtx.json').then(model => {
+      this.model = model
+    })
   },
   methods: {
     save () {
@@ -164,6 +172,8 @@ export default {
       /*
        * When click next btn
        */
+      let resVec = []
+      let resModel = {}
       if (this.status === 0) {
         /*
          * Step One: Upload + inference
@@ -174,15 +184,52 @@ export default {
         this.$refs.createText.$refs.textUpload.textUpload()
         console.log('text:' + this.text)
         // infer style form modal according to this.text
-        let resultFormModal = {
-          name: ['Sports', 'Movie', 'Art', 'Tec'],
-          rate: [0.841, 0.32, 0.21, 0.102]
-        }
-        this.style = resultFormModal
-        this.tensor = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+        // get matrix from back end
+        this.$axios({
+          method: 'post',
+          url: '/api/matrix',
+          withCredentials: true,
+          headers: {Authorization: Cookies.get('login_token')},
+          data: {text: this.text}
+        }).then(response => {
+          if (response.status !== 200) {
+            this.$Message.error('服务器状态错误! 错误码:' + response.status)
+          } else {
+            this.response_mtx = response.data
+            console.log(this.response_mtx)
+            // run with model
+            const buffer = tf.buffer([1, 20, 1024, 1])
+            for (let i = 0; i < 20; i++) {
+              for (let j = 0; j < 1024; j++) {
+                buffer.set(this.response_mtx[0][i][j][0], 0, i, j, 0) // all 1
+              }
+            }
+            let inputData = buffer.toTensor()
+            console.log(inputData)
+            const prediction = this.model.predict(inputData)
+            prediction.print()
+            console.log(prediction.data())
+            let promiseRes = Promise.resolve(prediction.data())
+            promiseRes.then(function (result) {
+              console.log(result)
+              for (var i = 0; i < 15; i++) {
+                resVec.push(result[i])
+              }
+              // set result
+              let resultFormModal = {
+                name: ['sport', 'game', 'stock', 'fashion'],
+                rate: [0.841, 0.32, 0.21, 0.102]
+              }
+              resModel = resultFormModal
+            })
+          }
+        })
         // if everything is fine
         // end loading; status ++
         setTimeout(() => {
+          this.style = resModel
+          this.tensor = resVec
+          console.log('tensor:', this.tensor)
           this.$Spin.hide()
           this.status++
         }, 1000)

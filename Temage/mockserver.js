@@ -377,6 +377,7 @@ app.post('/api/text',function (req, res) {
   let card_id = req.body.id
   let user_token = req.get('Authorization')
   console.log(user_token)
+  console.log(card_id)
   /* use ${card_id} to return content */
   let content = {
     id: card_id, // this id is textID, may differ from card_id
@@ -460,6 +461,8 @@ app.post('/api/text_post', function (req, res) {
 let tornadoData = require('./response_tx.json')
 app.post('/api/matrix', function (req, res) {
   let user_token = req.get('Authorization')
+  let text = req.body.text
+  console.log(text)
   console.log(user_token) // user_token
   res.json(tornadoData)
 })
