@@ -85,7 +85,7 @@ export default {
         } else {
           this.$Message.success({
             content: '已加入到我的收藏!',
-            duration: 3,
+            duration: 30,
             closable: true
           })
         }

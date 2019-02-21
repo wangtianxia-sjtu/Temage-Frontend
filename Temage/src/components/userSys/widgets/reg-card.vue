@@ -65,8 +65,8 @@ export default {
           { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
         ],
         interest: [
-          { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-          { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
+          { required: false, type: 'array', min: 0, message: 'Choose at least one hobby', trigger: 'change' },
+          { type: 'array', max: 14, message: 'Choose two hobbies at best', trigger: 'change' }
         ],
         desc: [
           { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },

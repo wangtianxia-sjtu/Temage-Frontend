@@ -386,7 +386,7 @@ app.post('/api/text',function (req, res) {
     title: '梅西重返赛场',
     style: ['Sports', 'Celebrity'],
     canBeDelete: true,
-    hasBeenCollected: true
+    hasBeenCollected: false
   }
   res.send(content)
 })

@@ -69,7 +69,11 @@ export default {
     },
     handleAdd (name) {
       console.log(name)
-      this.tags.push(name)
+      if (this.tags.indexOf(name) === -1) {
+        this.tags.push(name)
+      } else {
+        this.$Message.warning('已经添加过该主题了')
+      }
     }
   }
 }
