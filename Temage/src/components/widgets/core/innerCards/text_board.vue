@@ -33,7 +33,7 @@ export default {
         ajax({
           method: 'post',
           url: '/api/text_post/',
-          data: {text: this.text_content},
+          data: {text: this.text_content, title: this.text_title},
           withCredentials: true,
           headers: {Authorization: Cookies.get('login_token')}
         }).then(response => {

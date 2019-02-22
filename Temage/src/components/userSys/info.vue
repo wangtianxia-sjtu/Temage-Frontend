@@ -1,32 +1,68 @@
 <template>
   <div class="login">
-    <Row style="height: 70px;
+    <Row style="height: 50px;
                 width: 100%;
-                background-color: #7ea9d9;
+                background-color: #398eb9;
                 position: fixed;
                 box-shadow: 0 5px 15px rgba(30,30,30,0.76);
-                padding: 10px;z-index: 9999">
-      <img :src="imgsrc[1]" style="max-height: 110%; float: left">
+                padding: 5px;z-index: 9999">
+      <div class="title-logo">
+      <p style="float: left; font-size: 40px; font-weight: bolder; color: white; margin-top: -8px; margin-left: 25px">Temage</p>
+      </div>
+      <div class="top-sup"
+           @click="loginFromInfo">支持</div>
       <router-link to="/register">
-        <Button style="height: 100%; color: #fff;
+        <div class="top-reg" type="primary">注册</div>
+      </router-link>
+      <div class="top-login"
+              @click="loginFromInfo">登录</div>
+    </Row>
+    <div id="block1" style="height: 750px;
+                width: 100%;
+                background: rgba(0,0,0,0.65)">
+      <img :src="imgsrc[5]" style="max-height: 400px; margin-top: 50px;">
+      <div style="text-align: center;
+      color: rgba(255,255,255,0.86);
+      font-size: 70px;
+      font-weight: bold;
+      margin-top: -50px">"优雅提高生产力!"</div>
+      <div style="text-align: center;
+      color: rgba(255,255,255,0.86);
+      font-size: 28px;
+      font-weight: normal;
+      margin-top: -10px">Temage运用强劲的Intel™处理器和AiDecCloud©训练服务</div>
+      <div style="text-align: center;
+      color: rgba(255,255,255,0.86);
+      font-size: 28px;
+      font-weight: normal;
+      margin-top: -5px">在Tensorflow©框架下生产处高效精确的模型️</div>
+      <div style="text-align: center;
+      color: rgba(255,255,255,0.86);
+      font-size: 28px;
+      font-weight: normal;
+      margin-bottom: 30px;
+      margin-top: -5px">帮您完成优雅高效的图文排版工作️</div>
+      <router-link to="/register">
+        <Button style="color: #fff;
                 background-color: #2460a0;
                 border-color: #2460a0;
-                width: 100px;
-                font-size: 22px;
-                float: right!important;" type="primary">注册</Button>
+                width: 200px;
+                height: 50px;
+                margin-right: 20px;
+                font-size: 22px;"
+                type="primary">注册</Button>
       </router-link>
-      <Button style="height: 100%;
-              width: 100px;
+      <Button style="height: 50px;
+              width: 200px;
               font-size: 22px;
-              float: right;
+              margin-left: 20px;
               margin-right: 10px"
               @click="loginFromInfo">登录</Button>
-    </Row>
-    <div style="height: 700px;
-                width: 100%;
-                background: rgba(0,0,0,0.52)">
-      <img :src="imgsrc[5]" style="max-height: 500px">
-      <div style="text-align: center; color: white; font-size: 50px"></div>
+    </div>
+    <div style="width: 100%; height: 500px; background: #eceff1">
+      <div class="img-holder"><img class="img-scroll" :src="imgsrc[6]"></div>
+      <div style="font-size: 70px">海量作品, </div>
+      <div style="font-size: 70px">灵感闪现</div>
     </div>
     <div>
       <Row style="margin-top: 40px;">
@@ -59,14 +95,20 @@ export default {
   data () {
     return {
       imgsrc: [
-        require('@/assets/logo-dark.png'),
-        require('@/assets/logo-min.png'),
-        require('@/assets/logo-min2.png'),
-        require('@/assets/logo.png'),
-        require('@/assets/logo-min.png'),
-        require('@/assets/logo-big.png')
+        require('@/assets/logo-dark.png'), // 0
+        require('@/assets/logo-min.png'), // 1
+        require('@/assets/logo-min2.png'), // 2
+        require('@/assets/logo.png'), // 3
+        require('@/assets/logo-min.png'), // 4
+        require('@/assets/logo-big.png'), // 5
+        require('@/assets/gallery.png') // 6
       ]
     }
+  },
+  mounted () {
+    this.scroll()
+    let block1 = document.querySelector('#block1')
+    block1.style.height = window.innerHeight
   },
   methods: {
     loginFromInfo () {
@@ -75,6 +117,14 @@ export default {
       } else {
         this.$router.push('/login')
       }
+    },
+    scroll () {
+      window.addEventListener('scroll', function () {
+        let pos = document.documentElement.scrollTop
+        var galleryImg = document.querySelector('.img-scroll')
+        let yy = 0.5 * pos - 500
+        galleryImg.style.webkitTransform = 'translate3d(0px, ' + yy + 'px, 0px)'
+      })
     }
   }
 }
@@ -118,6 +168,73 @@ export default {
     font-size: 36px;
     width: 90%;
     /*margin-left: -40%;*/
+  }
+  .title-logo{
+    width: 200px;
+    height: 50px;
+    margin-top: -5px;
+    margin-left: -5px;
+    background: #2176a6;
+    float: left;
+  }
+  .title-logo:hover{
+    background: #2a91cb;
+  }
+  .top-reg{
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background-color: #38699b;
+    border-color: #38699b;
+    width: 150px;
+    font-size: 28px;
+    margin-top:-5px;
+    margin-right: -5px;
+    float: right!important;
+  }
+  .top-reg:hover{
+    background: #4ba1e6;
+  }
+  .top-login{
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background-color: #2176a6;
+    border-color: #2176a6;
+    width: 150px;
+    font-size: 28px;
+    margin-top:-5px;
+    margin-right: -5px;
+    float: right!important;
+  }
+  .top-login:hover{
+    background: #4ba1e6;
+  }
+  .top-sup{
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    background-color: #30528e;
+    border-color: #30528e;
+    width: 150px;
+    font-size: 28px;
+    margin-top:-5px;
+    margin-right: -5px;
+    float: right!important;
+  }
+  .top-sup:hover{
+    background: #4ba1e6;
+  }
+  .img-holder{
+    float: left;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
+    background: #888888;
+    margin-left: 50px;
+  }
+  .img-scroll{
+    width: 100%;
   }
   body{
     overflow: auto;

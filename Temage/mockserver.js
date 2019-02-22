@@ -450,6 +450,8 @@ app.post('/api/text_post', function (req, res) {
   console.log(user_token) // user_token
   let text_content = req.body.text
   console.log(text_content)
+  let title = req.body.title
+  console.log(title)
   // store text into DB
   let id = 147130
   res.send({productID: id})
@@ -465,8 +467,6 @@ let tornadoData = require('./response_tx.json')
 app.post('/api/matrix', function (req, res) {
   let user_token = req.get('Authorization')
   let text = req.body.text
-  let productID = req.body.productID
-  console.log(productID)
   console.log(text)
   console.log(user_token) // user_token
   res.json(tornadoData)
