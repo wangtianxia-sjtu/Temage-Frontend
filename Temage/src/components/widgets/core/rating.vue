@@ -36,7 +36,7 @@ export default {
     this.$axios({
       method: 'post',
       url: '/api/finished_work/',
-      data: {workID: this.ID},
+      data: {productID: this.ID},
       withCredentials: true,
       headers: {Authorization: Cookies.get('login_token')}
     }).then(response => {

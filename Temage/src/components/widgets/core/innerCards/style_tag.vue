@@ -39,7 +39,8 @@ export default {
     guess_tag: {
       type: Array,
       default: () => []
-    }
+    },
+    productID: 0
   },
   mounted () {
     this.tags = this.guess_tag
@@ -52,7 +53,7 @@ export default {
       this.$axios({
         method: 'POST',
         url: '/api/ret_html/',
-        data: {styles: this.tags},
+        data: {styles: this.tags, productID: this.productID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {

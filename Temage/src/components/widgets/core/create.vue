@@ -8,7 +8,8 @@
                 <Col :span='11'>
                     <txtBoard ref="textUpload"
                               v-on:handText="setThisText"
-                              v-on:handTitle="setThisTitle"></txtBoard>
+                              v-on:handTitle="setThisTitle"
+                              v-on:newID="emitID"></txtBoard>
                 </Col>
                 <Col :span='12' :offset='1'>
                     <imgBoard ref="imgUpload"></imgBoard>
@@ -53,6 +54,9 @@ export default {
     setThisTitle: function (msg) {
       this.title = msg
       this.$emit('setTitle', this.title)
+    },
+    emitID: function (msg) {
+      this.$emit('setID', msg)
     }
   },
   components: {

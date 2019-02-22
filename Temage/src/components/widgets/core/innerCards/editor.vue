@@ -33,7 +33,8 @@ export default {
     },
     t_title: '',
     editorContent: '',
-    width: 0
+    width: 0,
+    productID: 0
   },
   components: {axios},
   methods: {
@@ -50,7 +51,8 @@ export default {
           styles: this.tmg_style,
           t_width: this.width,
           title: this.t_title,
-          tensor: this.tmg_tensor
+          tensor: this.tmg_tensor,
+          productID: this.productID
         },
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -58,7 +60,6 @@ export default {
         if (response.status !== 200) {
           this.$Message.error('服务器状态错误! 错误码:' + response.status)
         } else {
-          this.$emit('newID', response.data.ID)
         }
       })
     }

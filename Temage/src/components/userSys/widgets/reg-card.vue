@@ -22,11 +22,20 @@
     </FormItem>
     <FormItem label="Hobby" prop="interest">
       <CheckboxGroup v-model="formValidate.interest">
-        <Checkbox label="Sports" value="true"></Checkbox>
-        <Checkbox label="Art" value="true"></Checkbox>
-        <Checkbox label="Tech" value="true"></Checkbox>
-        <Checkbox label="Movie" value="true"></Checkbox>
-        <Checkbox label="Porn" value="true"></Checkbox>
+        <Checkbox label="constellation" value="true"></Checkbox>
+        <Checkbox label="economics" value="true"></Checkbox>
+        <Checkbox label="education" value="true"></Checkbox>
+        <Checkbox label="entertainment" value="true"></Checkbox>
+        <Checkbox label="fashion" value="true"></Checkbox>
+        <Checkbox label="furniture" value="true"></Checkbox>
+        <Checkbox label="stock" value="true"></Checkbox>
+        <Checkbox label="sport" value="true"></Checkbox>
+        <Checkbox label="game" value="true"></Checkbox>
+        <Checkbox label="lottery" value="true"></Checkbox>
+        <Checkbox label="politics" value="true"></Checkbox>
+        <Checkbox label="real-estate" value="true"></Checkbox>
+        <Checkbox label="science-technology" value="true"></Checkbox>
+        <Checkbox label="society" value="true"></Checkbox>
       </CheckboxGroup>
     </FormItem>
     <FormItem label="Desc" prop="desc">

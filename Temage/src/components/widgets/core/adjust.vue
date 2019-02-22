@@ -1,7 +1,7 @@
 <template>
 <div>
 <prob :guess_lay="guess"></prob>
-<tags ref="styleRes" :guess_tag="guess.name"
+<tags ref="styleRes" :guess_tag="guess.name" :product-i-d="this.productID"
       v-on:handStyles="setThisStyle"
       v-on:getHtml="passHtml"></tags>
 </div>
@@ -34,7 +34,8 @@ export default {
     guess: {
       type: Object,
       default: () => {}
-    }
+    },
+    productID: 0
   }
 }
 </script>

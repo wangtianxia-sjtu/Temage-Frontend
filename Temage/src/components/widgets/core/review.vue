@@ -6,8 +6,8 @@
             :tmg_style="this.tmg_style"
             :tmg_tensor="this.tmg_tensor"
             :width="this.width"
+            :product-i-d="this.productID"
             v-on:finalHtml="handover"
-            v-on:newID="emitID"
             ref="editorBoard"></editor>
 </div>
 </template>
@@ -35,14 +35,12 @@ export default {
   methods: {
     handover: function (msg) {
       this.$emit('res_html', msg)
-    },
-    emitID: function (msg) {
-      this.$emit('new_id', msg)
     }
   },
   props: {
     rec_html: '',
     t_title: '',
+    productID: 0,
     tmg_style: {
       type: Array,
       default: function () {

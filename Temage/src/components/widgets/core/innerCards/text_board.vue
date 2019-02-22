@@ -28,16 +28,19 @@ export default {
     textUpload () {
       this.$emit('handText', this.text_content)
       this.$emit('handTitle', this.text_title)
-      this.$axios({
-        method: 'post',
-        url: '/api/text_post/',
-        data: {text: this.text_content},
-        withCredentials: true,
-        headers: {Authorization: Cookies.get('login_token')}
-      }).then(response => {
-        if (response.status !== 200) {
-          this.$Message.error('服务器状态错误! 错误码:' + response.status)
-        }
+      let ajax = this.$axios
+      return new Promise((resolve, reject) => {
+        ajax({
+          method: 'post',
+          url: '/api/text_post/',
+          data: {text: this.text_content},
+          withCredentials: true,
+          headers: {Authorization: Cookies.get('login_token')}
+        }).then(response => {
+          this.$emit('newID', response.data.productID)
+          console.log('id:\n', response.data.productID)
+          resolve(response)
+        })
       })
     }
   },

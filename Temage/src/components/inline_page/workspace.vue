@@ -14,11 +14,13 @@
         <div v-if="status === 0">
             <createBoard ref="createText"
                          v-on:setText="updateText"
-                         v-on:setTitle="updateTitle">
+                         v-on:setTitle="updateTitle"
+                         v-on:setID="updateID">
             </createBoard>
         </div>
         <div v-else-if="status === 1">
             <adjustBoard ref="picStyles" v-bind:guess="style"
+                         :product-i-d="this.productID"
                          v-on:setStyle="updateStyle"
                          v-on:handoverHtml="updateHtml"></adjustBoard>
         </div>
@@ -27,13 +29,13 @@
                          :t_title="this.title"
                          :tmg_style="this.style_tab"
                          :tmg_tensor="this.tensor"
+                         :product-i-d="this.productID"
                          v-on:res_html="updateHtml"
-                         v-on:new_id="updateID"
                          ref="reviewBoard"></reviewBoard>
         </div>
         <div v-else-if="status === 3">
             <ratingBoard ref="rateBo"
-                         :work_id="this.workID"
+                         :work_id="this.productID"
                          v-on:hearStars="updateStars"></ratingBoard>
         </div>
         <Row style='margin-top:40px;  margin-bottom: 3%;'>
@@ -98,7 +100,7 @@ export default {
       style: {},
       style_tab: [],
       res_html: '',
-      workID: 0,
+      productID: 0,
       work_url: '',
       download_url: '',
       title: null,
@@ -116,7 +118,7 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/confirm_store/',
-        data: {workID: this.workID, stars: this.stars},
+        data: {productID: this.productID, stars: this.stars},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
@@ -132,7 +134,7 @@ export default {
       this.$axios({
         method: 'post',
         url: '/api/download/',
-        data: {workID: this.workID},
+        data: {productID: this.productID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
       }).then(response => {
@@ -141,7 +143,7 @@ export default {
         } else {
           this.$Message.success('下载中')
           let imgsrc = response.data.url
-          let imgname = 'Temage-NO' + this.workID + '.png'
+          let imgname = 'Temage-NO' + this.productID + '.png'
           this.downloadIamge(imgsrc, imgname)
         }
       })
@@ -180,8 +182,12 @@ export default {
          */
         this.$Spin.show()
         // loading...
-        this.$refs.createText.$refs.imgUpload.submitUpload()
-        this.$refs.createText.$refs.textUpload.textUpload()
+        this.$refs.createText.$refs.textUpload.textUpload().then(response => {
+          console.log(response)
+          this.$refs.createText.$refs.imgUpload.submitUpload()
+        }).catch(err => {
+          console.log(err)
+        })
         console.log('text:' + this.text)
         // infer style form modal according to this.text
         // get matrix from back end
@@ -271,7 +277,7 @@ export default {
       this.res_html = msg
     },
     updateID: function (msg) {
-      this.workID = msg
+      this.productID = msg
     },
     updateStars: function (msg) {
       this.stars = msg

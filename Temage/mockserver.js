@@ -428,6 +428,7 @@ app.post('/api/cancel_collect', function (req, res) {
 
 // upload and store pictures
 app.post('/api/pic_post', function (req, res) {
+
   var form = new formidable.IncomingForm()
   form.keepExtensions = true
   form.uploadDir = 'expressDB' + '/'
@@ -436,6 +437,7 @@ app.post('/api/pic_post', function (req, res) {
       var avatarName = Math.random() + '.' + extName;
       var newPath = form.uploadDir + avatarName;
       console.log(newPath);  // store pics into DB
+      console.log(req.body)
     });
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
@@ -449,7 +451,8 @@ app.post('/api/text_post', function (req, res) {
   let text_content = req.body.text
   console.log(text_content)
   // store text into DB
-  res.sendStatus(200)
+  let id = 147130
+  res.send({productID: id})
 })
 
 // 'pic_post' 'text_post'两个接口几乎同时调用(一个btn触发)
@@ -462,6 +465,8 @@ let tornadoData = require('./response_tx.json')
 app.post('/api/matrix', function (req, res) {
   let user_token = req.get('Authorization')
   let text = req.body.text
+  let productID = req.body.productID
+  console.log(productID)
   console.log(text)
   console.log(user_token) // user_token
   res.json(tornadoData)
@@ -471,6 +476,8 @@ app.post('/api/matrix', function (req, res) {
 app.post('/api/ret_html', function (req, res) {
   let user_token = req.get('Authorization')
   let style = req.body.styles //
+  let productID = req.body.productID
+  console.log(productID)
   console.log(user_token)
   console.log(style)
   // 实际上这个html的结果并非这个请求发送后才开始跑模型的
@@ -489,7 +496,9 @@ app.post('/api/store_passage', function (req, res) {
   let ptitle = req.body.title
   let style = req.body.styles
   let tensor = req.body.tensor
-  console.log('----------')
+  let productID = req.body.productID
+  console.log('store_passage----------')
+  console.log(productID)
   console.log(user_token)
   console.log(result)
   console.log(width)
@@ -497,21 +506,17 @@ app.post('/api/store_passage', function (req, res) {
   console.log(style)
   console.log(tensor)
   console.log('----------')
-  /*
-   * store result into user's DB
-   */
-  let workID = 1703701 // Generate from DB
-  res.send({ID: workID})
+  res.sendStatus(200)
 })
 
 // Give out ID对应的html 在server上渲染好的的url
 app.post('/api/finished_work', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
-  let workID = req.body.workID
-  console.log(workID)
+  let productID = req.body.productID
+  console.log(productID)
   /*
-   *  return a url according to workID
+   *  return a url according to productID
    */
   res.send({url: 'https://www.weibo.com', width: 300})
 })
@@ -520,8 +525,8 @@ app.post('/api/finished_work', function (req, res) {
 app.post('/api/download', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
-  let workID = req.body.workID
-  console.log(workID)
+  let productID = req.body.productID
+  console.log(productID)
   /*
    *  生成长图, 给出下载地址
    */
@@ -533,8 +538,8 @@ app.post('/api/download', function (req, res) {
 app.post('/api/confirm_store', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
-  let workID = req.body.workID
-  console.log(workID)
+  let productID = req.body.productID
+  console.log(productID)
   let stars = req.body.stars
   console.log(stars)
   /*

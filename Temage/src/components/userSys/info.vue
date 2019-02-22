@@ -1,17 +1,35 @@
 <template>
   <div class="login">
-    <div style="width: 95%; margin-left: 2.5%">
-      <div style="height: 50px;"></div>
-      <el-carousel :interval="2000" type="card" height="300px">
-        <el-carousel-item v-for="item in imgsrc" :key="item">
-          <img :src="item" style="max-height: 100%;">
-          <h3>Temage</h3>
-        </el-carousel-item>
-      </el-carousel>
+    <Row style="height: 70px;
+                width: 100%;
+                background-color: #7ea9d9;
+                position: fixed;
+                box-shadow: 0 5px 15px rgba(30,30,30,0.76);
+                padding: 10px;z-index: 9999">
+      <img :src="imgsrc[1]" style="max-height: 110%; float: left">
+      <router-link to="/register">
+        <Button style="height: 100%; color: #fff;
+                background-color: #2460a0;
+                border-color: #2460a0;
+                width: 100px;
+                font-size: 22px;
+                float: right!important;" type="primary">注册</Button>
+      </router-link>
+      <Button style="height: 100%;
+              width: 100px;
+              font-size: 22px;
+              float: right;
+              margin-right: 10px"
+              @click="loginFromInfo">登录</Button>
+    </Row>
+    <div style="height: 700px;
+                width: 100%;
+                background: rgba(0,0,0,0.52)">
+      <img :src="imgsrc[5]" style="max-height: 500px">
+      <div style="text-align: center; color: white; font-size: 50px"></div>
     </div>
-    <div style="height: 50px;"></div>
     <div>
-      <Row>
+      <Row style="margin-top: 40px;">
     <Col span="16" offset="4">
       <el-card shadow="always">
       <img :src="imgsrc[3]" style="max-width: 100%;">
@@ -31,8 +49,8 @@
       </div>
     <Row>
       <div style="margin-top: 50px; margin-bottom:20px ;color: ghostwhite; font-size: 16px">2019© Temage Develop Group️</div>
-  </Row>
-    </div>
+    </Row>
+  </div>
 </template>
 
 <script>
@@ -45,7 +63,8 @@ export default {
         require('@/assets/logo-min.png'),
         require('@/assets/logo-min2.png'),
         require('@/assets/logo.png'),
-        require('@/assets/logo-min.png')
+        require('@/assets/logo-min.png'),
+        require('@/assets/logo-big.png')
       ]
     }
   },
@@ -64,6 +83,7 @@ export default {
   .login{
     background: url('../../assets/tmbg-01.png');
     background-position: center 10%;
+    background-attachment: fixed;
     background-size:cover;
     min-height: 100%;
   }
