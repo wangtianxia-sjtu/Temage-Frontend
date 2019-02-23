@@ -5,7 +5,7 @@
   "author": "Wei X.M. & Wang T.X.",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --env development --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -22,6 +22,7 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "cookie-parser": "^1.4.3",
     "cropper": "^4.0.0",
+    "cross-env": "^5.2.0",
     "echarts": "^4.2.0-rc.2",
     "element-ui": "^2.4.9",
     "formidable": "^1.2.1",

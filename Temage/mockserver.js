@@ -301,7 +301,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 /* login data check */
-app.post('/login/submit', function(req, res) {
+app.post('/api/user/login/', function(req, res) {
   let user = req.body
   console.log(user)
   if(user.password === user1.password && user.username === user1.username)
@@ -314,13 +314,13 @@ app.post('/login/submit', function(req, res) {
 })
 
 /* register data check */
-app.post('/register', function(req, res){
+app.post('/api/user/register/', function(req, res){
   console.log(req.body)
     res.send(200)
 })
 
 /* data feed back after login*/
-app.post('/authenticate', function(req, res) {
+app.post('/api/user/authenticate/', function(req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
   /* return cards according to USER_TOKEN */
@@ -333,7 +333,7 @@ app.post('/authenticate', function(req, res) {
  */
 
 /* Data need in homepage */
-app.post('/api', function(req, res){
+app.post('/api/explore/', function(req, res){
   let user_token = req.get('Authorization')
   console.log(user_token)
   /* return cards according to USER_TOKEN */
@@ -341,21 +341,21 @@ app.post('/api', function(req, res){
 })
 
 /* Data need in collection album */
-app.post('/api/collection',function (req, res) {
+app.post('/api/explore/collection/',function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
   res.send(collection_data)
 })
 
 /* Data need in recent cards */
-app.post('/api/recent', function (req, res) {
+app.post('/api/explore/get_recent/', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
   res.send(recent_data)
 })
 
 /* gallery initial data*/
-app.post('/api/gallery', function(req, res){
+app.post('/api/explore/gallery/', function(req, res){
   let user_token = req.get('Authorization')
   console.log(user_token)
   /* return cards according to USER_TOKEN */
@@ -363,7 +363,7 @@ app.post('/api/gallery', function(req, res){
 })
 
 /* gallery loading data*/
-app.post('/api/gallery/more_cards', function(req, res) {
+app.post('/api/explore/gallery/more_cards/', function(req, res) {
   let user_token = req.get('Authorization')
   let browser_info = req.body
   console.log(user_token)
@@ -373,7 +373,7 @@ app.post('/api/gallery/more_cards', function(req, res) {
 })
 
 /* click into a specific text page */
-app.post('/api/text',function (req, res) {
+app.post('/api/explore/product/',function (req, res) {
   let card_id = req.body.id
   let user_token = req.get('Authorization')
   console.log(user_token)
@@ -392,33 +392,43 @@ app.post('/api/text',function (req, res) {
 })
 
 /* click the collect btn in a text page */
-app.post('/api/collect', function (req, res) {
+app.post('/api/explore/post_collect/', function (req, res) {
   let user_token = req.get('Authorization')
-  let text_id = req.body.id
+  let product_id = req.body.id
   console.log(user_token)
-  console.log(text_id)
+  console.log(product_id)
   /* add the text to users collection */
   res.send(200)
 })
 
 /* click the delete btn in a text page */
-app.post('/api/delete', function (req, res) {
+app.post('/api/explore/product/delete/', function (req, res) {
   let user_token = req.get('Authorization')
-  let text_id = req.body.id
+  let product_id = req.body.id
   console.log(user_token)
-  console.log(text_id)
+  console.log(product_id)
   /* destroy a work */
   res.send(200)
 })
 
 /* click the cancel collect btn in a text page */
-app.post('/api/cancel_collect', function (req, res) {
+app.post('/api/explore/product/cancel_collect/', function (req, res) {
   let user_token = req.get('Authorization')
-  let text_id = req.body.id
+  let product_id = req.body.productID
   console.log(user_token)
-  console.log(text_id)
+  console.log(product_id)
   /* remove the text from users collection */
   res.send(200)
+})
+
+// 关键字搜索
+app.post('/api/post_search', function(req, res) {
+  keywords = req.body.keywords
+  console.log(keywords)
+  /*
+   *  将关键词在ES server进行搜索，返回cards
+   */
+  return res.json(search_data)
 })
 
 /*
@@ -427,7 +437,7 @@ app.post('/api/cancel_collect', function (req, res) {
  */
 
 // upload and store pictures
-app.post('/api/pic_post', function (req, res) {
+app.post('/api/workflow/post_picture/', function (req, res) {
 
   var form = new formidable.IncomingForm()
   form.keepExtensions = true
@@ -445,7 +455,7 @@ app.post('/api/pic_post', function (req, res) {
 })
 
 // upload and store text
-app.post('/api/text_post', function (req, res) {
+app.post('/api/workflow/post_text/', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token) // user_token
   let text_content = req.body.text
@@ -457,7 +467,7 @@ app.post('/api/text_post', function (req, res) {
   res.send({productID: id})
 })
 
-// 'pic_post' 'text_post'两个接口几乎同时调用(一个btn触发)
+// 'post_picture' 'post_text'两个接口几乎同时调用(一个btn触发)
 //  用模型计算位置结果时可以保证图文同时可用
 //  后端的计算过程在这两个接口调用后, get_html返回结果之前
 
@@ -473,7 +483,7 @@ app.post('/api/matrix', function (req, res) {
 })
 
 // return calculated html
-app.post('/api/ret_html', function (req, res) {
+app.post('/api/workflow/confirm_style/', function (req, res) {
   let user_token = req.get('Authorization')
   let style = req.body.styles //
   let productID = req.body.productID
@@ -481,7 +491,7 @@ app.post('/api/ret_html', function (req, res) {
   console.log(user_token)
   console.log(style)
   // 实际上这个html的结果并非这个请求发送后才开始跑模型的
-  // 而是在'pic_post'和'text_post'之后, 后端就开始算了
+  // 而是在'post_picture'和'post_text'之后, 后端就开始算了
   // 需要考虑的是这个html结果的产出时刻和本接口调用时刻前后关系不确定
   // 因为用户在step2选择风格阶段耗时不确定
   // 返回时带上从style_post里选好的CSS表
@@ -489,7 +499,7 @@ app.post('/api/ret_html', function (req, res) {
 })
 
 // store a passage in DB (初步储存为未保存状态)
-app.post('/api/store_passage', function (req, res) {
+app.post('/api/workflow/store_passage/', function (req, res) {
   let user_token = req.get('Authorization')
   let result = req.body.res_html
   let width = req.body.t_width
@@ -510,7 +520,7 @@ app.post('/api/store_passage', function (req, res) {
 })
 
 // Give out ID对应的html 在server上渲染好的的url
-app.post('/api/finished_work', function (req, res) {
+app.post('/api/workflow/finished_work/', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
   let productID = req.body.productID
@@ -522,7 +532,7 @@ app.post('/api/finished_work', function (req, res) {
 })
 
 // 给出长图下载连接
-app.post('/api/download', function (req, res) {
+app.post('/api/workflow/download_picture/', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
   let productID = req.body.productID
@@ -535,7 +545,7 @@ app.post('/api/download', function (req, res) {
 
 
 // 确认储存
-app.post('/api/confirm_store', function (req, res) {
+app.post('/api/workflow/confirm_store/', function (req, res) {
   let user_token = req.get('Authorization')
   console.log(user_token)
   let productID = req.body.productID
@@ -548,15 +558,6 @@ app.post('/api/confirm_store', function (req, res) {
   res.sendStatus(200)
 })
 
-// 关键字搜索
-app.post('/api/post_search', function(req, res) {
-  keywords = req.body.keywords
-  console.log(keywords)
-  /*
-   *  将关键词在ES server进行搜索，返回cards
-   */
-  return res.json(search_data)
-})
 
 
 
