@@ -9,8 +9,11 @@
       <div class="title-logo">
       <p style="float: left; font-size: 40px; font-weight: bolder; color: white; margin-top: -8px; margin-left: 25px">Temage</p>
       </div>
-      <div class="top-sup"
-           @click="loginFromInfo">支持</div>
+      <div class="top-sup">
+        <Anchor>
+        <AnchorLink href="#tut" title="使用" style="color: white; margin-left: -10px; margin-top: 2px"/>
+        </Anchor>
+      </div>
       <router-link to="/register">
         <div class="top-reg" type="primary">注册</div>
       </router-link>
@@ -30,7 +33,7 @@
       color: rgba(255,255,255,0.91);
       font-size: 28px;
       font-weight: normal;
-      margin-top: -10px">Temage运用强劲的intel™处理器和AiDecCloud©训练服务</div>
+      margin-top: -10px">Temage运用强劲的intel™处理器和AIDecCloud©训练服务</div>
       <div style="text-align: center;
       color: rgba(255,255,255,0.86);
       font-size: 28px;
@@ -70,47 +73,44 @@
       <Col style="font-size: 28px;">让您一见倾心</Col>
     </Row>
   </div>
-    <div style="width: 100%; height: 620px; background: rgba(33,118,166,0.91);">
-      <div style="color: white; font-size: 50px; font-family: Georgia, cursive;padding-top: 20px">"Count to four, come with me..."</div>
-      <img :src="imgsrc[7]" id="count-four">
-      <div style="color: white; font-size: 70px; font-weight: bolder">简单四步</div>
-      <div style="color: white; font-size: 50px;">Temage完成极简工作流</div>
+    <div style="width: 100%; height: 640px; background: linear-gradient(rgba(33,118,166,0.91), rgba(69,149,160, 0.91));">
+      <div style="color: white; font-size: 50px; font-family: Georgia, cursive;padding-top: 20px">"Count to three, come with me..."</div>
+      <div style="color: white; font-size: 20px; font-family: Georgia, cursive; font-style: italic; margin-top: -10px; padding-right: -600px">—— Pure Imagination</div>
+      <img :src="imgsrc[8]" id="count-four" style="height: 350px">
+      <div style="color: white; font-size: 70px; font-weight: bolder">简单三步</div>
+      <div style="color: white; font-size: 50px; margin-top:-20px">Temage完成极简工作流</div>
     </div>
-    <div style="width: 100%; height: 550px; background: rgb(70,94,118);">
+    <div style="width: 100%; height: 500px; background: rgb(70,94,118);" id="tut">
       <div style="width: 35%; float: left">
-      <img :src="imgsrc[8]" id="count-one" style="height: 250px; padding-top: 50px;">
-        <div style="color: white; font-size: 70px; font-weight: bolder">第一步</div>
+        <div style="color: white; font-size: 70px; font-weight: bolder; margin-top: 150px">第一步</div>
       <div style="color: white; font-size: 28px; margin-top: 10px">扁平输入:</div>
         <div style="color: white; font-size: 28px;">标题, 正文, 图片</div>
       </div>
-      <div style="float: right; width: 65%; padding-right: 50px; padding-top: 70px"> <img :src="imgsrc[9]" style="width: 800px;box-shadow: 0 10px 145px #22292d;" id="work-one"></div>
+      <div style="float: right; width: 65%; padding-right: 100px; padding-top: 70px"> <img :src="imgsrc[11]" style="width: 700px;box-shadow: 0 10px 145px #22292d;" id="work-one"></div>
     </div>
-    <div style="width: 100%; height: 550px; background: rgb(236,239,241);">
-      <div style="width: 35%; float: right">
-        <img :src="imgsrc[8]" id="count-two" style="height: 250px; padding-top: 50px;">
+    <div style="width: 100%; height: 650px; background: rgb(236,239,241);">
+      <div style="width: 35%; float: right; margin-top: 200px">
         <div style=" font-size: 70px; font-weight: bolder">第二步</div>
         <div style=" font-size: 28px; margin-top: 10px">风格选择:</div>
         <div style=" font-size: 28px;">验证模型的猜测</div>
       </div>
-      <div style="float: left; width: 65%; padding-left: 50px; padding-top: 70px"> <img :src="imgsrc[9]" style="width: 800px;box-shadow: 0 10px 145px #22292d;" id="work-two"></div>
+      <div style="float: left; width: 65%; padding-left: 50px; padding-top: 50px"> <img :src="imgsrc[12]" style="width: 700px;box-shadow: 0 10px 145px #22292d;" id="work-two"></div>
     </div>
-    <div style="width: 100%; height: 550px; background: rgb(70,94,118);">
-      <div style="width: 35%; float: left">
-        <img :src="imgsrc[8]" id="count-three" style="height: 250px; padding-top: 50px;">
+    <div style="width: 100%; height: 550px; background: rgb(33,118,166);overflow: hidden">
+      <div style="width: 50%; float: left; margin-top: 150px;">
         <div style="color: white; font-size: 70px; font-weight: bolder">第三步</div>
         <div style="color: white; font-size: 28px; margin-top: 10px">自由编辑:</div>
         <div style="color: white; font-size: 28px;">小修小补, 臻于完美</div>
       </div>
-      <div style="float: right; width: 65%; padding-right: 50px; padding-top: 70px"> <img :src="imgsrc[9]" style="width: 800px;box-shadow: 0 10px 145px #22292d;" id="work-three"></div>
+      <div style="float: right; width: 50%; padding-right: 50px; padding-top: 70px;"> <img :src="imgsrc[13]" style="width: 400px;box-shadow: 0 10px 145px #22292d; margin-left: 85px" id="work-three"></div>
     </div>
-    <div style="width: 100%; height: 550px; background: rgb(33,118,166);">
-      <div style="width: 35%; float: right">
-        <img :src="imgsrc[8]" id="count-finish" style="height: 250px; padding-top: 50px;">
-        <div style="color: white; font-size: 70px; font-weight: bolder">第四步</div>
-        <div style="color: white; font-size: 28px; margin-top: 10px">下载作品:</div>
-        <div style="color: white; font-size: 28px;">确认保存并给出评价</div>
-      </div>
-      <div style="float: left; width: 65%; padding-left: 50px; padding-top: 70px"> <img :src="imgsrc[9]" style="width: 800px;box-shadow: 0 10px 145px #22292d;" id="work-four"></div>
+    <div style="width: 100%; height: 550px; overflow: hidden;" id="holder">
+      <img :src="imgsrc[14]" style="width: 100%" id="saved">
+    </div>
+    <div style="width: 100%; height: 550px; overflow: hidden;background: linear-gradient(rgba(226,150,70,0.87), rgba(226,150,70,0.3)); margin-top: -550px; position: relative" id="finish">
+      <div style="color: white; font-size: 70px; font-weight: bolder; margin-top: 170px">大功告成!</div>
+      <div style="color: white; font-size: 28px; margin-top: 10px">保存结果, 提交评价</div>
+      <div style="color: white; font-size: 28px;">提供多种格式和尺寸下载结果, 并在画廊中得到展示</div>
     </div>
     <div style="width: 100%; height: 500px; background: rgba(48,82,142,0.81)">
       <div style="font-size: 70px; color: white; font-weight: bolder; padding-top: 50px">感谢!</div>
@@ -142,32 +142,60 @@ export default {
         require('@/assets/gallery.png'), // 6
         require('@/assets/four.png'), // 7
         require('@/assets/one.png'), // 8
-        require('@/assets/work1.png') // 9
+        require('@/assets/two.png'), // 9
+        require('@/assets/three.png'), // 10
+        require('@/assets/work1.png'), // 11
+        require('@/assets/work-two.png'), // 12
+        require('@/assets/work-three.png'), // 13
+        require('@/assets/cards.png') // 14
       ]
     }
   },
   mounted () {
+    let _this = this
     window.addEventListener('scroll', function () {
       let pos = document.documentElement.scrollTop
+      console.log(pos)
       var galleryImg = document.querySelector('.img-scroll')
       let yy = 0.5 * pos - 500
       galleryImg.style.webkitTransform = 'translate3d(0px, ' + yy + 'px, 0px)'
+      var marketImg = document.querySelector('#saved')
+      let yy0 = -300
+      if (pos <= 3430 && pos >= 2840) {
+        yy0 = -0.5 * (pos - 2900) - 30
+        marketImg.style.webkitTransform = 'translate3d(0px, ' + yy0 + 'px, 0px)'
+      }
       var c4 = document.querySelector('#count-four')
-      let yy1 = -0.5 * pos + 550
+      let yy1 = -0.5 * pos + 500
       if (yy1 < 0) {
         yy1 = 0
       }
       c4.style.webkitTransform = 'translate3d(0px, ' + yy1 + 'px, 0px)'
       c4.style.opacity = 1 - yy1 * 0.01
-      var c1 = document.querySelector('#count-one')
+      if (pos < 1100) {
+        c4.src = _this.imgsrc[8]
+      }
+      if (pos >= 1100 && pos < 1250) {
+        c4.src = _this.imgsrc[9]
+      }
+      if (pos >= 1250) {
+        c4.src = _this.imgsrc[10]
+      }
       let yy2 = -0.5 * pos + 850
       if (yy2 < 0) {
         yy2 = 0
       }
-      c1.style.webkitTransform = 'translate3d(0px, ' + yy2 + 'px, 0px)'
-      c1.style.opacity = 1 - yy2 * 0.01
       var w1 = document.querySelector('#work-one')
       w1.style.opacity = 1 - yy2 * 0.01
+      var w2 = document.querySelector('#work-two')
+      w2.style.opacity = 0.002 * (pos - 1880)
+      var w3 = document.querySelector('#work-three')
+      if (pos >= 2740 && pos <= 3430) {
+        let yy3 = -0.5 * (pos - 2740)
+        w3.style.webkitTransform = 'translate3d(0px, ' + yy3 + 'px, 0px)'
+      }
+      var finish = document.querySelector('#finish')
+      finish.style.opacity = 0.0015 * (pos - 2840)
     })
     let block1 = document.querySelector('#block1')
     block1.style.height = window.innerHeight + 'px'
@@ -289,6 +317,18 @@ export default {
   }
   .img-scroll{
     width: 100%;
+  }
+  .ivu-anchor-ink{
+    display: none!important;
+  }
+  .ivu-anchor-link-title{
+    color: white;
+  }
+  .ivu-anchor-link-title:hover{
+    color: white;
+  }
+  .ivu-anchor-link-active>.ivu-anchor-link-title{
+    color: white;
   }
   body{
     overflow: auto;

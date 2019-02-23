@@ -16,7 +16,7 @@ export default {
   name: 'login'
 }
 </script>
-<style>
+<style scoped>
 .login{
   background: url('../../assets/tmbg-01.png');
   background-position: center 10%;
