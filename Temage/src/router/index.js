@@ -1,82 +1,67 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-/* page after login */
-import blade from '../components/blade.vue'
-import homepage from '../components/inline_page/homepage'
-import gallery from '../components/inline_page/gallery.vue'
-import collection from '../components/inline_page/collection.vue'
-import recent from '../components/inline_page/recent.vue'
-import work from '../components/inline_page/workspace.vue'
-import ml from '../components/inline_page/ml.vue'
-import text from '../components/inline_page/text.vue'
-/* page for visitor */
-import login from '../components/userSys/login'
-import register from '../components/userSys/register'
-import info from '../components/userSys/info'
-Vue.use(Router)
 
+Vue.use(Router)
+function loadView (view) {
+  return () => import(/* webpackChunkName: "view-[request]" */ `../components/${view}.vue`)
+}
 export default new Router({
   routes: [
     {
       path: '/id',
       name: 'blade',
-      component: blade,
+      component: loadView('blade'),
       children: [
         {
           path: '',
           name: 'homepage',
-          component: homepage
+          component: loadView('inline_page/homepage')
         },
         {
           path: 'work',
-          component: work
+          component: loadView('inline_page/workspace')
         },
         {
           path: 'gallery',
           name: 'gallery',
-          component: gallery
+          component: loadView('inline_page/gallery')
         },
         {
           path: 'collection',
           name: 'collection',
-          component: collection
+          component: loadView('inline_page/collection')
         },
         {
           path: 'recent',
           name: 'recent',
-          component: recent
-        },
-        {
-          path: 'ml',
-          name: 'ml',
-          component: ml
+          component: loadView('inline_page/recent')
         },
         {
           path: 'text/:id',
           name: 'text',
-          component: text
+          component: loadView('inline_page/text')
         },
         {
           path: 'search/:keyword',
           name: 'search',
-          component: gallery
+          component: loadView('inline_page/gallery')
         }
       ]
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: loadView('userSys/login')
     },
     {
       path: '/register',
       name: 'register',
-      component: register
+      component: loadView('userSys/register')
     },
     {
       path: '/',
       name: 'idx',
-      component: info
+      component: loadView('userSys/info')
     }
   ]
 })
