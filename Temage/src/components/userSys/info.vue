@@ -74,11 +74,12 @@
     </Row>
   </div>
     <div style="width: 100%; height: 640px; background: linear-gradient(rgba(33,118,166,0.91), rgba(69,149,160, 0.91));">
-      <div style="color: white; font-size: 50px; font-family: Georgia, cursive;padding-top: 20px">"Count to three, come with me..."</div>
-      <div style="color: white; font-size: 20px; font-family: Georgia, cursive; font-style: italic; margin-top: -10px; padding-right: -600px">—— Pure Imagination</div>
-      <img :src="imgsrc[8]" id="count-four" style="height: 350px">
-      <div style="color: white; font-size: 70px; font-weight: bolder">简单三步</div>
-      <div style="color: white; font-size: 50px; margin-top:-20px">Temage完成极简工作流</div>
+      <div style="color: white; font-size: 28px; font-family: Georgia, cursive;padding-top: 10px">"Hold your breath, make a wish. </div>
+      <div style="overflow: hidden"><p style="color: white; font-size: 50px; font-family: Georgia, cursive;margin-top: -5px; font-weight: bolder">Count to three..."</p><p  style="color: white; font-size: 28px; font-family: Georgia, cursive; font-style: italic; margin-top: -10px; transform: translate(0px, -43px); width: 400px; float: right"> —— Pure Imagination</p></div>
+      <!--<div style="color: white; font-size: 28px; font-family: Georgia, cursive; font-style: italic; margin-top: -10px; transform: translate(0px, -43px); width: 400px; float: right">—— Pure Imagination</div>-->
+      <img :src="imgsrc[8]" id="count-four" style="height: 300px; ">
+      <div style="color: white; font-size: 70px; font-weight: bolder; margin-top: 30px">简单三步</div>
+      <div style="color: white; font-size: 28px; margin-top:-10px">Temage完成极简工作流</div>
     </div>
     <div style="width: 100%; height: 500px; background: rgb(70,94,118);" id="tut">
       <div style="width: 35%; float: left">
@@ -88,13 +89,13 @@
       </div>
       <div style="float: right; width: 65%; padding-right: 100px; padding-top: 70px"> <img :src="imgsrc[11]" style="width: 700px;box-shadow: 0 10px 145px #22292d;" id="work-one"></div>
     </div>
-    <div style="width: 100%; height: 650px; background: rgb(236,239,241);">
+    <div style="width: 100%; height: 650px; background: rgb(236,239,241);" id="bl4">
       <div style="width: 35%; float: right; margin-top: 200px">
         <div style=" font-size: 70px; font-weight: bolder">第二步</div>
         <div style=" font-size: 28px; margin-top: 10px">风格选择:</div>
         <div style=" font-size: 28px;">验证模型的猜测</div>
       </div>
-      <div style="float: left; width: 65%; padding-left: 50px; padding-top: 50px"> <img :src="imgsrc[12]" style="width: 700px;box-shadow: 0 10px 145px #22292d;" id="work-two"></div>
+      <div style="float: left; width: 65%; padding-left: 50px; padding-top: 50px"> <img :src="imgsrc[12]" style="width: 700px;box-shadow: 0 10px 45px #22292d;" id="work-two"></div>
     </div>
     <div style="width: 100%; height: 550px; background: rgb(33,118,166);overflow: hidden">
       <div style="width: 50%; float: left; margin-top: 150px;">
@@ -104,22 +105,21 @@
       </div>
       <div style="float: right; width: 50%; padding-right: 50px; padding-top: 70px;"> <img :src="imgsrc[13]" style="width: 400px;box-shadow: 0 10px 145px #22292d; margin-left: 85px" id="work-three"></div>
     </div>
-    <div style="width: 100%; height: 550px; overflow: hidden;" id="holder">
+    <div style="width: 100%; height: 500px; overflow: hidden;" id="holder">
       <img :src="imgsrc[14]" style="width: 100%" id="saved">
     </div>
-    <div style="width: 100%; height: 550px; overflow: hidden;background: linear-gradient(rgba(226,150,70,0.87), rgba(226,150,70,0.3)); margin-top: -550px; position: relative" id="finish">
-      <div style="color: white; font-size: 70px; font-weight: bolder; margin-top: 170px">大功告成!</div>
+    <div style="width: 100%; height: 500px; overflow: hidden;background: linear-gradient(rgba(226,150,70,0.87), rgba(226,150,70,0.3)); margin-top: -500px; position: relative" id="finish">
+      <div style="color: white; font-size: 70px; font-weight: bolder; margin-top: 150px">大功告成!</div>
       <div style="color: white; font-size: 28px; margin-top: 10px">保存结果, 提交评价</div>
       <div style="color: white; font-size: 28px;">提供多种格式和尺寸下载结果, 并在画廊中得到展示</div>
     </div>
     <div style="width: 100%; height: 500px; background: rgba(48,82,142,0.81)">
-      <div style="font-size: 70px; color: white; font-weight: bolder; padding-top: 50px">感谢!</div>
+      <div style="font-size: 70px; color: white; font-weight: bolder; padding-top: 50px">感谢:</div>
       <div style="color: white; font-size: 28px;">intel®以及AIDevCloud©训练集群</div>
       <div style="color: white; font-size: 28px;">TensorFlow®机器学习训练框架</div>
       <div style="color: white; font-size: 28px;">Vue®开源前端框架</div>
       <div style="color: white; font-size: 28px;">ElementUI®前端组件库</div>
       <div style="color: white; font-size: 28px;">iView®前端组件库</div>
-      <div style="color: white; font-size: 28px;">待填充</div>
     <Row>
       <div style="margin-top: 50px; margin-bottom:20px ;color: ghostwhite; font-size: 16px">2019© Temage Develop Group️</div>
     </Row>
@@ -155,7 +155,6 @@ export default {
     let _this = this
     window.addEventListener('scroll', function () {
       let pos = document.documentElement.scrollTop
-      console.log(pos)
       var galleryImg = document.querySelector('.img-scroll')
       let yy = 0.5 * pos - 500
       galleryImg.style.webkitTransform = 'translate3d(0px, ' + yy + 'px, 0px)'
@@ -196,6 +195,14 @@ export default {
       }
       var finish = document.querySelector('#finish')
       finish.style.opacity = 0.0015 * (pos - 2840)
+      var bl3 = document.querySelector('#tut')
+      let opc = (pos - 1300) / 8
+      let color = [70 + opc, 94 + 0.9 * opc, 118 + opc]
+      bl3.style.background = 'linear-gradient(rgb(70,94,118), rgb(' + color[0] + ', ' + color[1] + ', ' + color[2] + '))'
+      // var bl4 = document.querySelector('#bl4')
+      // let opc4 = (pos - 2000) / 6
+      // let color4 = [236 - 1.1 * opc4, 239 - 0.8 * opc4, 241 - 0.7 * opc4]
+      // bl4.style.background = 'linear-gradient(rgb(236,239,241), rgb(' + color4[0] + ', ' + color4[1] + ', ' + color4[2] + '))'
     })
     let block1 = document.querySelector('#block1')
     block1.style.height = window.innerHeight + 'px'

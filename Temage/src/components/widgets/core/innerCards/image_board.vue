@@ -8,6 +8,7 @@
       :on-remove="handleRemove"
       :auto-upload='false'
       :with-credentials="true"
+      :drag="true"
       :headers="{Authorization: this.user_token}"
     >
       <i class="el-icon-plus"></i>
@@ -40,3 +41,9 @@ export default {
   }
 }
 </script>
+<style>
+  .el-upload-dragger{
+    height: 146px;
+    width: 146px;
+  }
+</style>

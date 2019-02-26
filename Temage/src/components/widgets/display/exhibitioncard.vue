@@ -8,7 +8,8 @@
       <div style="padding: 14px;">
         <span>{{card.title}}</span>
         <div class="bottom clearfix">
-          <time class="time">{{ currentDate }}</time>
+          <time class="time">{{ card.prompt }}</time>
+          <br>
           <el-button type="text" class="button" @click="view(card.id)">{{ buttonname }}</el-button>
         </div>
       </div>

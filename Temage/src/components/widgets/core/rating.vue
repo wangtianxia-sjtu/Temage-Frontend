@@ -3,7 +3,8 @@
     <p class='cons'> 成果预览</p>
     <div class='show-res'>
       <Card style="height:600px; overflow: hidden;">
-        <iframe id="achievement" :src="this.url" style='width: 108%; height:608px;margin-left:-4%;margin-top:-18px'></iframe>
+        <!--<iframe id="achievement" :src="this.url" style='width: 108%; height:608px;margin-left:-4%;margin-top:-18px'></iframe>-->
+        <img :src="this.mockPic">
       </Card>
       <Card>
         <span class="demonstration"><p style='font-size: 25px'>结果如何?</p></span>
@@ -27,7 +28,8 @@ export default {
     return {
       ID: 0,
       value2: null,
-      url: null
+      url: null,
+      mockPic: require('@/assets/demo.png')
     }
   },
   mounted () {
@@ -67,7 +69,7 @@ export default {
     margin-top: 20px;
   }
   .show-res{
-    width:50%;
-    margin-left: 25%;
+    width:80%;
+    margin-left: 10%;
   }
 </style>

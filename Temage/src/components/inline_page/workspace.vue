@@ -9,7 +9,7 @@
                 <el-step title="Step1 输入" ></el-step>
                 <el-step title="Step2 确认" ></el-step>
                 <el-step title="Step3 微调" ></el-step>
-                <el-step title="Step4 保存" ></el-step>
+                <el-step title="制作完成" ></el-step>
         </el-steps>
         <div v-if="status === 0">
             <createBoard ref="createText"
@@ -238,7 +238,7 @@ export default {
           console.log('tensor:', this.tensor)
           this.$Spin.hide()
           this.status++
-        }, 1000)
+        }, 3000)
       } else if (this.status === 1) {
         /*
          * Step Two: Choose right styles + Upload
@@ -247,9 +247,10 @@ export default {
         // loading...
         this.$refs.picStyles.$refs.styleRes.stylesUpload()
         setTimeout(() => {
+          console.log('step2')
           this.$Spin.hide()
           this.status++
-        }, 1000)
+        }, 5000)
       } else if (this.status === 2) {
         /*
          * Step Three: Save reviewed html
