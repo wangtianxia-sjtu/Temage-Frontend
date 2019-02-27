@@ -18,6 +18,7 @@ module.exports = merge(prodEnv, {
       post_search :'"/api/explore/post_search/"'
     },
     workflow: {
+      push_match_event: '"/api/workflow/push_match_event"',
       post_picture: '"/api/workflow/post_picture/"',
       post_text: '"/api/workflow/post_text/"',
       confirm_style: '"/api/workflow/confirm_style/"',
@@ -30,6 +31,9 @@ module.exports = merge(prodEnv, {
       post_register: '"/api/user/register/"',
       login: '"/api/user/login/"',
       auth: '"/api/user/authenticate/"'
+    },
+    deepLearning: {
+      get_embedding: '"/learning/embedding/"'
     }
   },
   styleNames:
