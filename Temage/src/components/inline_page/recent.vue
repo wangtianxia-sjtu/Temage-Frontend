@@ -26,7 +26,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: '/api/recent/',
+      url: process.env.API.explore.get_recent_data,
       headers: {Authorization: Cookies.get('login_token')},
       withCredentials: true
     }).then(response => {

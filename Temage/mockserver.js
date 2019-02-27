@@ -239,7 +239,7 @@ let collection_data = [
 
 /* login data check */
 let user1 = {
-  'username': 'qxy',
+  'username': 'username',
   'password': '123'
 }
 
@@ -473,11 +473,11 @@ app.post('/api/workflow/post_text/', function (req, res) {
 
 // 由文本获取矩阵
 // may be assembled in text_post
-let tornadoData = require('./response_tx.json')
-app.post('/api/matrix', function (req, res) {
+let tornadoData = require('./embedding_response.json')
+app.post('/learning/embedding/', function (req, res) {
   let user_token = req.get('Authorization')
   let text = req.body.text
-  console.log(text)
+  console.log('emb: ', text)
   console.log(user_token) // user_token
   res.json(tornadoData)
 })

@@ -72,7 +72,7 @@ export default {
           console.log(this.formInline)
           this.$axios({
             method: 'post',
-            url: '/login/submit/',
+            url: process.env.API.user.login,
             data: this.formInline,
             withCredentials: true
           }).then(response => {

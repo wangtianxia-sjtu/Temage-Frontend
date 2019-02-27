@@ -3,7 +3,7 @@
     <Row>
     <p class='guess'>初步推断，您的风格可能是...</p>
     </Row>
-    <ve-liquidfill :data="chartData" :settings="chartSettings" style="margin: 50px;height: 300px; margin-top: -60px"></ve-liquidfill>
+    <ve-liquidfill :data="chartData" :settings="chartSettings" style="margin: 50px;height: 400px; margin-top: -60px"></ve-liquidfill>
     <!--
     <Row style="width: 80%; margin-left: 10%; margin-top: 20px;">
         <Col :span='6'><p class="word_top">"{{this.name[0]}}"</p></Col>
@@ -36,6 +36,9 @@
         margin-left: 60px;
         font-size: 20px;
     }
+    #app > div > div > div.ivu-layout.ivu-layout-has-sider > div.ivu-layout > div > div > div > div:nth-child(3) > div > div:nth-child(1) > div.ve-liquidfill{
+      height: 500px
+    }
 </style>
 <script>
 export default {
@@ -58,8 +61,8 @@ export default {
             color: 'green',
             insideColor: 'white'
           },
-          center: ['12%', '50%'],
-          radius: '40%',
+          center: ['50%', '55%'],
+          radius: '70%',
           outline: {
             itemStyle: {
               borderColor: '#8DDD72'
@@ -82,7 +85,7 @@ export default {
             fontSize: 30,
             color: '#2DBC74'
           },
-          center: ['37%', '50%'],
+          center: ['19%', '40%'],
           radius: '40%',
           outline: {
             itemStyle: {
@@ -106,8 +109,8 @@ export default {
             fontSize: 30,
             color: '#44a1a6'
           },
-          center: ['62%', '50%'],
-          radius: '40%',
+          center: ['77%', '80%'],
+          radius: '30%',
           outline: {
             itemStyle: {
               borderColor: '#5AD6DD'
@@ -129,8 +132,8 @@ export default {
             fontSize: 30,
             color: '#5e9eda'
           },
-          center: ['87%', '50%'],
-          radius: '40%',
+          center: ['80%', '30%'],
+          radius: '30%',
           outline: {
             itemStyle: {
               borderColor: '#5e9eda'
@@ -165,8 +168,12 @@ export default {
     this.name = this.guess_lay.name
     this.rate = this.guess_lay.rate
     for (var i = 0; i < 4; i++) {
-      this.chartData.rows[i].sty = this.name[i]
-      this.chartData.rows[i].percent = this.rate[i]
+      if (this.name[i] === 'science-technology') {
+        this.chartData.rows[i].sty = 'science\ntechnology'
+      } else {
+        this.chartData.rows[i].sty = this.name[i]
+      }
+      this.chartData.rows[i].percent = this.rate[i].toFixed(5)
     }
   },
   props: {

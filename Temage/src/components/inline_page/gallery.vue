@@ -58,9 +58,9 @@ export default {
   mounted () {
     this.keyword = this.$route.params.keyword
     if (this.keyword === undefined) {
-      this.api = '/api/gallery/'
+      this.api = process.env.API.explore.get_gallery_data
     } else {
-      this.api = '/api/post_search/'
+      this.api = process.env.API.explore.post_search
     }
     this.lenOfCols = [0, 0, 0, 0, 0]
     let usrCookie = Cookies.get('login_token')
@@ -121,7 +121,7 @@ export default {
           let usrCookie = Cookies.get('login_token')
           this.$axios({
             method: 'post',
-            url: '/api/gallery/more_cards/',
+            url: process.env.API.explore.get_gallery_more_data,
             withCredentials: true,
             headers: {Authorization: usrCookie},
             data: {

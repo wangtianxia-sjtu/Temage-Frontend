@@ -94,7 +94,7 @@ export default {
         if (valid) {
           this.$axios({
             method: 'post',
-            url: '/register/',
+            url: process.env.API.user.post_register,
             data: this.formValidate,
             withCredentials: true
           })

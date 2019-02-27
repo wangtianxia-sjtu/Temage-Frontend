@@ -193,7 +193,7 @@ export default {
         // get matrix from back end
         this.$axios({
           method: 'post',
-          url: '/api/matrix',
+          url: process.env.API.deepLearning.get_embedding,
           withCredentials: true,
           headers: {Authorization: Cookies.get('login_token')},
           data: {text: this.text}
@@ -228,9 +228,11 @@ export default {
                 for (var k = 0; k < 4; k++) {
                   if (rate > nameIndex[k][0]) {
                     nameIndex[k] = [rate, j]
+                    break
                   }
                 }
               }
+              console.log(nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
               let resRate = []

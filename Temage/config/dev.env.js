@@ -37,9 +37,9 @@ module.exports = merge(prodEnv, {
     }
   },
   styleNames:
-    ["NONE", "constellation", "economics",
-      "education", "entertainment", "fashion",
-      "furniture", "game", "lottery",
-      "politics", "real-estate", "science-technology",
-      "society", "sport", "stock"]
+    ["'NONE'", "'constellation'", "'economics'",
+      "'education'", "'entertainment'", "'fashion'",
+      "'furniture'", "'game'", "'lottery'",
+      "'politics'", "'real-estate'", "'science-technology'",
+      "'society'", "'sport'", "'stock'"]
 })

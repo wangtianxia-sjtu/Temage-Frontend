@@ -42,7 +42,7 @@ export default {
   mounted () {
     this.$axios({
       method: 'post',
-      url: 'api/text/',
+      url: process.env.API.explore.get_product,
       data: {id: this.id},
       withCredentials: true,
       headers: {Authorization: Cookies.get('login_token')}
@@ -75,7 +75,7 @@ export default {
     collect () {
       this.$axios({
         method: 'post',
-        url: '/api/collect/',
+        url: process.env.API.explore.post_collect,
         data: {id: this.id},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -94,7 +94,7 @@ export default {
     deleteWork () {
       this.$axios({
         method: 'post',
-        url: '/api/delete/',
+        url: process.env.API.explore.delete_product,
         data: {id: this.id},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -116,7 +116,7 @@ export default {
     cancelCollect () {
       this.$axios({
         method: 'post',
-        url: '/api/cancel_collect/',
+        url: process.env.API.explore.cancel_collect,
         data: {id: this.id},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
