@@ -108,7 +108,7 @@ export default {
     }
   },
   created () {
-    tf.loadModel('/static/model_wtx.json').then(model => {
+    tf.loadModel('/static/text_classification.json').then(model => {
       this.model = model
     })
   },
