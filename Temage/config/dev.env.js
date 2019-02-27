@@ -31,5 +31,11 @@ module.exports = merge(prodEnv, {
       login: '"/api/user/login/"',
       auth: '"/api/user/authenticate/"'
     }
-  }
+  },
+  styleNames:
+    ["NONE", "constellation", "economics",
+      "education", "entertainment", "fashion",
+      "furniture", "game", "lottery",
+      "politics", "real-estate", "science-technology",
+      "society", "sport", "stock"]
 })

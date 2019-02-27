@@ -45,7 +45,7 @@ export default {
       this.$emit('finalHtml', this.editorHTML)
       this.$axios({
         method: 'post',
-        url: '/api/store_passage/',
+        url: process.env.API.workflow.store_passage,
         data: {
           res_html: this.editorHTML,
           styles: this.tmg_style,

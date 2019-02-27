@@ -117,7 +117,7 @@ export default {
       this.$refs.rateBo.handStars()
       this.$axios({
         method: 'post',
-        url: '/api/confirm_store/',
+        url: process.env.API.workflow.confirm_store,
         data: {productID: this.productID, stars: this.stars},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -133,7 +133,7 @@ export default {
     download () {
       this.$axios({
         method: 'post',
-        url: '/api/download/',
+        url: process.env.API.workflow.download_picture,
         data: {productID: this.productID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
@@ -222,9 +222,25 @@ export default {
                 resVec.push(result[i])
               }
               // set result
+              let nameIndex = [[-1, 0], [-1, 0], [-1, 0], [-1, 0]]
+              for (var j = 0; j < 15; j++) {
+                let rate = resVec[j]
+                for (var k = 0; k < 4; k++) {
+                  if (rate > nameIndex[k][0]) {
+                    nameIndex[k] = [rate, j]
+                  }
+                }
+              }
+              let namesTable = process.env.styleNames
+              let resName = []
+              let resRate = []
+              for (var n = 0; n < 4; n++) {
+                resRate.push(nameIndex[n][0])
+                resName.push(namesTable[nameIndex[n][1]])
+              }
               let resultFormModal = {
-                name: ['sport', 'game', 'stock', 'fashion'],
-                rate: [0.841, 0.32, 0.21, 0.102]
+                name: resName,
+                rate: resRate
               }
               resModel = resultFormModal
             })

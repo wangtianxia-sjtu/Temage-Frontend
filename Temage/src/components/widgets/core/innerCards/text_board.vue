@@ -32,7 +32,7 @@ export default {
       return new Promise((resolve, reject) => {
         ajax({
           method: 'post',
-          url: '/api/text_post/',
+          url: process.env.API.workflow.post_text,
           data: {text: this.text_content, title: this.text_title},
           withCredentials: true,
           headers: {Authorization: Cookies.get('login_token')}

@@ -35,7 +35,7 @@ export default {
     console.log(this.ID)
     this.$axios({
       method: 'post',
-      url: '/api/finished_work/',
+      url: process.env.API.workflow.finished_work,
       data: {productID: this.ID},
       withCredentials: true,
       headers: {Authorization: Cookies.get('login_token')}

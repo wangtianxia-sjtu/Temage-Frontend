@@ -30,7 +30,7 @@ export default {
     if (usrCookie !== undefined) {
       this.$axios({
         method: 'post',
-        url: '/authenticate/',
+        url: process.env.API.user.auth,
         withCredentials: true,
         headers: {Authorization: usrCookie},
         data: {'token': usrCookie}

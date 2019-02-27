@@ -52,7 +52,7 @@ export default {
       // shall be customer's choice
       this.$axios({
         method: 'POST',
-        url: '/api/ret_html/',
+        url: process.env.API.workflow.confirm_style,
         data: {styles: this.tags, productID: this.productID},
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}
