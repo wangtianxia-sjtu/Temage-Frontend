@@ -1,13 +1,13 @@
 module.exports = {
   'Basic e2e Test' (browser) {
     browser
-      .url('http://0.0.0.0:8081/#/login')
+      .url('http://127.0.0.1:8081/#/login')
       .waitForElementVisible('body')
       .setValue('.ivu-input.ivu-input-default', 'username')
       .setValue('#app > div > div > div > div > div > div > form > div:nth-child(2) > div > div > div > input', '123')
       .click('.tmg-btn-lo.ivu-btn.ivu-btn-primary')
       .pause(1000)
-      .url('http://0.0.0.0:8081/#/id/text/1')
+      .url('http://127.0.0.1:8081/#/id/text/1703701')
       .waitForElementVisible('body')
       .click('#app > div > div > div.ivu-layout.ivu-layout-has-sider > div.ivu-layout > div > div > div > div:nth-child(7) > div:nth-child(1) > button') // 点击搜索
       .pause(1000)

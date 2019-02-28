@@ -1,7 +1,7 @@
 module.exports = {
   'Basic e2e Test' (browser) {
     browser
-      .url('http://0.0.0.0:8081/#/login')
+      .url('http://127.0.0.1:8081/#/login')
       .waitForElementVisible('body')
       .setValue('.ivu-input.ivu-input-default', 'username')
       .setValue('#app > div > div > div > div > div > div > form > div:nth-child(2) > div > div > div > input', '123')

@@ -1,7 +1,7 @@
 module.exports = {
   'Basic e2e Test' (browser) {
     browser
-      .url('http://0.0.0.0:8081/#/register')
+      .url('http://127.0.0.1:8081/#/register')
       .waitForElementVisible('body')
       .setValue('#app > div > div > div > div > div > form > div:nth-child(1) > div > div > input', 'name1')
       .setValue('input[type=password]', '123')
