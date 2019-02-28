@@ -9,7 +9,6 @@ export default new Router({
   routes: [
     {
       path: '/id',
-      name: 'blade',
       component: loadView('blade'),
       children: [
         {
@@ -51,17 +50,17 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: loadView('userSys/login')
+      component: loadView('user_sys/login')
     },
     {
       path: '/register',
       name: 'register',
-      component: loadView('userSys/register')
+      component: loadView('user_sys/register')
     },
     {
       path: '/',
       name: 'idx',
-      component: loadView('userSys/info')
+      component: loadView('user_sys/info')
     }
   ]
 })

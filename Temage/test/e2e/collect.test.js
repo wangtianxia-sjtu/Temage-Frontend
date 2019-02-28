@@ -3,7 +3,7 @@ module.exports = {
     browser
       .url('http://0.0.0.0:8081/#/login')
       .waitForElementVisible('body')
-      .setValue('.ivu-input.ivu-input-default', 'qxy')
+      .setValue('.ivu-input.ivu-input-default', 'username')
       .setValue('#app > div > div > div > div > div > div > form > div:nth-child(2) > div > div > div > input', '123')
       .click('.tmg-btn-lo.ivu-btn.ivu-btn-primary')
       .pause(1000)
@@ -15,8 +15,8 @@ module.exports = {
       .end()
   }
 }
-// 用例编号: 003
-// 测试单元描述: 模拟用户收藏行为
+// 用例编号: 203
+// 集成测试描述: 模拟用户收藏行为
 // 用例目的: 验证前端收藏过程正确性, 接口/api/collect/正常运行
 // 前提条件:
 //        1.浏览器Cookies含有登录用户信息;
@@ -26,7 +26,7 @@ module.exports = {
 // 用例间的依赖关系: 登录成功测试后执行本用例
 // 具体流程:
 //    步骤1
-//        输入: 用户名:qxy; 密码:123; 登录操作
+//        输入: 用户名:username; 密码:123; 登录操作
 //        期望输出: 登陆成功, 跳转到主页
 //        实际输出: 登陆成功, 跳转到主页
 //        备注: 无

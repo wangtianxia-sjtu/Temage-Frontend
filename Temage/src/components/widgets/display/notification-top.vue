@@ -35,8 +35,7 @@ export default {
         headers: {Authorization: usrCookie},
         data: {'token': usrCookie}
       }).then(response => {
-        console.log('API: /authenticate------------')
-        console.log(response)
+        console.log('API: /authenticate/\n', response)
         if (response.status === 200) {
           this.username = response.data.username
           this.no_avator = response.data.avator === undefined

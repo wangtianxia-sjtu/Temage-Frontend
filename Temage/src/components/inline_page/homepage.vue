@@ -42,8 +42,7 @@ export default {
       this.raw_data = response.data
       this.cards_recent = response.data.recent_pics
       this.cards_collections = response.data.collect_pics
-      console.log('API: /api ------------')
-      console.log(response)
+      console.log('API: get_home_data\n', response)
     })
   },
   data () {

@@ -180,11 +180,19 @@ export default {
         /*
          * Step One: Upload + inference
          */
+        console.log('before embedding\n', new Date().getTime())
         this.$Spin.show()
         // loading...
         this.$refs.createText.$refs.textUpload.textUpload().then(response => {
           console.log(response)
           this.$refs.createText.$refs.imgUpload.submitUpload()
+          this.$axios({
+            method: 'post',
+            url: process.env.API.workflow.push_match_event,
+            withCredentials: true,
+            headers: {Authorization: Cookies.get('login_token')},
+            data: {productID: this.productID}
+          })
         }).catch(err => {
           console.log(err)
         })
@@ -204,6 +212,7 @@ export default {
             this.response_mtx = response.data
             console.log(this.response_mtx)
             // run with model
+            console.log('begin inference\n', new Date().getTime())
             const buffer = tf.buffer([1, 20, 1024, 1])
             for (let i = 0; i < 20; i++) {
               for (let j = 0; j < 1024; j++) {
@@ -251,6 +260,7 @@ export default {
         // if everything is fine
         // end loading; status ++
         setTimeout(() => {
+          console.log('endding\n', new Date().getTime())
           this.style = resModel
           this.tensor = resVec
           console.log('tensor:', this.tensor)

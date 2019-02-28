@@ -34,7 +34,7 @@ let picurl3 = "http://pic.xiami.net/images/avatar_new/7160/5b10ff5c9f81d_3580195
 
 /* simulating user */
 let user_info = {
-  'username':'qxy',
+  'username':'username',
   'id': 1,
   'avator':picurl2,
 }
@@ -467,6 +467,12 @@ app.post('/api/workflow/post_text/', function (req, res) {
   res.send({productID: id})
 })
 
+app.post('/api/workflow/push_match_event/', function(req, res) {
+  let user_token = req.get('Authorization')
+  console.log(user_token) // user_token
+  console.log('product id: ', req.body.productID)
+  res.sendStatus(200)
+})
 // 'post_picture' 'post_text'两个接口几乎同时调用(一个btn触发)
 //  用模型计算位置结果时可以保证图文同时可用
 //  后端的计算过程在这两个接口调用后, get_html返回结果之前

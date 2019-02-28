@@ -72,8 +72,7 @@ export default {
         headers: {Authorization: usrCookie},
         data: {'keywords': this.keyword}
       }).then(response => {
-        console.log('API: ', this.api)
-        console.log(response)
+        console.log('API: get_gallery\n', response)
         this.cards = response.data
         this.cardsCol1 = []
         this.cardsCol2 = []
@@ -129,8 +128,7 @@ export default {
               'count': this.num
             }
           }).then(response => {
-            console.log('API: /api/gallery/more_cards-')
-            console.log(response)
+            console.log('API: /api/gallery/more_cards\n', response)
             var tmpCards = []
             var oldLen = this.cards.length
             for (var k = 0; k < oldLen; k++) {

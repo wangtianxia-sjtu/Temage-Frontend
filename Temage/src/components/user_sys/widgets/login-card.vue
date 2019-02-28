@@ -76,8 +76,7 @@ export default {
             data: this.formInline,
             withCredentials: true
           }).then(response => {
-            console.log('API: /login/submit------------')
-            console.log(response)
+            console.log('API: /login/submit/\n', response)
             if (response.status === 200) {
               Cookies.set('login_token', response.data, {expires: 1})
               this.$Message.success('登陆成功!')
