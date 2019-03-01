@@ -1,13 +1,11 @@
 {
   "name": "temage",
   "version": "1.0.0",
-  "description": "front-end part for se_100 and intel swc.",
-  "author": "Wei X.M. & Wang T.X.",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --env development --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "unit": "jest --config test/unit/jest.conf.js --coverage",
+    "unit": "jest --coverage",
     "e2e": "nightwatch test/e2e/*.test.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
