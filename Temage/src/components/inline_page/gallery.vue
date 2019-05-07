@@ -72,7 +72,6 @@ export default {
         headers: {Authorization: usrCookie},
         data: {'keywords': this.keyword}
       }).then(response => {
-        console.log('API: get_gallery\n', response)
         this.cards = response.data
         this.cardsCol1 = []
         this.cardsCol2 = []
@@ -114,7 +113,6 @@ export default {
   },
   methods: {
     handleReachBottom () {
-      console.log('loading')
       return new Promise(resolve => {
         setTimeout(() => {
           let usrCookie = Cookies.get('login_token')
@@ -128,7 +126,6 @@ export default {
               'count': this.num
             }
           }).then(response => {
-            console.log('API: /api/gallery/more_cards\n', response)
             var tmpCards = []
             var oldLen = this.cards.length
             for (var k = 0; k < oldLen; k++) {
@@ -152,7 +149,6 @@ export default {
                 }
               }
               this.lenOfCols[shortestColIndex] += norLen
-              console.log(this.lenOfCols)
               if (shortestColIndex === 0) {
                 this.cardsCol1.push(response.data[i])
               } else if (shortestColIndex === 1) {

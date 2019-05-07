@@ -32,7 +32,6 @@ export default {
   },
   mounted () {
     this.ID = this.work_id
-    console.log(this.ID)
     this.$axios({
       method: 'post',
       url: process.env.API.workflow.finished_work,

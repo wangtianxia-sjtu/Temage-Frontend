@@ -47,7 +47,6 @@ export default {
       withCredentials: true,
       headers: {Authorization: Cookies.get('login_token')}
     }).then(response => {
-      console.log(response.data)
       this.creator = response.data.creator
       this.html = response.data.text
       this.title = response.data.title

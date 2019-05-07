@@ -65,7 +65,6 @@ export default {
     }
   },
   mounted () {
-    console.log('stst::', this.tmg_style)
     var editor = new E(this.$refs.editor)
     editor.customConfig.onchange = (html) => {
       this.editorHTML = html

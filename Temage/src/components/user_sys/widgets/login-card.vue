@@ -69,14 +69,12 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          console.log(this.formInline)
           this.$axios({
             method: 'post',
             url: process.env.API.user.login,
             data: this.formInline,
             withCredentials: true
           }).then(response => {
-            console.log('API: /login/submit/\n', response)
             if (response.status === 200) {
               Cookies.set('login_token', response.data, {expires: 1})
               this.$Message.success('登陆成功!')

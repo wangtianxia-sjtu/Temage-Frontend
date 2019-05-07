@@ -99,7 +99,6 @@ export default {
             withCredentials: true
           })
             .then(response => {
-              console.log(response)
               if (response.status === 200) {
                 this.$Message.success('Success!')
                 this.$Spin.show({

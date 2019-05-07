@@ -31,7 +31,6 @@ export default {
       withCredentials: true
     }).then(response => {
       this.cards = response.data
-      console.log(response)
     })
   },
   data () {

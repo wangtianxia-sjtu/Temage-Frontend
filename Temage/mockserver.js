@@ -8,7 +8,7 @@ app.set('view engine', 'html');
  * setting header for express
  */
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8081");
+  res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Credentials", true);
@@ -303,7 +303,6 @@ app.use(bodyParser.json())
 /* login data check */
 app.post('/api/user/login/', function(req, res) {
   let user = req.body
-  console.log(user)
   if(user.password === user1.password && user.username === user1.username)
   {
     user_info.username = user.username
@@ -315,14 +314,12 @@ app.post('/api/user/login/', function(req, res) {
 
 /* register data check */
 app.post('/api/user/register/', function(req, res){
-  console.log(req.body)
     res.send(200)
 })
 
 /* data feed back after login*/
 app.post('/api/user/authenticate/', function(req, res) {
   let user_token = req.get('Authorization')
-  console.log(user_token)
   /* return cards according to USER_TOKEN */
   res.send(user_info)
 })
@@ -335,7 +332,6 @@ app.post('/api/user/authenticate/', function(req, res) {
 /* Data need in homepage */
 app.post('/api/explore/', function(req, res){
   let user_token = req.get('Authorization')
-  console.log(user_token)
   /* return cards according to USER_TOKEN */
   res.send(homepage_data)
 })
@@ -343,21 +339,18 @@ app.post('/api/explore/', function(req, res){
 /* Data need in collection album */
 app.post('/api/explore/collection/',function (req, res) {
   let user_token = req.get('Authorization')
-  console.log(user_token) // user_token
   res.send(collection_data)
 })
 
 /* Data need in recent cards */
 app.post('/api/explore/get_recent/', function (req, res) {
   let user_token = req.get('Authorization')
-  console.log(user_token) // user_token
   res.send(recent_data)
 })
 
 /* gallery initial data*/
 app.post('/api/explore/gallery/', function(req, res){
   let user_token = req.get('Authorization')
-  console.log(user_token)
   /* return cards according to USER_TOKEN */
   res.send(gallery_data)
 })
@@ -366,8 +359,6 @@ app.post('/api/explore/gallery/', function(req, res){
 app.post('/api/explore/gallery/more_cards/', function(req, res) {
   let user_token = req.get('Authorization')
   let browser_info = req.body
-  console.log(user_token)
-  console.log(browser_info)
   /* return cards according to USER and browser_info */
   res.send(gallery_data)
 })
@@ -376,8 +367,6 @@ app.post('/api/explore/gallery/more_cards/', function(req, res) {
 app.post('/api/explore/product/',function (req, res) {
   let card_id = req.body.id
   let user_token = req.get('Authorization')
-  console.log(user_token)
-  console.log(card_id)
   /* use ${card_id} to return content */
   let content = {
     id: card_id, // this id is textID, may differ from card_id
@@ -395,8 +384,6 @@ app.post('/api/explore/product/',function (req, res) {
 app.post('/api/explore/post_collect/', function (req, res) {
   let user_token = req.get('Authorization')
   let product_id = req.body.id
-  console.log(user_token)
-  console.log(product_id)
   /* add the text to users collection */
   res.send(200)
 })
@@ -405,8 +392,6 @@ app.post('/api/explore/post_collect/', function (req, res) {
 app.post('/api/explore/product/delete/', function (req, res) {
   let user_token = req.get('Authorization')
   let product_id = req.body.id
-  console.log(user_token)
-  console.log(product_id)
   /* destroy a work */
   res.send(200)
 })
@@ -415,8 +400,6 @@ app.post('/api/explore/product/delete/', function (req, res) {
 app.post('/api/explore/product/cancel_collect/', function (req, res) {
   let user_token = req.get('Authorization')
   let product_id = req.body.productID
-  console.log(user_token)
-  console.log(product_id)
   /* remove the text from users collection */
   res.send(200)
 })
@@ -424,7 +407,6 @@ app.post('/api/explore/product/cancel_collect/', function (req, res) {
 // 关键字搜索
 app.post('/api/post_search', function(req, res) {
   keywords = req.body.keywords
-  console.log(keywords)
   /*
    *  将关键词在ES server进行搜索，返回cards
    */
@@ -446,22 +428,16 @@ app.post('/api/workflow/post_picture/', function (req, res) {
       var extName = 'jpg';  //后缀名
       var avatarName = Math.random() + '.' + extName;
       var newPath = form.uploadDir + avatarName;
-      console.log(newPath);  // store pics into DB
-      console.log(req.body)
     });
   let user_token = req.get('Authorization')
-  console.log(user_token) // user_token
   res.sendStatus(200)
 })
 
 // upload and store text
 app.post('/api/workflow/post_text/', function (req, res) {
   let user_token = req.get('Authorization')
-  console.log(user_token) // user_token
   let text_content = req.body.text
-  console.log(text_content)
   let title = req.body.title
-  console.log(title)
   // store text into DB
   let id = 147130
   res.send({productID: id})
@@ -469,7 +445,6 @@ app.post('/api/workflow/post_text/', function (req, res) {
 
 app.post('/api/workflow/push_match_event/', function(req, res) {
   let user_token = req.get('Authorization')
-  console.log(user_token) // user_token
   console.log('product id: ', req.body.productID)
   res.sendStatus(200)
 })

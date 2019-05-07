@@ -2,7 +2,7 @@
 <div>
   <div @click="value1 = true" type="primary">{{this.username}} &nbsp;
       <Avatar shape="square" :icon="this.avator" v-if="no_avator"/>
-      <Avatar shape="square" :src="this.avator" />
+      <Avatar shape="square" :src="this.avator" v-else/>
   </div>
   <Drawer title="事件" :closable="false" v-model="value1">
     <p>Some contents...</p>
@@ -35,7 +35,6 @@ export default {
         headers: {Authorization: usrCookie},
         data: {'token': usrCookie}
       }).then(response => {
-        console.log('API: /authenticate/\n', response)
         if (response.status === 200) {
           this.username = response.data.username
           this.no_avator = response.data.avator === undefined

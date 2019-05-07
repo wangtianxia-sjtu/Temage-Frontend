@@ -155,7 +155,6 @@ export default {
     let _this = this
     window.addEventListener('scroll', function () {
       let pos = document.documentElement.scrollTop
-      console.log(pos)
       var galleryImg = document.querySelector('.img-scroll')
       let yy = 0.5 * pos - 500
       galleryImg.style.webkitTransform = 'translate3d(0px, ' + yy + 'px, 0px)'

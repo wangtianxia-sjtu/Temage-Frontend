@@ -20,7 +20,6 @@ export default {
     setThisStyle: function (msg) {
       this.confirmed_style = msg
       this.$emit('setStyle', this.confirmed_style)
-      console.log(this.confirmed_style)
     },
     passHtml: function (msg) {
       this.$emit('handoverHtml', msg)
