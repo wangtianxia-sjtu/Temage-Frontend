@@ -61,6 +61,7 @@
   }
   .ivu-menu-item {
     color: rgb(35, 50, 85);
+    border-color: #8dddd3;
   }
 </style>
 <template>
@@ -68,26 +69,30 @@
     <Layout :style="{background: '#fff',height: '100%'}">
       <Header class='topbar'>
         <Row>
-          <Col span='4' style='top: 7px; margin-left: -40px;'><Input search enter-button placeholder="Search" /></Col>
+          <Col span='4' style='top: 7px; margin-left: -35px;'>
+            <Input search enter-button placeholder="Search"
+                   v-model="keyword"
+                   @on-search="search"/>
+          </Col>
           <Col span='20'>
           <Menu mode="horizontal" theme="dark" active-name="1" class='topbar'>
             <Row>
-              <Col span='3' offset='10' class="layout-logo">
-              <router-link to="/">
+              <Col span='4' offset='9' class="layout-logo">
+              <router-link to="/id">
                 <Button type="primary" style="margin-top:-25px"><img class='logo-min' src='../assets/logo-min.png'></Button>
               </router-link>
               </Col>
-              <Col class="layout-nav">
+              <Col class="layout-nav" style="margin-right: -95px">
               <MenuItem name='i'>
-                <router-link to="/work">
+                <router-link to="/id/work">
               <Button icon="md-add" type="primary">New</Button>
                 </router-link>
               <instruct></instruct>
               <Icon type="md-notifications"></Icon>
-              <Poptip trigger="hover" title='最近通知'>
+              <Poptip trigger="hover" title='退出登录?' style="text-align: center">
                 <noticeTop></noticeTop>
                 <div class="api" slot="content" style="color:#000">
-                  test
+                  <Button type="primary" @click="log_out" style="width: 100%"> 确认 </Button>
                 </div>
               </Poptip>
               </MenuItem>
@@ -105,21 +110,21 @@
                 <Icon type="md-home"></Icon>
                 Homepage
               </template>
-              <router-link to="/">
+              <router-link to="/id">
                 <MenuItem name="1-0">
                 <Icon type="md-card"></Icon>
                 Display
                 </MenuItem>
               </router-link>
 
-              <router-link to="/recent">
+              <router-link to="/id/recent">
                 <MenuItem name="1-1">
                 <Icon type="md-time"></Icon>
                 Recent Cards
                 </MenuItem>
               </router-link>
 
-              <router-link to="/collection">
+              <router-link to="/id/collection">
               <MenuItem name="1-2">
               <Icon type="md-heart"></Icon>
               Collection
@@ -134,12 +139,14 @@
                 <Icon type="ios-keypad"></Icon>
                 Gallery
               </template>
-              <router-link to="/gallery">
+              <!--<router-link to="/id/gallery">-->
                 <MenuItem name="2-2">
+                  <div @click="open_gallery()">
                 <Icon type="md-color-palette"></Icon>
-                Community
+                &nbsp;Inspirations
+                  </div>
                 </MenuItem>
-              </router-link>
+              <!--</router-link>-->
               <MenuItem name="2-1">
               <Icon type="md-share"></Icon>
               Sharing
@@ -150,7 +157,7 @@
                 <Icon type="md-easel"></Icon>
                 Workspace
               </template>
-                <router-link to="/work">
+                <router-link to="/id/work">
               <MenuItem name="3-1">
               <Icon type="md-create"></Icon>
               Create
@@ -163,8 +170,8 @@
             </Submenu>
           </Menu>
         </Sider>
-        <Layout :style="{padding: '0 24px 24px'}">
-          <router-view />
+        <Layout :style="{padding: '0 24px 0px'}">
+          <router-view></router-view>
         </Layout>
       </Layout>
     </Layout>
@@ -174,12 +181,41 @@
 import noticeTop from './widgets/display/notification-top.vue'
 import noticeSide from './widgets/display/notification-side.vue'
 import instruct from './widgets/display/instruction.vue'
+import Cookies from 'js-cookie'
 export default {
   name: 'blade',
+  data () {
+    return {keyword: ''}
+  },
   components: {
     noticeTop,
     noticeSide,
     instruct
+  },
+  methods: {
+    log_out () {
+      Cookies.remove('login_token')
+      this.$router.push('/')
+    },
+    open_gallery () {
+      const { href } = this.$router.resolve({
+        name: 'gallery'
+      })
+      window.open(href)
+    },
+    search () {
+      if (this.keyword !== '') {
+        const { href } = this.$router.resolve({
+          name: 'search',
+          params: {
+            keyword: this.keyword
+          }
+        })
+        window.open(href)
+      } else {
+        this.$Message.error('请输入关机字!')
+      }
+    }
   }
 }
 </script>

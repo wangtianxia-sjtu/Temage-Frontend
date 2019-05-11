@@ -9,6 +9,8 @@
 
 <script>
 import E from 'wangeditor'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   name: 'editor',
   data () {
@@ -16,9 +18,50 @@ export default {
       editorHTML: ''
     }
   },
+  props: {
+    tmg_style: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    tmg_tensor: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    t_title: '',
+    editorContent: '',
+    width: 0,
+    productID: 0
+  },
+  components: {axios},
   methods: {
     getContent: function () {
       alert(this.editorHTML)
+    },
+    storeHtml () {
+      this.$emit('finalHtml', this.editorHTML)
+      this.$axios({
+        method: 'post',
+        url: process.env.API.workflow.store_passage,
+        data: {
+          res_html: this.editorHTML,
+          styles: this.tmg_style,
+          t_width: this.width,
+          title: this.t_title,
+          tensor: this.tmg_tensor,
+          productID: this.productID
+        },
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+        }
+      })
     }
   },
   mounted () {
@@ -30,8 +73,8 @@ export default {
     editor.create()
     editor.txt.html(this.editorHTML)
     editor.change()
-  },
-  props: [ 'editorContent' ]
+  }
+  // props: [ 'editorContent' ]
   /* name: 'editor',
   methods: {
     getContent: function () {

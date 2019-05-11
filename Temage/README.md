@@ -17,14 +17,14 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
 # build for production and view the bundle analyzer report
 npm run build --report
 
-# run all tests
+# run all tests except e2e tests
 npm run testutils
+
+# run e2e test use chrome driver(check the port of chromedriver is free)
+npm run e2e
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
@@ -60,3 +60,10 @@ server {
 ```
 
 then restart your nginx server(maybe command is `systemctl restart nginx.service`)
+
+## Browser Support
+
+| ![IE / Edge](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png) | ![Firefox](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png) | ![Chrome](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png) | ![Chrome](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                             42+                              |                             66+                              |                             73+                              |                            12.0+                             |
+

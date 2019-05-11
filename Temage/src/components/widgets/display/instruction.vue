@@ -54,7 +54,6 @@ export default {
       this.visible = false
     },
     next () {
-      console.log('next')
     }
   }
 }

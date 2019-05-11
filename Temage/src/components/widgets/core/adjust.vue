@@ -1,7 +1,9 @@
 <template>
 <div>
-<prob></prob>
-<tags></tags>
+<prob :guess_lay="guess"></prob>
+<tags ref="styleRes" :guess_tag="guess.name" :product-i-d="this.productID"
+      v-on:handStyles="setThisStyle"
+      v-on:getHtml="passHtml"></tags>
 </div>
 </template>
 <script>
@@ -11,16 +13,28 @@ export default {
   name: 'adjust',
   data () {
     return {
-      spinShow: true,
-      text: this.value,
-      image: this.url
+      confirmed_style: []
     }
   },
   methods: {
+    setThisStyle: function (msg) {
+      this.confirmed_style = msg
+      this.$emit('setStyle', this.confirmed_style)
+    },
+    passHtml: function (msg) {
+      this.$emit('handoverHtml', msg)
+    }
   },
   components: {
     prob,
     tags
+  },
+  props: {
+    guess: {
+      type: Object,
+      default: () => {}
+    },
+    productID: 0
   }
 }
 </script>

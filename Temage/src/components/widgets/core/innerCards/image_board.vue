@@ -1,10 +1,14 @@
 <template>
   <div>
     <el-upload
-    action="https://jsonplaceholder.typicode.com/posts/"
-    list-type="picture-card" :on-preview="handlePictureCardPreview"
-    :on-remove="handleRemove"
-    :auto-upload='false'
+      ref="upload"
+      action="http://0.0.0.0:3030/api/pic_post/"
+      list-type="picture-card"
+      :on-preview="handlePictureCardPreview"
+      :on-remove="handleRemove"
+      :auto-upload='false'
+      :with-credentials="true"
+      :headers="{Authorization: this.user_token}"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
@@ -14,12 +18,14 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
 export default {
   name: 'imgBoard',
   data () {
     return {
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      user_token: Cookies.get('login_token')
     }
   },
   methods: {
@@ -27,6 +33,9 @@ export default {
     handlePictureCardPreview (file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
+    },
+    submitUpload () {
+      this.$refs.upload.submit()
     }
   }
 }

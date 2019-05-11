@@ -1,15 +1,18 @@
 <template>
         <div>
             <Row>
-            <Col :span='12' style='margin-bottom:10px; margin-top: 30px'><p>请在此处输入纯文本</p></Col>
+            <Col :span='12' style='margin-bottom:10px; margin-top: 30px'><p>请在此处输入标题</p></Col>
             <Col :span='10' :offset='0' style='margin-bottom:10px; margin-top: 30px'><p>请在此处插入图片</p></Col>
             </Row>
             <Row>
                 <Col :span='11'>
-                    <txtBoard></txtBoard>
+                    <txtBoard ref="textUpload"
+                              v-on:handText="setThisText"
+                              v-on:handTitle="setThisTitle"
+                              v-on:newID="emitID"></txtBoard>
                 </Col>
                 <Col :span='12' :offset='1'>
-                    <imgBoard></imgBoard>
+                    <imgBoard ref="imgUpload"></imgBoard>
                 </Col>
             </Row>
         </div>
@@ -38,11 +41,23 @@ export default {
   data () {
     return {
       spinShow: true,
-      text: this.value,
-      image: this.url
+      text: null,
+      image: this.url,
+      title: ''
     }
   },
   methods: {
+    setThisText: function (msg) {
+      this.text = msg
+      this.$emit('setText', this.text)
+    },
+    setThisTitle: function (msg) {
+      this.title = msg
+      this.$emit('setTitle', this.title)
+    },
+    emitID: function (msg) {
+      this.$emit('setID', msg)
+    }
   },
   components: {
     imgBoard,

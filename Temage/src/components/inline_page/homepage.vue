@@ -5,7 +5,7 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><router-link to='/recent'><Col :span="1"><Icon type="md-time" color="black" size="35" margin-top="-3px"/></Col></router-link><h1>Recent</h1></Row>
+        <Row><router-link to='/id/recent'><Col :span="1"><Icon type="md-time" size="20"  style="color: #2c3e50; margin-top: 8px"/></Col></router-link><h1>Recent</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -14,7 +14,7 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><router-link to="/collection"><Col :span="1"><Icon type="md-heart" size="35" color="black" margin-top="-3px"/></Col></router-link><h1>Collections</h1></Row>
+        <Row><router-link to="/id/collection"><Col :span="1"><Icon type="md-heart" size="20" style="color: #2c3e50; margin-top: 8px"/></Col></router-link><h1>Collections</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -25,7 +25,7 @@
 <script>
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
 import axios from 'axios'
-
+import Cookies from 'js-cookie'
 export default {
   name: 'homepage',
   components: {
@@ -33,14 +33,16 @@ export default {
     axios
   },
   mounted () {
-    axios
-      .get('http://localhost:3030/api')
-      .then(response => {
-        this.raw_data = response.data
-        this.cards_recent = response.data.recent_pics
-        this.cards_collections = response.data.collect_pics
-        console.log(response)
-      })
+    this.$axios({
+      method: 'get',
+      url: process.env.API.explore.get_home_data,
+      headers: {Authorization: Cookies.get('login_token')},
+      withCredentials: true
+    }).then(response => {
+      this.raw_data = response.data
+      this.cards_recent = response.data.recent_pics
+      this.cards_collections = response.data.collect_pics
+    })
   },
   data () {
     return {

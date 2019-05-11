@@ -1,45 +1,66 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import homepage from '../components/inline_page/homepage'
-import gallery from '../components/inline_page/gallery.vue'
-import collection from '../components/inline_page/collection.vue'
-import recent from '../components/inline_page/recent.vue'
-import work from '../components/inline_page/workspace.vue'
-import ml from '../components/inline_page/ml.vue'
 
 Vue.use(Router)
-
+function loadView (view) {
+  return () => import(/* webpackChunkName: "view-[request]" */ `../components/${view}.vue`)
+}
 export default new Router({
   routes: [
     {
+      path: '/id',
+      component: loadView('blade'),
+      children: [
+        {
+          path: '',
+          name: 'homepage',
+          component: loadView('inline_page/homepage')
+        },
+        {
+          path: 'work',
+          component: loadView('inline_page/workspace')
+        },
+        {
+          path: 'gallery',
+          name: 'gallery',
+          component: loadView('inline_page/gallery')
+        },
+        {
+          path: 'collection',
+          name: 'collection',
+          component: loadView('inline_page/collection')
+        },
+        {
+          path: 'recent',
+          name: 'recent',
+          component: loadView('inline_page/recent')
+        },
+        {
+          path: 'text/:id',
+          name: 'text',
+          component: loadView('inline_page/text')
+        },
+        {
+          path: 'search/:keyword',
+          name: 'search',
+          component: loadView('inline_page/gallery')
+        }
+      ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: loadView('user_sys/login')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: loadView('user_sys/register')
+    },
+    {
       path: '/',
-      name: 'homepage',
-      component: homepage
-    },
-    {
-      path: '/gallery',
-      name: 'gallery',
-      component: gallery
-    },
-    {
-      path: '/collection',
-      name: 'collection',
-      component: collection
-    },
-    {
-      path: '/recent',
-      name: 'recent',
-      component: recent
-    },
-    {
-      path: '/work',
-      name: 'work',
-      component: work
-    },
-    {
-      path: '/ml',
-      name: 'ml',
-      component: ml
+      name: 'idx',
+      component: loadView('user_sys/info')
     }
   ]
 })

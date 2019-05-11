@@ -5,7 +5,7 @@
     <el-col :span="2"><div class="grid-content bg-purple">
       </div></el-col>
     <el-col :span="24"><div class="grid-content bg-purple">
-        <Row><Col :span="1"><Icon type="md-heart" size="35" margin-top="-3px"/></Col><h1>Collections</h1></Row>
+        <Row><Col :span="1"><Icon type="md-heart" size="25" style="margin-top:6px"/></Col><h1>Collections</h1></Row>
         <br>
     </div></el-col>
     </el-row>
@@ -15,31 +15,27 @@
 
 <script>
 import exhibitioncard from '@/components/widgets/display/exhibitioncard.vue'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 export default {
   name: 'collection',
   components: {
-    exhibitioncard
+    exhibitioncard,
+    axios
+  },
+  mounted () {
+    this.$axios({
+      method: 'post',
+      url: process.env.API.explore.get_collection_data,
+      headers: {Authorization: Cookies.get('login_token')},
+      withCredentials: true
+    }).then(response => {
+      this.cards = response.data
+    })
   },
   data () {
     return {
-      cards: [
-        {
-          imgsrc: require('@/assets/cat1.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat2.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat7.png'),
-          title: 'A lovely cat!'
-        },
-        {
-          imgsrc: require('@/assets/cat4.png'),
-          title: 'A lovely cat!'
-        }
-      ]
+      cards: null
     }
   }
 }
