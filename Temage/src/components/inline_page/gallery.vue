@@ -185,7 +185,7 @@ export default {
     display: none;
   }
   .ivu-layout-sider{
-    display: none;
+    /*display: none;*/
   }
   .ivu-layout{
     background-color: #eceff1;
