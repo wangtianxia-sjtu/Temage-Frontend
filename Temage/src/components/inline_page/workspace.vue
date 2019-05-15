@@ -185,7 +185,7 @@ export default {
           this.$refs.createText.$refs.imgUpload.submitUpload()
           this.$axios({
             method: 'post',
-            url: process.env.API.workflow.push_match_event,
+            url: '/api/workflow/push_match_event/',
             withCredentials: true,
             headers: {Authorization: Cookies.get('login_token')},
             data: {productID: this.productID}
@@ -217,6 +217,7 @@ export default {
             const prediction = this.model.predict(inputData)
             prediction.print()
             let promiseRes = Promise.resolve(prediction.data())
+            let _this = this
             promiseRes.then(function (result) {
               console.log('TensorRes ', result)
               for (var i = 0; i < 15; i++) {
@@ -246,13 +247,14 @@ export default {
                 rate: resRate
               }
               resModel = resultFormModal
+              _this.style = resModel
+              _this.tensor = resVec
+              _this.$Spin.hide()
+              _this.status++
+              console.log('infer2 ', _this.style)
             })
           }
           // setTimeout(() => {
-          this.style = resModel
-          this.tensor = resVec
-          this.$Spin.hide()
-          this.status++
           // }, 500)
         })
         // if everything is fine

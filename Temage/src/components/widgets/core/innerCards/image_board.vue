@@ -2,13 +2,14 @@
   <div>
     <el-upload
       ref="upload"
-      action="http://202.120.40.109:19132/api/pic_post/"
+      action="http://202.120.40.109:19132/api/workflow/post_picture/"
       list-type="picture-card"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"
       :auto-upload='false'
       :with-credentials="true"
       :headers="{Authorization: this.user_token}"
+      :multiple="multiple"
     >
       <i class="el-icon-plus"></i>
     </el-upload>
