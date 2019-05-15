@@ -477,7 +477,7 @@ app.post('/api/workflow/confirm_style/', function (req, res) {
   // 因为用户在step2选择风格阶段耗时不确定
   // 返回时带上从style_post里选好的CSS表
   res.send({html: result_html})
-})
+});
 
 // store a passage in DB (初步储存为未保存状态)
 app.post('/api/workflow/store_passage/', function (req, res) {
