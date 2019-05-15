@@ -32,5 +32,11 @@ module.exports = {
     deepLearning: {
       get_embedding: '"/learning/embedding"'
     }
-  }
+  },
+  styleNames:
+    ["'NONE'", "'constellation'", "'economics'",
+      "'education'", "'entertainment'", "'fashion'",
+      "'furniture'", "'game'", "'lottery'",
+      "'politics'", "'real-estate'", "'science-technology'",
+      "'society'", "'sport'", "'stock'"]
 }
