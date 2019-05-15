@@ -60,3 +60,10 @@ server {
 ```
 
 then restart your nginx server(maybe command is `systemctl restart nginx.service`)
+
+## Browser Support
+
+| ![IE / Edge](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png) | ![Firefox](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png) | ![Chrome](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png) | ![Chrome](https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png) |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+|                             42+                              |                             66+                              |                             73+                              |                            12.0+                             |
+

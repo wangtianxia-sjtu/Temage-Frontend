@@ -167,7 +167,6 @@ export default {
       image.src = imgsrc
     },
     last () {
-      console.log('last')
       this.status--
     },
     next () {
@@ -180,11 +179,9 @@ export default {
         /*
          * Step One: Upload + inference
          */
-        console.log('before embedding\n', new Date().getTime())
         this.$Spin.show()
         // loading...
         this.$refs.createText.$refs.textUpload.textUpload().then(response => {
-          console.log(response)
           this.$refs.createText.$refs.imgUpload.submitUpload()
           this.$axios({
             method: 'post',
@@ -196,7 +193,6 @@ export default {
         }).catch(err => {
           console.log(err)
         })
-        console.log('text:' + this.text)
         // infer style form modal according to this.text
         // get matrix from back end
         this.$axios({
@@ -210,9 +206,7 @@ export default {
             this.$Message.error('服务器状态错误! 错误码:' + response.status)
           } else {
             this.response_mtx = response.data
-            console.log(this.response_mtx)
             // run with model
-            console.log('begin inference\n', new Date().getTime())
             const buffer = tf.buffer([1, 20, 1024, 1])
             for (let i = 0; i < 20; i++) {
               for (let j = 0; j < 1024; j++) {
@@ -220,13 +214,10 @@ export default {
               }
             }
             let inputData = buffer.toTensor()
-            console.log(inputData)
             const prediction = this.model.predict(inputData)
             prediction.print()
-            console.log(prediction.data())
             let promiseRes = Promise.resolve(prediction.data())
             promiseRes.then(function (result) {
-              console.log(result)
               for (var i = 0; i < 15; i++) {
                 resVec.push(result[i])
               }
@@ -241,7 +232,6 @@ export default {
                   }
                 }
               }
-              console.log(nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
               let resRate = []
@@ -260,10 +250,8 @@ export default {
         // if everything is fine
         // end loading; status ++
         setTimeout(() => {
-          console.log('endding\n', new Date().getTime())
           this.style = resModel
           this.tensor = resVec
-          console.log('tensor:', this.tensor)
           this.$Spin.hide()
           this.status++
         }, 1000)

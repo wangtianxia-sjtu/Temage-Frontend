@@ -5,28 +5,33 @@
         <Card v-if="keyword !== undefined" style="padding: 0!important; margin-bottom: 20px">
           <p style="width: 100%; text-align: center; font-size: 30px; margin-bottom: 0px">关键字: {{this.keyword}}</p>
         </Card>
-      <!--<b-card-group columns style="margin-top: 30px">-->
+        <!--<b-card-group columns style="margin-top: 30px">-->
         <Col :span="4">
-            <gallerycard v-for="card in cardsCol1" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
-                         style="margin-right:-2vw; margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
+          <gallerycard v-for="card in cardsCol1" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title"
+                       :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
+                       style="margin-right:-2vw; margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
         </Col>
         <Col :span="4" :offset="1">
-          <gallerycard v-for="card in cardsCol2" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
+          <gallerycard v-for="card in cardsCol2" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title"
+                       :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
                        style="margin-left:-1vw; margin-right: -2vw; margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
         </Col>
         <Col :span="4" :offset="1">
-          <gallerycard v-for="card in cardsCol3" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
+          <gallerycard v-for="card in cardsCol3" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title"
+                       :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
                        style="margin-left:-1vw; margin-right: -1vw; margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
         </Col>
         <Col :span="4" :offset="1">
-          <gallerycard v-for="card in cardsCol4" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
+          <gallerycard v-for="card in cardsCol4" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title"
+                       :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
                        style="margin-left:-2vw; margin-right: -1vw; margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
         </Col>
         <Col :span="4" :offset="1">
-          <gallerycard v-for="card in cardsCol5" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title" :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
+          <gallerycard v-for="card in cardsCol5" :key='card' v-bind:imagesrc="card.imagesrc" :title="card.title"
+                       :head="card.head" :maintext="card.maintext" :foottext="card.foottext" :id="card.id"
                        style="margin-left:-2vw;  margin-bottom: 1vw;box-shadow: 0px 0px 10px #888888"></gallerycard>
         </Col>
-      <!--</b-card-group>-->
+        <!--</b-card-group>-->
       </div>
     </Scroll>
   </div>
@@ -39,6 +44,7 @@
 import gallerycard from '@/components/widgets/display/gallery_card.vue'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+
 export default {
   name: 'gallery',
   data () {
@@ -72,7 +78,6 @@ export default {
         headers: {Authorization: usrCookie},
         data: {'keywords': this.keyword}
       }).then(response => {
-        console.log('API: get_gallery\n', response)
         this.cards = response.data
         this.cardsCol1 = []
         this.cardsCol2 = []
@@ -114,7 +119,6 @@ export default {
   },
   methods: {
     handleReachBottom () {
-      console.log('loading')
       return new Promise(resolve => {
         setTimeout(() => {
           let usrCookie = Cookies.get('login_token')
@@ -128,7 +132,6 @@ export default {
               'count': this.num
             }
           }).then(response => {
-            console.log('API: /api/gallery/more_cards\n', response)
             var tmpCards = []
             var oldLen = this.cards.length
             for (var k = 0; k < oldLen; k++) {
@@ -152,7 +155,6 @@ export default {
                 }
               }
               this.lenOfCols[shortestColIndex] += norLen
-              console.log(this.lenOfCols)
               if (shortestColIndex === 0) {
                 this.cardsCol1.push(response.data[i])
               } else if (shortestColIndex === 1) {
@@ -175,33 +177,42 @@ export default {
 }
 </script>
 <style>
-  .ivu-scroll-wrapper{
+  .ivu-scroll-wrapper {
     height: 100%;
   }
-  .ivu-scroll-container{
-    height: 100%!important;
+
+  .ivu-scroll-container {
+    height: 100% !important;
   }
+
   .box::-webkit-scrollbar {
     display: none;
   }
-  .ivu-layout-sider{
-    /*display: none;*/
+
+  .ivu-layout-sider {
+    display: unset;
   }
-  .ivu-layout{
+
+  .ivu-layout {
     background-color: #eceff1;
-    padding-left: 0px!important;
+    padding-left: 0px !important;
   }
-  .ivu-scroll-content{
+
+  .ivu-scroll-content {
     margin-top: 5px;
     margin-right: -4px;
   }
-  .ivu-scroll-container{
+
+  .ivu-scroll-container {
     margin-right: -4px;
   }
-  .ivu-card-body{
+
+  .ivu-card-body {
     padding: 0px;
   }
-  body{
+
+  body {
     overflow: hidden;
   }
+
 </style>

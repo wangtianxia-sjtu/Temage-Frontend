@@ -44,7 +44,6 @@ export default {
   },
   mounted () {
     this.tags = this.guess_tag
-    console.log(this.tags)
   },
   methods: {
     stylesUpload () {
@@ -69,7 +68,6 @@ export default {
       this.tags.splice(index, 1)
     },
     handleAdd (name) {
-      console.log(name)
       if (this.tags.indexOf(name) === -1) {
         this.tags.push(name)
       } else {

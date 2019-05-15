@@ -38,7 +38,6 @@ export default {
           headers: {Authorization: Cookies.get('login_token')}
         }).then(response => {
           this.$emit('newID', response.data.productID)
-          console.log('id:\n', response.data.productID)
           resolve(response)
         })
       })

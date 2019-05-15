@@ -34,7 +34,7 @@ export default {
   },
   mounted () {
     this.$axios({
-      method: 'post',
+      method: 'get',
       url: process.env.API.explore.get_home_data,
       headers: {Authorization: Cookies.get('login_token')},
       withCredentials: true
@@ -42,7 +42,6 @@ export default {
       this.raw_data = response.data
       this.cards_recent = response.data.recent_pics
       this.cards_collections = response.data.collect_pics
-      console.log('API: get_home_data\n', response)
     })
   },
   data () {
