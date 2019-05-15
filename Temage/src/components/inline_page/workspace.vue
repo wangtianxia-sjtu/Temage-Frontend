@@ -218,6 +218,7 @@ export default {
             prediction.print()
             let promiseRes = Promise.resolve(prediction.data())
             promiseRes.then(function (result) {
+              console.log('TensorRes ', result)
               for (var i = 0; i < 15; i++) {
                 resVec.push(result[i])
               }
@@ -232,6 +233,7 @@ export default {
                   }
                 }
               }
+              console.log('infer ', nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
               let resRate = []
@@ -246,15 +248,15 @@ export default {
               resModel = resultFormModal
             })
           }
-        })
-        // if everything is fine
-        // end loading; status ++
-        setTimeout(() => {
+          // setTimeout(() => {
           this.style = resModel
           this.tensor = resVec
           this.$Spin.hide()
           this.status++
-        }, 1000)
+          // }, 500)
+        })
+        // if everything is fine
+        // end loading; status ++
       } else if (this.status === 1) {
         /*
          * Step Two: Choose right styles + Upload
@@ -262,10 +264,10 @@ export default {
         this.$Spin.show()
         // loading...
         this.$refs.picStyles.$refs.styleRes.stylesUpload()
-        setTimeout(() => {
-          this.$Spin.hide()
-          this.status++
-        }, 1000)
+        // setTimeout(() => {
+        //   this.$Spin.hide()
+        //   this.status++
+        // }, 1000)
       } else if (this.status === 2) {
         /*
          * Step Three: Save reviewed html
@@ -291,6 +293,8 @@ export default {
     },
     updateHtml: function (msg) {
       this.res_html = msg
+      this.$Spin.hide()
+      this.status++
     },
     updateID: function (msg) {
       this.productID = msg
