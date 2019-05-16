@@ -223,9 +223,22 @@ export default {
               for (var i = 0; i < 15; i++) {
                 resVec.push(result[i])
               }
+              resVec_sorted = resVec.slice(0)
+              resVec_sorted.sort()
+              resVec_sorted.reverse()
               // set result
               let nameIndex = [[-1, 0], [-1, 0], [-1, 0], [-1, 0]]
-              for (var j = 0; j < 15; j++) {
+
+              for (var j = 0; j < 4; ++j) {
+                let rate = resVec_sorted[j]
+                for (var k = 0; k < 15; ++k) {
+                  if (rate == resVec[k]) {
+                    nameIndex[j] = [rate, k]
+                  }
+                }
+              }
+
+              /*for (var j = 0; j < 15; j++) {
                 let rate = resVec[j]
                 for (var k = 0; k < 4; k++) {
                   if (rate > nameIndex[k][0]) {
@@ -233,7 +246,7 @@ export default {
                     break
                   }
                 }
-              }
+              }*/
               console.log('infer ', nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
