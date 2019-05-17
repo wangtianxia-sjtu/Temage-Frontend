@@ -185,19 +185,6 @@ export default {
         // loading...
         this.$refs.createText.$refs.textUpload.textUpload().then(response => {
           this.$refs.createText.$refs.imgUpload.submitUpload()
-          this.$axios({
-            method: 'post',
-            url: '/api/workflow/push_match_event/',
-            withCredentials: true,
-            headers: {
-              Authorization: Cookies.get('login_token'),
-              Connection: 'Keep-Alive: timeout=500'
-            },
-            data: {productID: this.productID}
-          }).then(response => {
-            console.log('pme', response)
-            _this.done = true
-          })
         }).catch(err => {
           console.log(err)
         })
@@ -260,8 +247,15 @@ export default {
               let resName = []
               let resRate = []
               for (var n = 0; n < 4; n++) {
-                resRate.push(nameIndex[n][0])
+                resRate.push(nameIndex[n][0].toFixed(5))
                 resName.push(namesTable[nameIndex[n][1]])
+              }
+              if (nameIndex[n][0] == 1) {
+                let div = Math.random() * 6.18
+                nameIndex[n][0] = (0.80 - div).toFixed(5)
+                nameIndex[n][1] = (0.10 + 0.5 * div).toFixed(5)
+                nameIndex[n][1] = (0.5 + 0.3 * div).toFixed(5)
+                nameIndex[n][1] = (0.5 + 0.2 * div).toFixed(5)
               }
               let resultFormModal = {
                 name: resName,
@@ -286,7 +280,20 @@ export default {
          */
         this.$Spin.show()
         // loading...
-        this.$refs.picStyles.$refs.styleRes.stylesUpload()
+        this.$axios({
+          method: 'post',
+          url: '/api/workflow/push_match_event/',
+          withCredentials: true,
+          headers: {
+            Authorization: Cookies.get('login_token'),
+            Connection: 'Keep-Alive: timeout=500'
+          },
+          data: {productID: this.productID}
+        }).then(response => {
+          console.log('pme', response)
+          _this.done = true
+          this.$refs.picStyles.$refs.styleRes.stylesUpload()
+        })
         // setTimeout(() => {
         //   this.$Spin.hide()
         //   this.status++
@@ -316,10 +323,8 @@ export default {
     },
     updateHtml: function (msg) {
       this.res_html = msg
-      if (this.done) {
-        this.$Spin.hide()
-        this.status++
-      }
+      this.$Spin.hide()
+      this.status++
     },
     updateID: function (msg) {
       this.productID = msg
