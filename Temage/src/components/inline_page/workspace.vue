@@ -104,7 +104,8 @@ export default {
       work_url: '',
       download_url: '',
       title: null,
-      stars: 0
+      stars: 0,
+      done: false
     }
   },
   created () {
@@ -175,6 +176,7 @@ export default {
        */
       let resVec = []
       let resModel = {}
+      let _this = this
       if (this.status === 0) {
         /*
          * Step One: Upload + inference
@@ -187,8 +189,14 @@ export default {
             method: 'post',
             url: '/api/workflow/push_match_event/',
             withCredentials: true,
-            headers: {Authorization: Cookies.get('login_token')},
+            headers: {
+              Authorization: Cookies.get('login_token'),
+              Connection: 'Keep-Alive: timeout=500'
+            },
             data: {productID: this.productID}
+          }).then(response => {
+            console.log('pme', response)
+            _this.done = true
           })
         }).catch(err => {
           console.log(err)
@@ -238,7 +246,7 @@ export default {
                 }
               }
 
-              /*for (var j = 0; j < 15; j++) {
+              /* for (var j = 0; j < 15; j++) {
                 let rate = resVec[j]
                 for (var k = 0; k < 4; k++) {
                   if (rate > nameIndex[k][0]) {
@@ -246,7 +254,7 @@ export default {
                     break
                   }
                 }
-              }*/
+              } */
               console.log('infer ', nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
@@ -308,8 +316,10 @@ export default {
     },
     updateHtml: function (msg) {
       this.res_html = msg
-      this.$Spin.hide()
-      this.status++
+      if (this.done) {
+        this.$Spin.hide()
+        this.status++
+      }
     },
     updateID: function (msg) {
       this.productID = msg
