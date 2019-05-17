@@ -2,7 +2,7 @@
   <div>
     <el-upload
       ref="upload"
-      action="http://202.120.40.109:19132/api/workflow/post_picture/"
+      action="http://servera:8000/api/workflow/post_picture/"
       list-type="picture-card"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"

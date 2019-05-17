@@ -218,16 +218,16 @@ export default {
               for (var i = 0; i < 15; i++) {
                 resVec.push(parseFloat(result[i].toFixed(4)))
               }
-              resVec_sorted = resVec.slice(0)
-              resVec_sorted.sort()
-              resVec_sorted.reverse()
+              let resVecSorted = resVec.slice(0)
+              resVecSorted.sort()
+              resVecSorted.reverse()
               // set result
               let nameIndex = [[-1, 0], [-1, 0], [-1, 0], [-1, 0]]
 
               for (var j = 0; j < 4; ++j) {
-                let rate = resVec_sorted[j]
+                let rate = resVecSorted[j]
                 for (var k = 0; k < 15; ++k) {
-                  if (rate == resVec[k]) {
+                  if (rate === resVec[k]) {
                     nameIndex[j] = [rate, k]
                   }
                 }
@@ -250,7 +250,7 @@ export default {
                 resRate.push(nameIndex[n][0].toFixed(5))
                 resName.push(namesTable[nameIndex[n][1]])
               }
-              if (nameIndex[n][0] == 1) {
+              if (nameIndex[n][0] === 1.0) {
                 let div = Math.random() * 6.18
                 nameIndex[n][0] = (0.80 - div).toFixed(5)
                 nameIndex[n][1] = (0.10 + 0.5 * div).toFixed(5)
