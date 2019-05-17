@@ -148,18 +148,18 @@ export default {
       chartData: {
         columns: ['sty', 'percent'],
         rows: [{
-          sty: '1',
-          percent: 0.6
+          sty: 'x',
+          percent: 0.01
         }, {
-          sty: '2',
-          percent: 0.4
+          sty: 'x',
+          percent: 0.01
         }, {
-          sty: '3',
-          percent: 0.9
+          sty: 'x',
+          percent: 0.01
         },
         {
-          sty: '4',
-          percent: 0.9
+          sty: 'x',
+          percent: 0.01
         }]
       }
     }
@@ -173,7 +173,7 @@ export default {
       } else {
         this.chartData.rows[i].sty = this.name[i]
       }
-      this.chartData.rows[i].percent = this.rate[i].toFixed(5)
+      this.chartData.rows[i].percent = this.rate[i]
     }
   },
   props: {

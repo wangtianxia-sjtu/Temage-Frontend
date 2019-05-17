@@ -251,7 +251,7 @@ export default {
                 resName.push(namesTable[nameIndex[n][1]])
               }
 
-              if (nameIndex[0][0] === 1.0) {
+              if (nameIndex[0][0] >= 0.99) {
                 let div = Math.random() * 6.18
                 nameIndex[0][0] = (0.80 - div).toFixed(5)
                 nameIndex[1][0] = (0.10 + 0.5 * div).toFixed(5)
