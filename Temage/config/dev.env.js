@@ -33,7 +33,7 @@ module.exports = merge(prodEnv, {
       auth: '"/api/user/authenticate/"'
     },
     deepLearning: {
-      get_embedding: '"/learning/embedding"'
+      get_embedding: '"/embedding"'
     }
   },
   styleNames:

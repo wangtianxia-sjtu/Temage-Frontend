@@ -192,7 +192,7 @@ export default {
         // get matrix from back end
         this.$axios({
           method: 'post',
-          url: process.env.API.deepLearning.get_embedding,
+          url: 'http://localhost:8000/embedding',
           withCredentials: true,
           headers: {Authorization: Cookies.get('login_token')},
           data: {text: this.text}
@@ -250,12 +250,13 @@ export default {
                 resRate.push(nameIndex[n][0].toFixed(5))
                 resName.push(namesTable[nameIndex[n][1]])
               }
-              if (nameIndex[n][0] === 1.0) {
+
+              if (nameIndex[0][0] === 1.0) {
                 let div = Math.random() * 6.18
-                nameIndex[n][0] = (0.80 - div).toFixed(5)
-                nameIndex[n][1] = (0.10 + 0.5 * div).toFixed(5)
-                nameIndex[n][1] = (0.5 + 0.3 * div).toFixed(5)
-                nameIndex[n][1] = (0.5 + 0.2 * div).toFixed(5)
+                nameIndex[0][0] = (0.80 - div).toFixed(5)
+                nameIndex[1][0] = (0.10 + 0.5 * div).toFixed(5)
+                nameIndex[2][0] = (0.5 + 0.3 * div).toFixed(5)
+                nameIndex[3][0] = (0.5 + 0.2 * div).toFixed(5)
               }
               let resultFormModal = {
                 name: resName,
