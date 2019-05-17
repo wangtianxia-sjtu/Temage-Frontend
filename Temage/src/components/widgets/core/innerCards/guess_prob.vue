@@ -173,7 +173,8 @@ export default {
       } else {
         this.chartData.rows[i].sty = this.name[i]
       }
-      this.chartData.rows[i].percent = this.rate[i]
+      let round = this.rate[i].toFixed(5)
+      this.chartData.rows[i].percent = round
     }
   },
   props: {
