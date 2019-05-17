@@ -221,7 +221,7 @@ export default {
             promiseRes.then(function (result) {
               console.log('TensorRes ', result)
               for (var i = 0; i < 15; i++) {
-                resVec.push(result[i])
+                resVec.push(parseFloat(result[i].toFixed(4)))
               }
               resVec_sorted = resVec.slice(0)
               resVec_sorted.sort()
