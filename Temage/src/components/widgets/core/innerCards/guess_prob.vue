@@ -171,8 +171,8 @@ export default {
     for (var i = 0; i < 4; i++) {
       dupArray.push(
         {
-          sty: this.name[i],
-          percent: this.rate[i]
+          sty: this.name[i].toFixed(5),
+          percent: this.rate[i].toFixed(5)
         }
       )
     }
