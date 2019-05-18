@@ -34,7 +34,7 @@ Vue.use(VCharts)
 Vue.prototype.$ajax = axios
 
 /* axios base url: change it when dispatch or integrate testing */
-axios.defaults.baseURL = 'http://202.120.40.109:19132' // http://101.132.73.215:3030 or http://localhost:3030
+axios.defaults.baseURL = 'http://localhost:8080' // http://101.132.73.215:3030 or http://localhost:3030
 
 /* eslint-disable no-new */
 new Vue({

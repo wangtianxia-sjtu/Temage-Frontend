@@ -1,6 +1,6 @@
 <template>
 <div>
-<prob :guess_lay="guess"></prob>
+<prob :guess_lay="this.guess"></prob>
 <tags ref="styleRes" :guess_tag="guess.name" :product-i-d="this.productID"
       v-on:handStyles="setThisStyle"
       v-on:getHtml="passHtml"></tags>

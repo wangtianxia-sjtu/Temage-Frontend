@@ -32,19 +32,24 @@ export default {
   },
   mounted () {
     this.ID = this.work_id
-    this.$axios({
-      method: 'post',
-      url: process.env.API.workflow.finished_work,
-      data: {productID: this.ID},
-      withCredentials: true,
-      headers: {Authorization: Cookies.get('login_token')}
-    }).then(response => {
-      if (response.status !== 200) {
-        this.$Message.error('服务器状态错误! 错误码:' + response.status)
-      } else {
-        this.url = response.data.url
-      }
-    })
+    console.log('is :', this.ID)
+    setTimeout(() => {
+      this.$axios({
+        method: 'post',
+        url: process.env.API.workflow.finished_work,
+        data: {
+          productID: 28
+        },
+        withCredentials: true,
+        headers: {Authorization: Cookies.get('login_token')}
+      }).then(response => {
+        if (response.status !== 200) {
+          this.$Message.error('服务器状态错误! 错误码:' + response.status)
+        } else {
+          this.url = response.data.url
+        }
+      })
+    }, 2000)
   },
   methods: {
     save () {

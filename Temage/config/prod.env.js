@@ -30,7 +30,13 @@ module.exports = {
       auth: '"/api/user/authenticate/"'
     },
     deepLearning: {
-      get_embedding: '"/learning/embedding/"'
+      get_embedding: '"/embedding"'
     }
-  }
+  },
+  styleNames:
+    ["'NONE'", "'constellation'", "'economics'",
+      "'education'", "'entertainment'", "'fashion'",
+      "'furniture'", "'game'", "'lottery'",
+      "'politics'", "'real-estate'", "'science-technology'",
+      "'society'", "'sport'", "'stock'"]
 }

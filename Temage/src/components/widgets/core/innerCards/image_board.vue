@@ -2,7 +2,7 @@
   <div>
     <el-upload
       ref="upload"
-      action="http://0.0.0.0:3030/api/pic_post/"
+      action="http://localhost:8080/api/workflow/post_picture/"
       list-type="picture-card"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"

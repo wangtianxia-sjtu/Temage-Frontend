@@ -42,7 +42,6 @@ export default {
       alert(this.editorHTML)
     },
     storeHtml () {
-      this.$emit('finalHtml', this.editorHTML)
       this.$axios({
         method: 'post',
         url: process.env.API.workflow.store_passage,
@@ -60,6 +59,10 @@ export default {
         if (response.status !== 200) {
           this.$Message.error('服务器状态错误! 错误码:' + response.status)
         } else {
+          let prdID = response.data.ID
+          console.log('myID', prdID)
+          this.$emit('updateId', prdID)
+          this.$emit('finalHtml', this.editorHTML)
         }
       })
     }

@@ -46,6 +46,7 @@ export default {
   data () {
     this.chartSettings = {
       wave: [[0.7, 0.5, 0.2], [0.1, 0.05], [0.05, 0.02], [0.03, 0.02, 0.01]],
+      digit: 5,
       seriesMap: [
         {
           color: ['#8DDD72', '#64D550', '#37993C', '#237A2A'],
@@ -148,18 +149,18 @@ export default {
       chartData: {
         columns: ['sty', 'percent'],
         rows: [{
-          sty: '1',
-          percent: 0.6
+          sty: 'x',
+          percent: 0.01
         }, {
-          sty: '2',
-          percent: 0.4
+          sty: 'x',
+          percent: 0.01
         }, {
-          sty: '3',
-          percent: 0.9
+          sty: 'x',
+          percent: 0.01
         },
         {
-          sty: '4',
-          percent: 0.9
+          sty: 'x',
+          percent: 0.01
         }]
       }
     }
@@ -167,14 +168,25 @@ export default {
   mounted () {
     this.name = this.guess_lay.name
     this.rate = this.guess_lay.rate
+    let dupArray = []
     for (var i = 0; i < 4; i++) {
-      if (this.name[i] === 'science-technology') {
-        this.chartData.rows[i].sty = 'science\ntechnology'
-      } else {
-        this.chartData.rows[i].sty = this.name[i]
-      }
-      this.chartData.rows[i].percent = this.rate[i].toFixed(5)
+      dupArray.push(
+        {
+          sty: this.name[i],
+          percent: this.rate[i]
+        }
+      )
     }
+    this.chartData.rows = dupArray
+    // for (var i = 0; i < 4; i++) {
+    //   if (this.name[i] === 'science-technology') {
+    //     this.chartData.rows[i].sty = 'science\ntechnology'
+    //   } else {
+    //     this.chartData.rows[i].sty = this.name[i]
+    //   }
+    //   let round = this.rate[i].toFixed(5)
+    //   this.chartData.rows[i].percent = round
+    // }
   },
   props: {
     guess_lay: {

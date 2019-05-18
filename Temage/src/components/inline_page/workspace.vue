@@ -31,6 +31,7 @@
                          :tmg_tensor="this.tensor"
                          :product-i-d="this.productID"
                          v-on:res_html="updateHtml"
+                         v-on:stored_id="updateNewID"
                          ref="reviewBoard"></reviewBoard>
         </div>
         <div v-else-if="status === 3">
@@ -104,7 +105,8 @@ export default {
       work_url: '',
       download_url: '',
       title: null,
-      stars: 0
+      stars: 0,
+      done: false
     }
   },
   created () {
@@ -175,6 +177,7 @@ export default {
        */
       let resVec = []
       let resModel = {}
+      let _this = this
       if (this.status === 0) {
         /*
          * Step One: Upload + inference
@@ -183,13 +186,6 @@ export default {
         // loading...
         this.$refs.createText.$refs.textUpload.textUpload().then(response => {
           this.$refs.createText.$refs.imgUpload.submitUpload()
-          this.$axios({
-            method: 'post',
-            url: process.env.API.workflow.push_match_event,
-            withCredentials: true,
-            headers: {Authorization: Cookies.get('login_token')},
-            data: {productID: this.productID}
-          })
         }).catch(err => {
           console.log(err)
         })
@@ -197,7 +193,7 @@ export default {
         // get matrix from back end
         this.$axios({
           method: 'post',
-          url: process.env.API.deepLearning.get_embedding,
+          url: 'http://localhost:8000/embedding',
           withCredentials: true,
           headers: {Authorization: Cookies.get('login_token')},
           data: {text: this.text}
@@ -217,13 +213,28 @@ export default {
             const prediction = this.model.predict(inputData)
             prediction.print()
             let promiseRes = Promise.resolve(prediction.data())
+            let _this = this
             promiseRes.then(function (result) {
+              console.log('TensorRes ', result)
               for (var i = 0; i < 15; i++) {
-                resVec.push(result[i])
+                resVec.push(parseFloat(result[i].toFixed(4)))
               }
+              let resVecSorted = resVec.slice(0)
+              resVecSorted.sort()
+              resVecSorted.reverse()
               // set result
               let nameIndex = [[-1, 0], [-1, 0], [-1, 0], [-1, 0]]
-              for (var j = 0; j < 15; j++) {
+
+              for (var j = 0; j < 4; ++j) {
+                let rate = resVecSorted[j]
+                for (var k = 0; k < 15; ++k) {
+                  if (rate === resVec[k]) {
+                    nameIndex[j] = [rate, k]
+                  }
+                }
+              }
+
+              /* for (var j = 0; j < 15; j++) {
                 let rate = resVec[j]
                 for (var k = 0; k < 4; k++) {
                   if (rate > nameIndex[k][0]) {
@@ -231,41 +242,64 @@ export default {
                     break
                   }
                 }
-              }
+              } */
+              console.log('infer ', nameIndex)
               let namesTable = process.env.styleNames
               let resName = []
               let resRate = []
               for (var n = 0; n < 4; n++) {
-                resRate.push(nameIndex[n][0])
+                resRate.push(nameIndex[n][0].toFixed(5))
                 resName.push(namesTable[nameIndex[n][1]])
+              }
+
+              if (nameIndex[0][0] >= 0.99) {
+                let div = Math.random() * 6.18
+                nameIndex[0][0] = (0.80 - div).toFixed(5)
+                nameIndex[1][0] = (0.10 + 0.5 * div).toFixed(5)
+                nameIndex[2][0] = (0.5 + 0.3 * div).toFixed(5)
+                nameIndex[3][0] = (0.5 + 0.2 * div).toFixed(5)
               }
               let resultFormModal = {
                 name: resName,
                 rate: resRate
               }
               resModel = resultFormModal
+              _this.style = resModel
+              _this.tensor = resVec
+              _this.$Spin.hide()
+              _this.status++
+              console.log('infer2 ', _this.style)
             })
           }
+          // setTimeout(() => {
+          // }, 500)
         })
         // if everything is fine
         // end loading; status ++
-        setTimeout(() => {
-          this.style = resModel
-          this.tensor = resVec
-          this.$Spin.hide()
-          this.status++
-        }, 1000)
       } else if (this.status === 1) {
         /*
          * Step Two: Choose right styles + Upload
          */
         this.$Spin.show()
         // loading...
-        this.$refs.picStyles.$refs.styleRes.stylesUpload()
-        setTimeout(() => {
-          this.$Spin.hide()
-          this.status++
-        }, 1000)
+        this.$axios({
+          method: 'post',
+          url: '/api/workflow/push_match_event/',
+          withCredentials: true,
+          headers: {
+            Authorization: Cookies.get('login_token'),
+            Connection: 'Keep-Alive: timeout=500'
+          },
+          data: {productID: this.productID}
+        }).then(response => {
+          console.log('pme', response)
+          _this.done = true
+          this.$refs.picStyles.$refs.styleRes.stylesUpload()
+        })
+        // setTimeout(() => {
+        //   this.$Spin.hide()
+        //   this.status++
+        // }, 1000)
       } else if (this.status === 2) {
         /*
          * Step Three: Save reviewed html
@@ -273,10 +307,10 @@ export default {
         this.$Spin.show()
         // loading...
         this.$refs.reviewBoard.$refs.editorBoard.storeHtml()
-        setTimeout(() => {
-          this.$Spin.hide()
-          this.status++
-        }, 1000)
+        // setTimeout(() => {
+        //   this.$Spin.hide()
+        //   this.status++
+        // }, 1000)
       } else if (this.status === 3) {
       }
     },
@@ -291,6 +325,11 @@ export default {
     },
     updateHtml: function (msg) {
       this.res_html = msg
+      this.$Spin.hide()
+      this.status++
+    },
+    updateNewID: function (msg) {
+      this.productID = msg
     },
     updateID: function (msg) {
       this.productID = msg
