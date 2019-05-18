@@ -61,6 +61,7 @@ export default {
           this.$Message.error('服务器状态错误! 错误码:' + response.status)
         } else {
           let prdID = response.data.ID
+          console.log('myID', prdID)
           this.$emit('updateId', prdID)
         }
       })
