@@ -38,7 +38,7 @@ export default {
         method: 'post',
         url: process.env.API.workflow.finished_work,
         data: {
-          productID: this.ID
+          productID: 28
         },
         withCredentials: true,
         headers: {Authorization: Cookies.get('login_token')}

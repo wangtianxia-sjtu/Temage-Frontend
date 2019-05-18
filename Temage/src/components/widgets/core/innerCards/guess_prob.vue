@@ -46,6 +46,7 @@ export default {
   data () {
     this.chartSettings = {
       wave: [[0.7, 0.5, 0.2], [0.1, 0.05], [0.05, 0.02], [0.03, 0.02, 0.01]],
+      digit: 5,
       seriesMap: [
         {
           color: ['#8DDD72', '#64D550', '#37993C', '#237A2A'],
@@ -171,8 +172,8 @@ export default {
     for (var i = 0; i < 4; i++) {
       dupArray.push(
         {
-          sty: this.name[i].toFixed(5),
-          percent: this.rate[i].toFixed(5)
+          sty: this.name[i],
+          percent: this.rate[i]
         }
       )
     }
