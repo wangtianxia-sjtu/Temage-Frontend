@@ -328,7 +328,7 @@ export default {
       this.$Spin.hide()
       this.status++
     },
-    updateNewID: function(msg) {
+    updateNewID: function (msg) {
       this.productID = msg
     },
     updateID: function (msg) {
