@@ -164,6 +164,19 @@ export default {
       }
     }
   },
+  beforeMount () {
+    this.name = this.guess_lay.name
+    this.rate = this.guess_lay.rate
+    for (var i = 0; i < 4; i++) {
+      if (this.name[i] === 'science-technology') {
+        this.chartData.rows[i].sty = 'science\ntechnology'
+      } else {
+        this.chartData.rows[i].sty = this.name[i]
+      }
+      let round = this.rate[i].toFixed(5)
+      this.chartData.rows[i].percent = round
+    }
+  },
   mounted () {
     this.name = this.guess_lay.name
     this.rate = this.guess_lay.rate
