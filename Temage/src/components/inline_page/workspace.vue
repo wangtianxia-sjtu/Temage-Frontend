@@ -31,6 +31,7 @@
                          :tmg_tensor="this.tensor"
                          :product-i-d="this.productID"
                          v-on:res_html="updateHtml"
+                         v-on:stored_id="updateNewID"
                          ref="reviewBoard"></reviewBoard>
         </div>
         <div v-else-if="status === 3">
@@ -306,10 +307,10 @@ export default {
         this.$Spin.show()
         // loading...
         this.$refs.reviewBoard.$refs.editorBoard.storeHtml()
-        setTimeout(() => {
-          this.$Spin.hide()
-          this.status++
-        }, 1000)
+        // setTimeout(() => {
+        //   this.$Spin.hide()
+        //   this.status++
+        // }, 1000)
       } else if (this.status === 3) {
       }
     },
@@ -326,6 +327,9 @@ export default {
       this.res_html = msg
       this.$Spin.hide()
       this.status++
+    },
+    updateNewID: function(msg) {
+      this.productID = msg
     },
     updateID: function (msg) {
       this.productID = msg

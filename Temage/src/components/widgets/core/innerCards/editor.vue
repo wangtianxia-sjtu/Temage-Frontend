@@ -60,6 +60,8 @@ export default {
         if (response.status !== 200) {
           this.$Message.error('服务器状态错误! 错误码:' + response.status)
         } else {
+          let prdID = response.data.ID
+          this.$emit('updateId', prdID)
         }
       })
     }

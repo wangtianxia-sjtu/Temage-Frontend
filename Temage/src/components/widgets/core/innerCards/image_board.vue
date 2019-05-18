@@ -9,7 +9,6 @@
       :auto-upload='false'
       :with-credentials="true"
       :headers="{Authorization: this.user_token}"
-      :multiple="multiple"
     >
       <i class="el-icon-plus"></i>
     </el-upload>

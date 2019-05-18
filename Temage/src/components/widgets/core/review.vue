@@ -8,6 +8,7 @@
             :width="this.width"
             :product-i-d="this.productID"
             v-on:finalHtml="handover"
+            v-on:updateID="handoverId"
             ref="editorBoard"></editor>
 </div>
 </template>
@@ -35,6 +36,9 @@ export default {
   methods: {
     handover: function (msg) {
       this.$emit('res_html', msg)
+    },
+    handoverId: function (msg) {
+      this.$emit('stored_id', msg)
     }
   },
   props: {
